@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════
+   Método R.E.S.T. — Design System "Santuario"
+   ═══════════════════════════════════════════════ */
+
+@theme inline {
+  --font-heading: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+}
+
+:root {
+  --color-rest-bg: #060E0E;
+  --color-rest-bg-alt: #0A1E1E;
+  --color-rest-card: rgba(10, 44, 44, 0.65);
+  --color-rest-card-solid: #123838;
+  --color-rest-card-hover: rgba(18, 68, 68, 0.65);
+  --color-rest-border: rgba(0, 229, 160, 0.03);
+  --color-rest-accent: #00E5A0;
+  --color-rest-accent-light: #33FFBB;
+  --color-rest-accent-dark: #00B880;
+  --color-rest-accent-glow: rgba(0, 229, 160, 0.15);
+  --color-rest-text: #E0E6EB;
+  --color-rest-text-secondary: #9BAABD;
+  --color-rest-text-muted: #506070;
+  --color-rest-luna: #D4C5F9;
+  --color-rest-danger: #FF4757;
+  --color-rest-warning: #FFA502;
+  --color-rest-success: #00E5A0;
+}
+
+* {
+  box-sizing: border-box;
+  border-color: rgba(0, 229, 160, 0.06);
+}
+html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+
+body {
+  background: var(--color-rest-bg);
+  color: var(--color-rest-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-rest-bg); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* Global button/link tap feedback */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+button:active:not(:disabled) {
+  transform: scale(0.97) !important;
+  filter: brightness(0.85);
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+/* Slider tracks — visible track */
+input[type="range"] {
+  -webkit-tap-highlight-color: transparent;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+
+/* ═══════════════════════════════════════
+   Animations — GPU-accelerated, minimal
+   ═══════════════════════════════════════ */
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale3d(0.95, 0.95, 1); }
+  to { opacity: 1; transform: scale3d(1, 1, 1); }
+}
+@keyframes float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
+}
+@keyframes breathe-in {
+  from { transform: scale(1); opacity: 0.4; }
+  to { transform: scale(1.8); opacity: 0.8; }
+}
+@keyframes breathe-out {
+  from { transform: scale(1.8); opacity: 0.8; }
+  to { transform: scale(1); opacity: 0.4; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 0.2; }
+  100% { transform: scale(0.8); opacity: 0.6; }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.animate-fade-in {
+  animation: fade-in 0.5s ease forwards;
+  opacity: 0;
+}
+.animate-scale-in {
+  animation: scale-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+.animate-float { animation: float 4s ease-in-out infinite; will-change: transform; }
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+
+/* ═══════════════════════════════════════
+   Glass design system — optimized
+   ═══════════════════════════════════════ */
+
+.glow-accent {
+  box-shadow: 0 0 24px var(--color-rest-accent-glow), 0 0 80px rgba(0, 229, 160, 0.08);
+}
+.glow-accent-sm {
+  box-shadow: 0 0 12px var(--color-rest-accent-glow);
+}
+
+.glass-card {
+  background: var(--color-rest-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(0, 229, 160, 0.03);
+  transition: box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(0, 229, 160, 0.08);
+}
+
+.card-glow {
+  position: relative;
+  overflow: hidden;
+}
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--color-rest-accent) 0deg,
+    var(--color-rest-luna) 120deg,
+    var(--color-rest-accent) 240deg,
+    var(--color-rest-accent) 360deg
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+.card-glow:hover::before { opacity: 0.5; }
+.card-glow::after {
+  content: "";
+  position: absolute;
+  inset: 1.5px;
+  border-radius: inherit;
+  background: var(--color-rest-card-solid);
+  z-index: 0;
+}
+.card-glow > * { position: relative; z-index: 1; }
+
+.progress-bar {
+  background: linear-gradient(90deg, var(--color-rest-accent-dark), var(--color-rest-accent), var(--color-rest-accent-light));
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, var(--color-rest-accent-light), var(--color-rest-accent), var(--color-rest-accent-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-rest-border), transparent);
+}
+
+/* ═══════════════════════════════════════
+   Content protection
+   ═══════════════════════════════════════ */
+@media print {
+  body { display: none !important; }
+  html::after {
+    content: "Contenido protegido — Método R.E.S.T. © Joaquín Adi";
+    display: block;
+    padding: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+
+/* ═══════════════════════════════════════
+   Selection states — high-visibility
+   ═══════════════════════════════════════ */
+
+.habit-item-checked {
+  background: rgba(0, 229, 160, 0.08) !important;
+  box-shadow: inset 0 0 0 1px rgba(0, 229, 160, 0.2), 0 0 12px rgba(0, 229, 160, 0.06);
+}
+
+.habit-checkbox-checked {
+  background: var(--color-rest-accent) !important;
+  border-color: var(--color-rest-accent) !important;
+  box-shadow: 0 0 8px rgba(0, 229, 160, 0.4);
+}
+
+.habit-checkbox-unchecked {
+  border-color: rgba(0, 229, 160, 0.2) !important;
+}
+.habit-checkbox-unchecked:hover {
+  border-color: rgba(0, 229, 160, 0.4) !important;
+  box-shadow: 0 0 6px rgba(0, 229, 160, 0.15);
+}
+
+[data-protected] {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+[data-protected].content-hidden {
+  filter: blur(50px) brightness(0.3) !important;
+  transition: filter 0.05s ease;
+}
+[data-protected].content-hidden * {
+  visibility: hidden !important;
+}
+[data-protected].content-hidden::after {
+  content: "Contenido protegido — © Método R.E.S.T.";
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 229, 160, 0.6);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  z-index: 9999;
+  visibility: visible !important;
+}
+
+/* Burbuja de invitacion del asistente */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
