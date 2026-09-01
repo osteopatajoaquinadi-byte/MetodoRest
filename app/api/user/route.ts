@@ -22,16 +22,13 @@ export async function GET(req: NextRequest) {
 export async function PATCH(req: NextRequest) {
   const { userId, fields } = await req.json();
   if (!userId) return NextResponse.json({ error: "userId requerido" }, { status: 400 });
+  const allowed = ["nombre", "edad", "genero", "objetivo_sueno", "perfil_completado", "basal_completado", "onboarding_completado", "fecha_onboarding", "fecha_inicio_programa"];
   const mapped: Record<string, unknown> = {};
+  for (const key of allowed) {
+    if (fields[key] !== undefined) mapped[key] = fields[key];
+  }
   if (fields.Nombre !== undefined) mapped.nombre = fields.Nombre;
   if (fields.Edad !== undefined) mapped.edad = fields.Edad;
-  if (fields["Género"] !== undefined) mapped.genero = fields["Género"];
-  if (fields["Objetivo Sueño"] !== undefined) mapped.objetivo_sueno = fields["Objetivo Sueño"];
-  if (fields["Perfil Completado"] !== undefined) mapped.perfil_completado = fields["Perfil Completado"];
-  if (fields["Basal Completado"] !== undefined) mapped.basal_completado = fields["Basal Completado"];
-  if (fields["Onboarding Completado"] !== undefined) mapped.onboarding_completado = fields["Onboarding Completado"];
-  if (fields["Fecha Onboarding"] !== undefined) mapped.fecha_onboarding = fields["Fecha Onboarding"];
-  if (fields["Fecha Inicio Programa"] !== undefined) mapped.fecha_inicio_programa = fields["Fecha Inicio Programa"];
   const updated = await updateUser(userId, mapped);
   return NextResponse.json({ id: updated.id, fields: updated });
 }

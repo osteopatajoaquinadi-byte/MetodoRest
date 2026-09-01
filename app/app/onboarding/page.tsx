@@ -78,8 +78,8 @@ export default function OnboardingPage() {
               Nombre: name.trim(), Edad: Number(age),
               "Género": gender ? gender.charAt(0).toUpperCase() + gender.slice(1).replace("-", " ") : undefined,
               "Objetivo Sueño": sleepGoal || undefined,
-              "Perfil Completado": true, "Basal Completado": true,
-              "Onboarding Completado": true, "Fecha Onboarding": now, "Fecha Inicio Programa": now,
+              perfil_completado: true, basal_completado: true,
+              onboarding_completado: true, fecha_onboarding: now, fecha_inicio_programa: now,
             },
           }),
         });

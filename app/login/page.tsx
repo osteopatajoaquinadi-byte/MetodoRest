@@ -37,19 +37,19 @@ export default function LoginPage() {
 
       setProfile({
         id: user.id,
-        name: f.Nombre || "",
-        age: f.Edad || 0,
-        email: f.Email,
-        gender: f["Género"] || undefined,
-        sleepGoal: f["Objetivo Sueño"] || undefined,
-        onboardingCompletedAt: f["Fecha Onboarding"] || "",
-        createdAt: f["Fecha Registro"] || new Date().toISOString(),
+        name: f.nombre || "",
+        age: f.edad || 0,
+        email: f.email,
+        gender: f.genero || undefined,
+        sleepGoal: f.objetivo_sueno || undefined,
+        onboardingCompletedAt: f.fecha_onboarding || "",
+        createdAt: f.fecha_registro || new Date().toISOString(),
       });
 
-      if (f["Onboarding Completado"] && f["Basal Completado"]) {
-        setOnboardingStatus({ profileCompleted: true, basalCompleted: true, completedAt: f["Fecha Onboarding"] });
-        if (f["Fecha Inicio Programa"]) {
-          setProgramStart(f["Fecha Inicio Programa"]);
+      if (f.onboarding_completado && f.basal_completado) {
+        setOnboardingStatus({ profileCompleted: true, basalCompleted: true, completedAt: f.fecha_onboarding });
+        if (f.fecha_inicio_programa) {
+          setProgramStart(f.fecha_inicio_programa);
         }
 
         const [evalsRes, habitsRes] = await Promise.all([
@@ -59,27 +59,43 @@ export default function LoginPage() {
 
         if (evalsRes.ok) {
           const evals = await evalsRes.json();
-          const basal = evals.find((ev: Record<string, unknown>) => ev.Tipo === "Basal");
+          const basal = evals.find((ev: Record<string, unknown>) => ev.tipo === "Basal");
           if (basal) {
+            const items = (basal.resetq_items || {}) as Record<string, unknown>;
             setBasalEvaluation({
-              evaluacion60s: { answers: JSON.parse(basal["Eval 60s Respuestas"] || "[]"), yesCount: basal["Eval 60s Puntaje"] || 0, date: basal.Fecha },
-              sss: { score: basal["SSS Puntaje"] || 0, date: basal.Fecha },
-              isi: { answers: JSON.parse(basal["ISI Respuestas"] || "[]"), total: basal["ISI Total"] || 0, label: basal["ISI Categoría"] || "", date: basal.Fecha },
-              cuestionario: { answers: JSON.parse(basal["Cuestionario Respuestas"] || "[]"), total: basal["Cuestionario Total"] || 0, date: basal.Fecha },
-              completedAt: basal.Fecha,
+              resetq: {
+                h: (items.h || []) as number[], a: (items.a || []) as number[],
+                r: (items.r || []) as number[], i: (items.i || []) as number[],
+                b: (items.b || []) as boolean[],
+                scoreH: (basal.resetq_score_h || 0) as number, scoreA: (basal.resetq_score_a || 0) as number,
+                scoreR: (basal.resetq_score_r || 0) as number, scoreI: (basal.resetq_score_i || 0) as number,
+                scoreB: (basal.resetq_score_b || 0) as number, global: (basal.resetq_global || 0) as number,
+                phenotype: (basal.resetq_phenotype || "") as string, band: (basal.resetq_band || "") as string,
+                date: (basal.fecha || "") as string,
+              },
+              sss: { score: (basal.sss_score || 0) as number, date: (basal.fecha || "") as string },
+              completedAt: (basal.fecha || "") as string,
             });
           }
-          const periodicEvals = evals.filter((ev: Record<string, unknown>) => ev.Tipo !== "Basal");
+          const periodicEvals = evals.filter((ev: Record<string, unknown>) => ev.tipo !== "Basal");
           for (const ev of periodicEvals) {
-            const weekMatch = (ev.Tipo as string)?.match(/\d+/);
+            const weekMatch = (ev.tipo as string)?.match(/\d+/);
+            const eitems = (ev.resetq_items || {}) as Record<string, unknown>;
             addPeriodicEvaluation({
-              id: ev["ID Evaluación"] || crypto.randomUUID(),
+              id: (ev.id || crypto.randomUUID()) as string,
               weekNumber: weekMatch ? parseInt(weekMatch[0]) : 0,
-              evaluacion60s: { answers: JSON.parse(ev["Eval 60s Respuestas"] || "[]"), yesCount: ev["Eval 60s Puntaje"] || 0, date: ev.Fecha },
-              sss: { score: ev["SSS Puntaje"] || 0, date: ev.Fecha },
-              isi: { answers: JSON.parse(ev["ISI Respuestas"] || "[]"), total: ev["ISI Total"] || 0, label: ev["ISI Categoría"] || "", date: ev.Fecha },
-              cuestionario: { answers: JSON.parse(ev["Cuestionario Respuestas"] || "[]"), total: ev["Cuestionario Total"] || 0, date: ev.Fecha },
-              completedAt: ev.Fecha,
+              resetq: {
+                h: (eitems.h || []) as number[], a: (eitems.a || []) as number[],
+                r: (eitems.r || []) as number[], i: (eitems.i || []) as number[],
+                b: (eitems.b || []) as boolean[],
+                scoreH: (ev.resetq_score_h || 0) as number, scoreA: (ev.resetq_score_a || 0) as number,
+                scoreR: (ev.resetq_score_r || 0) as number, scoreI: (ev.resetq_score_i || 0) as number,
+                scoreB: (ev.resetq_score_b || 0) as number, global: (ev.resetq_global || 0) as number,
+                phenotype: (ev.resetq_phenotype || "") as string, band: (ev.resetq_band || "") as string,
+                date: (ev.fecha || "") as string,
+              },
+              sss: { score: (ev.sss_score || 0) as number, date: (ev.fecha || "") as string },
+              completedAt: (ev.fecha || "") as string,
             });
           }
         }
@@ -87,13 +103,13 @@ export default function LoginPage() {
         if (habitsRes.ok) {
           const habits = await habitsRes.json();
           for (const h of habits) {
-            if (h.Fecha && h["Hábitos Detalle"]) {
+            if (h.fecha && h.habitos_detalle) {
               try {
                 setDailyHabits({
-                  date: h.Fecha,
-                  habits: JSON.parse(h["Hábitos Detalle"]),
-                  completedCount: h.Completados || 0,
-                  totalCount: h.Total || 0,
+                  date: h.fecha,
+                  habits: typeof h.habitos_detalle === "string" ? JSON.parse(h.habitos_detalle) : h.habitos_detalle,
+                  completedCount: h.completados || 0,
+                  totalCount: h.total || 0,
                 });
               } catch {}
             }
