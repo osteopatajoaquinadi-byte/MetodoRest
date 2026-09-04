@@ -20,16 +20,18 @@ export async function POST(req: NextRequest) {
   const { email, phenotype, global, scores } = body;
   if (!email) return NextResponse.json({ error: "Email requerido" }, { status: 400 });
 
-  // Guardado best-effort en tabla de leads (si existe). No bloquea si falla.
-  try {
-    await supabase.from("mr_leads").insert({
-      email,
-      phenotype: phenotype || null,
-      global_score: global ?? null,
-      scores: scores || null,
-      source: "landing_resetq",
-    });
-  } catch { /* tabla puede no existir aún */ }
+  // Guardado del lead en Supabase
+  const { error: insertError } = await supabase.from("mr_leads").insert({
+    email,
+    phenotype: phenotype || null,
+    global_score: global ?? null,
+    scores: scores || null,
+    source: "landing_resetq",
+  });
+  if (insertError) {
+    console.error("mr_leads insert error:", insertError.message);
+    return NextResponse.json({ ok: false, error: insertError.message }, { status: 200 });
+  }
 
   const info = PHENO_EMAIL[phenotype] || PHENO_EMAIL["SR-3"];
   if (resend) {
