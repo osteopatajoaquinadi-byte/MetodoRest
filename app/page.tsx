@@ -107,7 +107,7 @@ function ElProblema() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+              <h3 className="font-[family-name:var(--font-space)] text-lg font-semibold mb-2">{item.title}</h3>
               <p className="text-rest-text-secondary text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
@@ -174,7 +174,7 @@ function Pilares() {
                   <span className="text-2xl font-bold text-rest-bg font-[family-name:var(--font-space)]">{p.letter}</span>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-semibold">{p.name}</h3>
+                  <h3 className="font-[family-name:var(--font-space)] text-lg font-semibold">{p.name}</h3>
                 </div>
               </div>
             </div>
@@ -295,7 +295,7 @@ function Precio() {
 
         <div className="relative p-8 sm:p-10 rounded-2xl glass-card text-left card-glow glow-accent-sm">
           <div className="mb-5 text-center">
-            <h3 className="font-semibold text-xl text-white">Método R.E.S.T.</h3>
+            <h3 className="font-[family-name:var(--font-space)] font-semibold text-xl text-white">Método R.E.S.T.</h3>
             <p className="text-rest-text-muted text-sm mt-1">Ebook + plataforma interactiva completa</p>
           </div>
           <div className="mb-8 text-center">
