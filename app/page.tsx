@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import HeroBackground from "./components/HeroBackground";
 import ChatbotWidget from "./components/ChatbotWidget";
+import EvaluacionLanding from "./components/EvaluacionLanding";
 
 function NavBar() {
   const [hidden, setHidden] = useState(false);
@@ -22,6 +23,7 @@ function NavBar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-center">
         <div className="flex items-center gap-4 sm:gap-8">
           <a href="#metodo" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">El Método</a>
+          <a href="#evaluacion" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Evaluación</a>
           <a href="#pilares" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Pilares</a>
 
           <a href="#testimonios" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Testimonios</a>
@@ -48,17 +50,18 @@ function Hero() {
         </h1>
 
         <p className="animate-fade-in-up delay-400 text-rest-text-secondary text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-          El Método R.E.S.T. combina técnicas de respiración científicamente
-          validadas, hábitos de sueño y herramientas prácticas para transformar
-          tu descanso en 21 días.
+          Si das vueltas en la cama, te despiertas a las 3 de la madrugada o
+          amaneces sin energía por más que duermas, no es falta de voluntad:
+          es tu sistema nervioso en alerta. El Método R.E.S.T. te enseña a
+          calmarlo en 21 días, sin pastillas.
         </p>
 
         <div className="animate-fade-in-up delay-500 flex flex-row items-center justify-center gap-3">
           <a
-            href="#precio"
+            href="#evaluacion"
             className="px-6 py-2.5 bg-rest-accent hover:bg-[#00B880] text-rest-bg text-sm font-semibold uppercase tracking-wider rounded-xl transition-colors shadow-[0_0_16px_rgba(0,229,160,0.3)]"
           >
-            Comenzar ahora
+            Evaluación gratis
           </a>
           <Link
             href="/login"
@@ -146,6 +149,26 @@ function ElProblema() {
             </a>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function Evaluacion() {
+  return (
+    <section id="evaluacion" className="py-20 sm:py-28 relative" style={{ backgroundColor: "#091A1A" }}>
+      <div className="absolute inset-0 bg-gradient-to-b from-rest-bg via-transparent to-rest-bg opacity-30" />
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12">
+          <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Evaluación gratuita</span>
+          <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">
+            Antes de dormir mejor, <span className="text-gradient-green">entiende por qué no lo haces</span>
+          </h2>
+          <p className="text-rest-text-secondary mt-4 max-w-2xl mx-auto text-base sm:text-lg">
+            La mayoría de las personas con insomnio prueban pastillas y consejos genéricos sin saber qué falla realmente en su cuerpo. Este test te lo muestra en 3 minutos.
+          </p>
+        </div>
+        <EvaluacionLanding />
       </div>
     </section>
   );
@@ -367,6 +390,7 @@ export default function LandingPage() {
       <Hero />
       <Testimonios />
       <ElProblema />
+      <Evaluacion />
       <Autor />
       <Pilares />
 
