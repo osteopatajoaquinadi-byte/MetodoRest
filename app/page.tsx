@@ -90,16 +90,16 @@ function ElProblema() {
             ¿Por qué no puedes dormir?
           </h2>
           <p className="text-rest-text-secondary mt-4 max-w-2xl mx-auto text-base sm:text-lg">
-            Tu insomnio no es el problema. Es la consecuencia de un sistema nervioso desregulado.
+            No es que no sepas dormir. Es que tu cuerpo olvidó cómo bajar la guardia.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {[
-            { icon: "M13 10V3L4 14h7v7l9-11h-7z", title: "Sistema nervioso en alerta", desc: "Tu cuerpo se acuesta pero tu sistema nervioso no. El estrés crónico mantiene activo el modo supervivencia incluso de noche." },
-            { icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", title: "Reloj biológico desincronizado", desc: "Horarios irregulares, pantallas nocturnas y falta de luz matinal desorganizan tu ritmo circadiano." },
-            { icon: "M7 8c0 2 1 3 3 3s3 1 3 3-1 3-3 3m4-9c0 2-1 3-3 3s-3 1-3 3 1 3 3 3M12 4v1m0 14v1", title: "Intestino desregulado", desc: "La microbiota alterada envía señales de alerta al cerebro a través del nervio vago: \"no es seguro relajarse\"." },
-            { icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z", title: "Fatiga sin reparación", desc: "Sin sueño profundo no hay reparación muscular, limpieza cerebral ni regulación hormonal." },
+            { icon: "M13 10V3L4 14h7v7l9-11h-7z", title: "Tu mente no se apaga", desc: "Te acuestas agotado, pero apenas apoyas la cabeza se enciende: pendientes, conversaciones, preocupaciones. Tu cuerpo pide descanso, pero por dentro sigues en alerta." },
+            { icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", title: "Te despiertas a las 3 de la madrugada", desc: "Logras dormirte, pero de madrugada abres los ojos y ya no puedes volver. Das vueltas mirando el reloj, calculando cuántas horas te quedan." },
+            { icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z", title: "Amaneces sin haber descansado", desc: "Dormiste las horas, pero despiertas como si te hubiera pasado un camión por encima. Necesitas café solo para arrancar el día." },
+            { icon: "M13 10V3L4 14h7v7l9-11h-7z", title: "Vives con el motor acelerado", desc: "Irritabilidad, tensión en el cuello, antojos de azúcar, la sensación de que no puedes bajar el ritmo ni cuando quieres. Tu cuerpo no encuentra el freno." },
           ].map((item, i) => (
             <div key={i} className="card-glow group p-6 sm:p-8 rounded-3xl glass-card">
               <div className="w-12 h-12 rounded-xl bg-rest-accent/10 flex items-center justify-center mb-4 group-hover:bg-rest-accent/20 transition-colors">
@@ -137,6 +137,102 @@ function ElProblema() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CostoDeNoResolver() {
+  const costos = [
+    { icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1", title: "El dinero que gastas sin resultado", desc: "Café, melatonina, infusiones, magnesio, suplementos que compras mes a mes y no resuelven el fondo del problema." },
+    { icon: "M13 10V3L4 14h7v7l9-11h-7z", title: "Las horas de productividad perdidas", desc: "La niebla mental del día siguiente te hace rendir a la mitad. Tareas que deberían tomar una hora te toman tres." },
+    { icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z", title: "El desgaste en tu ánimo y tus vínculos", desc: "Irritabilidad, poca paciencia, sentir que no eres tú. El mal sueño no se queda en la noche: se filtra en todo tu día." },
+    { icon: "M4.5 12.75l6 6 9-13.5", title: "El deterioro que se acumula en tu salud", desc: "Dormir mal de forma sostenida afecta tu presión, tu peso, tu memoria y tu sistema inmune. El costo no es solo hoy." },
+  ];
+  return (
+    <section className="py-20 sm:py-28 relative" style={{ backgroundColor: "#081818" }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-14">
+          <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">El costo real</span>
+          <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">
+            Cada noche sin dormir bien <span className="text-gradient-green">te cuesta más de lo que crees</span>
+          </h2>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-5">
+          {costos.map((c, i) => (
+            <div key={i} className="flex gap-4 p-6 rounded-2xl glass-card">
+              <div className="w-10 h-10 shrink-0 rounded-xl bg-rest-accent/10 flex items-center justify-center">
+                <svg className="w-5 h-5 text-rest-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={c.icon} /></svg>
+              </div>
+              <div>
+                <h3 className="font-[family-name:var(--font-space)] text-base font-semibold mb-1">{c.title}</h3>
+                <p className="text-rest-text-secondary text-sm leading-relaxed">{c.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-center text-rest-text-secondary text-base sm:text-lg mt-12 max-w-2xl mx-auto">
+          El Método R.E.S.T. cuesta menos que <span className="text-white font-medium">un mes de suplementos que no funcionan</span>.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function ParaQuien() {
+  const noEs = [
+    "Buscas una pastilla mágica que te duerma sin cambiar nada.",
+    "No estás dispuesto a dedicar 10 a 15 minutos al día durante 3 semanas.",
+    "Tu problema viene de una condición que necesita atención médica primero, como apnea del sueño, síndrome de piernas inquietas, hipertiroidismo, o un trastorno de ansiedad o depresión en fase aguda. En esos casos, consulta con tu médico antes de empezar.",
+  ];
+  const siEs = [
+    "Ya probaste de todo y sigues durmiendo mal.",
+    "Quieres entender qué le pasa a tu cuerpo, no solo tapar el síntoma.",
+    "Estás listo para un método paso a paso que sí puedes sostener.",
+  ];
+  return (
+    <section className="py-20 sm:py-28 relative" style={{ backgroundColor: "#0A1E1E" }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-14">
+          <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Seamos honestos</span>
+          <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">
+            ¿Es el Método R.E.S.T. para ti?
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="p-6 sm:p-8 rounded-3xl glass-card">
+            <h3 className="font-[family-name:var(--font-space)] text-lg font-semibold mb-5 flex items-center gap-2 text-rest-text-secondary">
+              <span className="w-6 h-6 rounded-full bg-white/[0.06] flex items-center justify-center shrink-0">
+                <svg className="w-3.5 h-3.5 text-rest-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
+              </span>
+              No es para ti si...
+            </h3>
+            <ul className="space-y-4">
+              {noEs.map((t, i) => (
+                <li key={i} className="text-rest-text-secondary text-sm leading-relaxed pl-8 relative">
+                  <span className="absolute left-0 top-1.5 w-1.5 h-1.5 rounded-full bg-white/20" />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="p-6 sm:p-8 rounded-3xl glass-card border border-rest-accent/20">
+            <h3 className="font-[family-name:var(--font-space)] text-lg font-semibold mb-5 flex items-center gap-2 text-rest-accent">
+              <span className="w-6 h-6 rounded-full bg-rest-accent/15 flex items-center justify-center shrink-0">
+                <svg className="w-3.5 h-3.5 text-rest-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+              </span>
+              Es para ti si...
+            </h3>
+            <ul className="space-y-4">
+              {siEs.map((t, i) => (
+                <li key={i} className="text-rest-text-secondary text-sm leading-relaxed pl-8 relative">
+                  <span className="absolute left-0 top-1.5 w-1.5 h-1.5 rounded-full bg-rest-accent" />
+                  {t}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
@@ -195,9 +291,9 @@ function Testimonios() {
   }, []);
 
   const reviews = [
-    { name: "Cristina Caballero", role: "Diagnóstico: Estrés Crónico", text: "El conocimiento integral del funcionamiento del cuerpo, su estructura, funcionalidad y sobre todo de los procesos que pueden estar afectando su normal desempeño, me ha llevado a recomendarlos una y otra vez a todos los que amo y conozco. La combinación de dieta, respiraciones, vitaminas, ejercicios y movimientos hacen despertar el cuerpo, devolviéndolo a su estado original.", stars: 5 },
-    { name: "María Fernanda Rojas", role: "Diagnóstico: Dolor y Estrés Crónico", text: "Cuando comencé a acompañarme terapéuticamente con Joaquín tenía un estado de alerta permanente, muchas contracturas por estrés crónico, alteraciones del sueño y molestias digestivas. Con los protocolos indicados he mejorado en todos los aspectos y he aprendido a reconocer cuando mi cuerpo envía señales y a actuar para volver a calmar mi sistema nervioso.", stars: 5 },
-    { name: "Alicia Aramburú Fernández", role: "Diagnóstico: Fibromialgia", text: "Hubo un tiempo en que el dolor, la fatiga y el mal dormir controlaban cada uno de mis días. Dormir 3-4 horas no es normal ni sano. Hoy duermo más de 6,5 horas, el dolor ya no define mi vida y volví a disfrutar de cosas que creía perdidas. Sanar no fue un milagro, fue un proceso.", stars: 5 },
+    { name: "Cristina Caballero", role: "Estrés crónico · Recuperó su descanso", text: "El conocimiento integral del funcionamiento del cuerpo, su estructura, funcionalidad y sobre todo de los procesos que pueden estar afectando su normal desempeño, me ha llevado a recomendarlos una y otra vez a todos los que amo y conozco. La combinación de dieta, respiraciones, vitaminas, ejercicios y movimientos hacen despertar el cuerpo, devolviéndolo a su estado original.", stars: 5 },
+    { name: "María Fernanda Rojas", role: "Dolor y estrés crónico · De la alerta constante a dormir en calma", text: "Cuando comencé a acompañarme terapéuticamente con Joaquín tenía un estado de alerta permanente, muchas contracturas por estrés crónico, alteraciones del sueño y molestias digestivas. Con los protocolos indicados he mejorado en todos los aspectos y he aprendido a reconocer cuando mi cuerpo envía señales y a actuar para volver a calmar mi sistema nervioso.", stars: 5 },
+    { name: "Alicia Aramburú Fernández", role: "Fibromialgia · Antes 3-4h, hoy +6,5h de sueño", text: "Hubo un tiempo en que el dolor, la fatiga y el mal dormir controlaban cada uno de mis días. Dormir 3-4 horas no es normal ni sano. Hoy duermo más de 6,5 horas, el dolor ya no define mi vida y volví a disfrutar de cosas que creía perdidas. Sanar no fue un milagro, fue un proceso.", stars: 5 },
   ];
 
   return (
@@ -358,11 +454,12 @@ export default function LandingPage() {
     <main>
       <NavBar />
       <Hero />
-      <Testimonios />
       <ElProblema />
+      <CostoDeNoResolver />
+      <Testimonios />
       <Autor />
       <Pilares />
-
+      <ParaQuien />
       <Precio />
       <Footer />
       <ChatbotWidget />
