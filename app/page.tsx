@@ -27,7 +27,7 @@ function NavBar() {
           <a href="#pilares" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Pilares</a>
 
           <a href="#testimonios" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Testimonios</a>
-        </div>
+          <Link href="/login" className="text-xs sm:text-sm text-rest-accent hover:text-rest-accent-light transition-colors font-medium">Ya tengo mi acceso</Link>
       </div>
     </nav>
   );
@@ -56,19 +56,8 @@ function Hero() {
           calmarlo en 21 días, sin pastillas.
         </p>
 
-        <div className="animate-fade-in-up delay-500 flex flex-row items-center justify-center gap-3">
-          <a
-            href="#evaluacion"
-            className="px-6 py-2.5 bg-rest-accent hover:bg-[#00B880] text-rest-bg text-sm font-semibold uppercase tracking-wider rounded-xl transition-colors shadow-[0_0_16px_rgba(0,229,160,0.3)]"
-          >
-            Evaluación gratis
-          </a>
-          <Link
-            href="/login"
-            className="px-6 py-2.5 bg-rest-accent/[0.03] hover:bg-rest-accent/[0.08] text-rest-text text-sm font-medium uppercase tracking-wider rounded-xl transition-colors shadow-[inset_0_0_0_1px_rgba(0,229,160,0.1)] hover:shadow-[inset_0_0_0_1px_rgba(0,229,160,0.3)]"
-          >
-            Ya tengo acceso
-          </Link>
+        <div id="evaluacion" className="animate-fade-in-up delay-500 max-w-lg mx-auto scroll-mt-24">
+          <EvaluacionLanding />
         </div>
 
         <div className="animate-fade-in-up delay-700 mt-16 flex flex-row items-center justify-center gap-3 sm:gap-10 text-rest-text-muted text-[10px] sm:text-sm">
@@ -149,26 +138,6 @@ function ElProblema() {
             </a>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
-
-function Evaluacion() {
-  return (
-    <section id="evaluacion" className="py-20 sm:py-28 relative" style={{ backgroundColor: "#091A1A" }}>
-      <div className="absolute inset-0 bg-gradient-to-b from-rest-bg via-transparent to-rest-bg opacity-30" />
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12">
-          <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Evaluación gratuita</span>
-          <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">
-            Antes de dormir mejor, <span className="text-gradient-green">entiende por qué no lo haces</span>
-          </h2>
-          <p className="text-rest-text-secondary mt-4 max-w-2xl mx-auto text-base sm:text-lg">
-            La mayoría de las personas con insomnio prueban pastillas y consejos genéricos sin saber qué falla realmente en su cuerpo. Este test te lo muestra en 3 minutos.
-          </p>
-        </div>
-        <EvaluacionLanding />
       </div>
     </section>
   );
@@ -390,7 +359,6 @@ export default function LandingPage() {
       <Hero />
       <Testimonios />
       <ElProblema />
-      <Evaluacion />
       <Autor />
       <Pilares />
 
