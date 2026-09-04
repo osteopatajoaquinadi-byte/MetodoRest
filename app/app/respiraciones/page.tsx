@@ -230,15 +230,33 @@ function useAmbientSound(playing: boolean) {
   }, [playing]);
 }
 
-// La guia hablada solo acompania los primeros ciclos: despues el usuario
-// ya tiene el ritmo y la voz repetida se vuelve mecanica.
-const GUIDED_CYCLES = 3;
+// La guia hablada se suelta en 3 etapas para acompanar casi toda la sesion
+// sin volverse mecanica:
+//   Etapa 1 (primer tercio):  voz en cada fase (inhala / manten / exhala)
+//   Etapa 2 (segundo tercio):  voz solo al inicio del ciclo (marca la inhalacion)
+//   Etapa 3 (ultimo tercio):   solo un chime tenue en cada cambio de ciclo
 // Las locuciones estan grabadas muy pausadas; acelerarlas suena mas natural.
 const VOICE_RATE = 1.18;
 // Volumen del chime que reemplaza a la voz: audible pero que no sobresalte
 const CHIME_VOLUME = 0.35;
 
-function useBreathingSound(running: boolean, phase: Phase, phaseDuration: number, cycle: number) {
+type GuideStage = "full" | "sparse" | "chime";
+
+// Decide en que etapa esta la sesion segun el progreso del ciclo actual.
+function getGuideStage(cycle: number, totalCycles: number): GuideStage {
+  const third = totalCycles / 3;
+  if (cycle <= third) return "full";
+  if (cycle <= third * 2) return "sparse";
+  return "chime";
+}
+
+function useBreathingSound(
+  running: boolean,
+  phase: Phase,
+  phaseDuration: number,
+  cycle: number,
+  totalCycles: number,
+) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -255,24 +273,33 @@ function useBreathingSound(running: boolean, phase: Phase, phaseDuration: number
       return;
     }
 
-    const guided = cycle <= GUIDED_CYCLES;
+    const stage = getGuideStage(cycle, totalCycles);
 
-    // Primeros ciclos: voz que guia. Despues: solo un chime tenue que marca
-    // el cambio de etapa, para no romper la relajacion.
-    const srcMap: Record<Phase, string> = guided
-      ? {
-          inhale: "/audio/inhala.m4a",
-          exhale: "/audio/exhala.m4a",
-          hold: "/audio/manten.m4a",
-        }
-      : {
-          // Un unico toque de cuenco marca cualquier cambio de etapa.
-          inhale: "/audio/bell.m4a",
-          exhale: "/audio/bell.m4a",
-          hold: "/audio/bell.m4a",
-        };
+    // Etapa 2: la voz solo marca la inhalacion (inicio del ciclo). El resto
+    // del ciclo queda en silencio, guiado por la animacion.
+    if (stage === "sparse" && phase !== "inhale") return;
 
-    const src = srcMap[phase];
+    let src: string;
+    let isVoice: boolean;
+
+    if (stage === "chime") {
+      src = "/audio/bell.m4a";
+      isVoice = false;
+    } else if (stage === "sparse") {
+      // Solo suena en inhale (filtrado arriba): voz que reinicia el ciclo.
+      src = "/audio/inhala.m4a";
+      isVoice = true;
+    } else {
+      // Etapa 1: voz en cada fase.
+      const voiceMap: Record<Phase, string> = {
+        inhale: "/audio/inhala.m4a",
+        exhale: "/audio/exhala.m4a",
+        hold: "/audio/manten.m4a",
+      };
+      src = voiceMap[phase];
+      isVoice = true;
+    }
+
     if (!src) return;
 
     if (audioRef.current) {
@@ -281,13 +308,13 @@ function useBreathingSound(running: boolean, phase: Phase, phaseDuration: number
     }
 
     const audio = new Audio(src);
-    audio.volume = guided ? 0.5 : CHIME_VOLUME;
-    if (guided) audio.playbackRate = VOICE_RATE;
+    audio.volume = isVoice ? 0.5 : CHIME_VOLUME;
+    if (isVoice) audio.playbackRate = VOICE_RATE;
     audio.play().catch(() => {});
     audioRef.current = audio;
 
     return stopAll;
-  }, [running, phase, phaseDuration, cycle]);
+  }, [running, phase, phaseDuration, cycle, totalCycles]);
 }
 
 export default function RespiracionesPage() {
@@ -310,7 +337,7 @@ export default function RespiracionesPage() {
   const sessionSeconds = totalCycles * cycleSeconds;
 
   useAmbientSound(running);
-  useBreathingSound(running, config.phases[currentPhaseIndex]?.phase ?? "hold", config.phases[currentPhaseIndex]?.duration ?? 4, cycle);
+  useBreathingSound(running, config.phases[currentPhaseIndex]?.phase ?? "hold", config.phases[currentPhaseIndex]?.duration ?? 4, cycle, totalCycles);
 
   const reset = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
