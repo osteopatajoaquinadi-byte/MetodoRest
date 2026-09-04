@@ -368,15 +368,15 @@ function Autor() {
 
 function Precio() {
   const features = [
-    "Ebook completo",
-    "Plataforma interactiva con progreso",
-    "Respiraciones guiadas con temporizador",
-    "Plan de 21 días con checklists",
-    "Guía nutricional nocturna",
-    "Diario de sueño + escalas clínicas",
-    "Relajación progresiva guiada",
-    "Acceso de por vida",
-    "Actualizaciones futuras",
+    "El ebook completo del Método R.E.S.T., para entender qué le pasa a tu cuerpo y por qué",
+    "Una plataforma que te guía día a día y lleva tu progreso, para que nunca te pierdas ni te sientas solo",
+    "Respiraciones guiadas paso a paso que calman tu sistema nervioso en minutos",
+    "Un plan de 21 días dividido en pasos simples: solo sigues la checklist de cada día",
+    "Qué cenar (y qué evitar) para no sabotear tu sueño sin darte cuenta",
+    "Herramientas para medir tu sueño y ver, con números, cómo mejora semana a semana",
+    "Sesiones de relajación guiada para soltar la tensión del día antes de dormir",
+    "Acceso de por vida: entras las veces que quieras, para siempre",
+    "Todas las actualizaciones futuras incluidas, sin pagar de nuevo",
   ];
 
   return (
@@ -384,9 +384,9 @@ function Precio() {
       <div className="absolute inset-0 bg-gradient-to-b from-rest-bg via-transparent to-rest-bg" />
       <div className="relative z-10 max-w-lg mx-auto px-4 sm:px-6 text-center">
         <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Acceso</span>
-        <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl font-semibold mt-3 mb-4">Invierte en tu descanso</h2>
+        <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl font-semibold mt-3 mb-4">Empieza esta noche</h2>
         <p className="text-rest-text-secondary text-sm mb-10 max-w-xl mx-auto">
-          Acceso de por vida a la plataforma interactiva y todas las actualizaciones futuras.
+          Un solo pago. Acceso de por vida a todo el método y a cada actualización futura.
         </p>
 
         <div className="relative p-8 sm:p-10 rounded-2xl glass-card text-left card-glow glow-accent-sm">
@@ -418,6 +418,12 @@ function Precio() {
           >
             Obtener acceso
           </a>
+          <div className="mt-5 flex items-start gap-3 p-4 rounded-xl bg-rest-accent/[0.06]">
+            <svg className="w-5 h-5 text-rest-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            <p className="text-rest-text-secondary text-xs leading-relaxed text-left">
+              <span className="text-white font-medium">7 días de garantía.</span> Si empiezas el método y sientes que no es para ti, escríbenos dentro de los primeros 7 días y te devolvemos tu dinero. Sin preguntas.
+            </p>
+          </div>
         </div>
         <p className="text-rest-text-muted text-xs mt-6">Pago seguro a través de Hotmart. Acceso inmediato.</p>
       </div>
