@@ -28,6 +28,7 @@ function NavBar() {
 
           <a href="#testimonios" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Testimonios</a>
           <Link href="/login" className="text-xs sm:text-sm text-rest-accent hover:text-rest-accent-light transition-colors font-medium">Ya tengo mi acceso</Link>
+        </div>
       </div>
     </nav>
   );
