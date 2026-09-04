@@ -128,7 +128,7 @@ export default function EvaluacionLanding() {
   const bComplete = () => bAns.every((x) => x !== null);
 
   const finalize = () => {
-    const sum = (arr: (number | null)[]) => arr.reduce((s, v) => s + (v || 0), 0);
+    const sum = (arr: (number | null)[]) => arr.reduce((s: number, v) => s + (v || 0), 0);
     const sH = sum(answers.H), sA = sum(answers.A), sR = sum(answers.R), sI = sum(answers.I);
     const sB = bAns.filter(Boolean).length;
     const g = sH + sA + sR + sI;
