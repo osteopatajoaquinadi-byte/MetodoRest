@@ -45,6 +45,7 @@ export async function createUser(fields: {
   objetivo_sueno?: string;
   password_hash: string;
   perfil_completado?: boolean;
+  nivel_acceso?: "ebook" | "completo";
   fecha_registro?: string;
 }) {
   const { data, error } = await supabase.from("mr_users").insert({
@@ -55,6 +56,7 @@ export async function createUser(fields: {
     objetivo_sueno: fields.objetivo_sueno || null,
     password_hash: fields.password_hash,
     perfil_completado: fields.perfil_completado || false,
+    nivel_acceso: fields.nivel_acceso || "completo",
     fecha_registro: fields.fecha_registro || new Date().toISOString(),
   }).select().single();
   if (error) throw new Error(`Supabase: ${error.message}`);

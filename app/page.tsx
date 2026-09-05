@@ -382,50 +382,89 @@ function Precio() {
   return (
     <section id="precio" className="py-20 sm:py-28 bg-rest-bg-alt relative">
       <div className="absolute inset-0 bg-gradient-to-b from-rest-bg via-transparent to-rest-bg" />
-      <div className="relative z-10 max-w-lg mx-auto px-4 sm:px-6 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Acceso</span>
         <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl font-semibold mt-3 mb-4">Empieza esta noche</h2>
         <p className="text-rest-text-secondary text-sm mb-10 max-w-xl mx-auto">
-          Un solo pago. Acceso de por vida a todo el método y a cada actualización futura.
+          Elige por dónde empezar. Un solo pago, acceso de por vida.
         </p>
 
-        <div className="relative p-8 sm:p-10 rounded-2xl glass-card text-left card-glow glow-accent-sm">
-          <div className="mb-5 text-center">
-            <h3 className="font-[family-name:var(--font-space)] font-semibold text-xl text-white">Método R.E.S.T.</h3>
-            <p className="text-rest-text-muted text-sm mt-1">Ebook + plataforma interactiva completa</p>
-          </div>
-          <div className="mb-8 text-center">
-            <span className="text-rest-text-muted text-sm line-through">$59.990</span>
-            <div className="flex items-baseline gap-1.5 mt-1 justify-center">
-              <span className="text-4xl font-bold font-[family-name:var(--font-space)] text-gradient-green">$39.990</span>
-              <span className="text-rest-text-muted text-sm">CLP</span>
+        <div className="grid md:grid-cols-2 gap-6 items-start text-left">
+          {/* Ebook solo */}
+          <div className="relative p-7 sm:p-8 rounded-2xl glass-card">
+            <div className="mb-5">
+              <h3 className="font-[family-name:var(--font-space)] font-semibold text-lg text-white">Solo el Ebook</h3>
+              <p className="text-rest-text-muted text-sm mt-1">Para entender tu problema y empezar</p>
             </div>
-            <span className="inline-block mt-3 px-3 py-1 text-xs font-medium bg-rest-accent/10 text-rest-accent rounded-lg">Precio de lanzamiento</span>
+            <div className="mb-6">
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-3xl font-bold font-[family-name:var(--font-space)] text-white">$14.990</span>
+                <span className="text-rest-text-muted text-sm">CLP</span>
+              </div>
+            </div>
+            <ul className="space-y-3 mb-8">
+              {[
+                "El ebook completo del Método R.E.S.T. en tu plataforma",
+                "Entiende qué le pasa a tu cuerpo y por qué no duermes",
+                "Las bases del método para empezar a aplicar hoy",
+                "Acceso de por vida al ebook",
+              ].map((item, j) => (
+                <li key={j} className="flex items-start gap-2.5 text-sm">
+                  <svg className="w-4 h-4 text-rest-text-muted shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <span className="text-rest-text-secondary">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="HOTMART_EBOOK_URL"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full py-3 font-semibold uppercase tracking-wider rounded-xl transition-all duration-200 text-center text-sm bg-white/[0.06] hover:bg-white/[0.1] text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] cursor-pointer"
+            >
+              Llevar el ebook
+            </a>
           </div>
-          <ul className="space-y-3 mb-8">
-            {features.map((item, j) => (
-              <li key={j} className="flex items-start gap-2.5 text-sm">
-                <svg className="w-4 h-4 text-rest-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                <span className="text-rest-text-secondary">{item}</span>
-              </li>
-            ))}
-          </ul>
-          <a
-            href="https://pay.hotmart.com/L105253165X"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full py-3.5 font-semibold uppercase tracking-wider rounded-xl transition-all duration-200 text-center text-sm bg-rest-accent hover:bg-[#00B880] active:bg-[#009960] active:scale-[0.97] text-rest-bg shadow-[0_0_16px_rgba(0,229,160,0.3)] hover:shadow-[0_0_24px_rgba(0,229,160,0.5)] cursor-pointer"
-          >
-            Obtener acceso
-          </a>
-          <div className="mt-5 flex items-start gap-3 p-4 rounded-xl bg-rest-accent/[0.06]">
-            <svg className="w-5 h-5 text-rest-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-            <p className="text-rest-text-secondary text-xs leading-relaxed text-left">
-              <span className="text-white font-medium">7 días de garantía.</span> Si empiezas el método y sientes que no es para ti, escríbenos dentro de los primeros 7 días y te devolvemos tu dinero. Sin preguntas.
-            </p>
+
+          {/* Metodo completo */}
+          <div className="relative p-7 sm:p-8 rounded-2xl glass-card card-glow glow-accent-sm border border-rest-accent/20">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-rest-accent text-rest-bg text-[10px] font-bold uppercase tracking-wider rounded-full">Recomendado</div>
+            <div className="mb-5">
+              <h3 className="font-[family-name:var(--font-space)] font-semibold text-lg text-white">Método Completo</h3>
+              <p className="text-rest-text-muted text-sm mt-1">Ebook + plataforma interactiva completa</p>
+            </div>
+            <div className="mb-6">
+              <span className="text-rest-text-muted text-sm line-through">$59.990</span>
+              <div className="flex items-baseline gap-1.5 mt-1">
+                <span className="text-3xl font-bold font-[family-name:var(--font-space)] text-gradient-green">$39.990</span>
+                <span className="text-rest-text-muted text-sm">CLP</span>
+              </div>
+              <span className="inline-block mt-2 px-3 py-1 text-xs font-medium bg-rest-accent/10 text-rest-accent rounded-lg">Precio de lanzamiento</span>
+            </div>
+            <ul className="space-y-3 mb-8">
+              {features.map((item, j) => (
+                <li key={j} className="flex items-start gap-2.5 text-sm">
+                  <svg className="w-4 h-4 text-rest-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <span className="text-rest-text-secondary">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="https://pay.hotmart.com/L105253165X"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full py-3.5 font-semibold uppercase tracking-wider rounded-xl transition-all duration-200 text-center text-sm bg-rest-accent hover:bg-[#00B880] active:bg-[#009960] active:scale-[0.97] text-rest-bg shadow-[0_0_16px_rgba(0,229,160,0.3)] hover:shadow-[0_0_24px_rgba(0,229,160,0.5)] cursor-pointer"
+            >
+              Obtener acceso completo
+            </a>
+            <div className="mt-5 flex items-start gap-3 p-4 rounded-xl bg-rest-accent/[0.06]">
+              <svg className="w-5 h-5 text-rest-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+              <p className="text-rest-text-secondary text-xs leading-relaxed text-left">
+                <span className="text-white font-medium">7 días de garantía.</span> Si sientes que no es para ti, te devolvemos tu dinero. Sin preguntas.
+              </p>
+            </div>
           </div>
         </div>
-        <p className="text-rest-text-muted text-xs mt-6">Pago seguro a través de Hotmart. Acceso inmediato.</p>
+        <p className="text-rest-text-muted text-xs mt-8">Pago seguro a través de Hotmart. Acceso inmediato.</p>
       </div>
     </section>
   );

@@ -7,8 +7,40 @@ export interface UserProfile {
   email: string;
   gender?: string;
   sleepGoal?: string;
+  nivelAcceso?: "ebook" | "completo";
   onboardingCompletedAt: string;
   createdAt: string;
+}
+
+/* ── Access level ── */
+
+const KEY_NIVEL = "rest-nivel-acceso";
+
+export function getNivelAcceso(): "ebook" | "completo" {
+  if (typeof window === "undefined") return "completo";
+  const v = localStorage.getItem(KEY_NIVEL);
+  return v === "ebook" ? "ebook" : "completo";
+}
+
+export function setNivelAcceso(nivel: "ebook" | "completo"): void {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(KEY_NIVEL, nivel);
+}
+
+// Rutas que requieren el Método completo (bloqueadas para nivel "ebook")
+export const RUTAS_PREMIUM = [
+  "/app/respiraciones",
+  "/app/relajacion-progresiva",
+  "/app/relajacion",
+  "/app/nutricion",
+  "/app/plan-21-dias",
+  "/app/mide-tu-sueno",
+  "/app/ritual",
+  "/app/diario",
+];
+
+export function esRutaPremium(pathname: string): boolean {
+  return RUTAS_PREMIUM.some((r) => pathname === r || pathname.startsWith(r + "/"));
 }
 
 export interface OnboardingStatus {

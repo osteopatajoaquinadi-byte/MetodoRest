@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import HeroBackground from "../components/HeroBackground";
-import { setProfile, setOnboardingStatus, setProgramStart, setBasalEvaluation, addPeriodicEvaluation, setDailyHabits } from "../lib/storage";
+import { setProfile, setOnboardingStatus, setProgramStart, setBasalEvaluation, addPeriodicEvaluation, setDailyHabits, setNivelAcceso } from "../lib/storage";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -35,6 +35,8 @@ export default function LoginPage() {
 
       localStorage.setItem("rest-user-id", user.id);
 
+      setNivelAcceso(f.nivel_acceso === "ebook" ? "ebook" : "completo");
+
       setProfile({
         id: user.id,
         name: f.nombre || "",
@@ -42,6 +44,7 @@ export default function LoginPage() {
         email: f.email,
         gender: f.genero || undefined,
         sleepGoal: f.objetivo_sueno || undefined,
+        nivelAcceso: f.nivel_acceso === "ebook" ? "ebook" : "completo",
         onboardingCompletedAt: f.fecha_onboarding || "",
         createdAt: f.fecha_registro || new Date().toISOString(),
       });

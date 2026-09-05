@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import HeroBackground from "../components/HeroBackground";
-import { getOnboardingStatus } from "../lib/storage";
+import BloqueoPremium from "../components/BloqueoPremium";
+import { getOnboardingStatus, getNivelAcceso, esRutaPremium } from "../lib/storage";
 
 const navItems: { href: string; label: string; mobileLabel?: string; icon?: string; iconSrc?: string }[] = [
   { href: "/app", label: "Inicio", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
@@ -20,6 +21,7 @@ function OnboardingGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const [ready, setReady] = useState(false);
+  const [bloqueado, setBloqueado] = useState(false);
 
   useEffect(() => {
     if (pathname === "/app/onboarding") {
@@ -29,18 +31,30 @@ function OnboardingGuard({ children }: { children: React.ReactNode }) {
     const status = getOnboardingStatus();
     if (!status.profileCompleted || !status.basalCompleted) {
       router.replace("/app/onboarding");
-    } else {
-      setReady(true);
+      return;
     }
+    // Control de acceso por nivel: usuarios "ebook" no entran a rutas premium
+    if (getNivelAcceso() === "ebook" && esRutaPremium(pathname)) {
+      setBloqueado(true);
+    } else {
+      setBloqueado(false);
+    }
+    setReady(true);
   }, [pathname, router]);
 
   if (!ready) return null;
+  if (bloqueado) return <BloqueoPremium pathname={pathname} />;
   return <>{children}</>;
 }
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
+  const [nivel, setNivel] = useState<"ebook" | "completo">("completo");
+
+  useEffect(() => {
+    setNivel(getNivelAcceso());
+  }, [pathname]);
 
   if (pathname === "/app/onboarding") {
     return (
@@ -85,6 +99,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <nav className="flex-1 py-2 px-2 space-y-1 overflow-hidden">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
+              const locked = nivel === "ebook" && esRutaPremium(item.href);
               return (
                 <Link
                   key={item.href}
@@ -93,7 +108,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors whitespace-nowrap overflow-hidden ${
                     isActive
                       ? "bg-[#00E5A0]/15 text-[#00E5A0] shadow-[inset_0_0_0_1px_rgba(0,229,160,0.25)]"
-                      : "text-white/70 hover:text-white hover:bg-white/5"
+                      : locked
+                        ? "text-white/35 hover:text-white/50 hover:bg-white/5"
+                        : "text-white/70 hover:text-white hover:bg-white/5"
                   }`}
                 >
                   {item.iconSrc ? (
@@ -116,8 +133,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={isActive ? 2 : 1.5} d={item.icon} />
                     </svg>
                   )}
-                  <span className={`transition-opacity duration-200 ${expanded ? "opacity-100" : "opacity-0"}`}>
+                  <span className={`transition-opacity duration-200 flex-1 flex items-center gap-2 ${expanded ? "opacity-100" : "opacity-0"}`}>
                     {item.label}
+                    {locked && (
+                      <svg className="w-3.5 h-3.5 shrink-0 ml-auto text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                    )}
                   </span>
                 </Link>
               );

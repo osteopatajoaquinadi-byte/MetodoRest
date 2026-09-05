@@ -8,7 +8,16 @@ const HOTMART_TOKEN = process.env.HOTMART_WEBHOOK_TOKEN;
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://metodorest.cl";
 
+// IDs de producto de Hotmart. El ebook da acceso solo al ebook;
+// cualquier otro producto (el metodo completo) da acceso completo.
+const EBOOK_PRODUCT_IDS = (process.env.HOTMART_EBOOK_PRODUCT_IDS || "").split(",").map((s) => s.trim()).filter(Boolean);
+
 function generatePassword(): string { return crypto.randomBytes(4).toString("hex"); }
+
+function resolveNivel(productId: string | undefined): "ebook" | "completo" {
+  if (productId && EBOOK_PRODUCT_IDS.includes(String(productId))) return "ebook";
+  return "completo";
+}
 
 export async function POST(req: NextRequest) {
   let body;
@@ -26,12 +35,15 @@ export async function POST(req: NextRequest) {
     const name = buyer.name || "";
     if (!email) return NextResponse.json({ error: "Email del comprador no encontrado" }, { status: 400 });
 
+    const productId = body.data?.product?.id || body.data?.product?.ucode || body.product?.id;
+    const nivel = resolveNivel(productId);
+
     const existing = await findUserByEmail(email);
     if (existing) return NextResponse.json({ ok: true, message: "Usuario ya existe" });
 
     const password = generatePassword();
     const hash = await bcrypt.hash(password, 10);
-    await createUser({ email, nombre: name, password_hash: hash });
+    await createUser({ email, nombre: name, password_hash: hash, nivel_acceso: nivel });
 
     if (resend) {
       try {
