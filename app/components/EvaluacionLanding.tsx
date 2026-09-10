@@ -85,7 +85,7 @@ const PHENO: Record<string, { title: string; desc: string; hook: string }> = {
   SAFETY: {
     title: "Conviene una revisión médica",
     desc: "Algunas de tus respuestas sugieren posibles signos de un trastorno respiratorio del sueño (como apnea). Esto merece atención de un profesional de salud.",
-    hook: "Te recomendamos consultar con un médico antes de iniciar cualquier programa. El Método R.E.S.T. puede acompañarte, pero la evaluación médica es prioritaria.",
+    hook: "",
   },
 };
 
@@ -111,7 +111,7 @@ export default function EvaluacionLanding() {
   });
   const [bAns, setBAns] = useState<(boolean | null)[]>([null, null, null, null]);
   const [email, setEmail] = useState("");
-  const [result, setResult] = useState<{ phenotype: string; global: number } | null>(null);
+  const [result, setResult] = useState<{ phenotype: string; global: number; scoreB: number } | null>(null);
   const [saving, setSaving] = useState(false);
 
   const stepIdx = STEPS.indexOf(phase as Phase);
@@ -133,7 +133,7 @@ export default function EvaluacionLanding() {
     const sB = bAns.filter(Boolean).length;
     const g = sH + sA + sR + sI;
     const phenotype = computePhenotype(sH, sA, sR, sI, sB, g);
-    setResult({ phenotype, global: g });
+    setResult({ phenotype, global: g, scoreB: sB });
     setPhase("result");
     // Guardado best-effort del lead (no bloquea la UI)
     if (email) {
@@ -277,6 +277,17 @@ export default function EvaluacionLanding() {
   if (phase === "result" && result) {
     const info = PHENO[result.phenotype];
     const isSafety = result.phenotype === "SAFETY";
+
+    // Mensaje médico segun cuantas señales respiratorias marcó:
+    //  - varias (SAFETY, B>=3): la evaluación médica es prioritaria
+    //  - solo 1-2 señales en un perfil normal: recomendación de consultar, sin frenar el método
+    const tieneAlgunaSenalRespiratoria = !isSafety && result.scoreB >= 1;
+    let hookMsg = info.hook;
+    if (isSafety) {
+      hookMsg = "Te recomendamos consultar con un médico antes de iniciar cualquier programa. El Método R.E.S.T. puede acompañarte, pero la evaluación médica es prioritaria.";
+    }
+    const mensajeSenalLeve = "El Método R.E.S.T. puede acompañarte en el proceso, pero te recomendamos consultar con un médico como prioridad de tu proceso.";
+
     return (
       <div className="max-w-xl mx-auto">
         <div className="p-6 sm:p-8 rounded-3xl glass-card">
@@ -299,12 +310,35 @@ export default function EvaluacionLanding() {
           )}
 
           <div className={`p-4 rounded-xl mb-6 ${isSafety ? "bg-rest-danger/10 border border-rest-danger/20" : "bg-rest-accent/10"}`}>
-            <p className="text-sm text-rest-text-secondary leading-relaxed">{info.hook}</p>
+            <p className="text-sm text-rest-text-secondary leading-relaxed">{hookMsg}</p>
           </div>
 
+          {/* Señal respiratoria leve (1-2) en perfil no-SAFETY: recomendación medica suave */}
+          {tieneAlgunaSenalRespiratoria && (
+            <div className="p-4 rounded-xl mb-6 bg-rest-warning/10 border border-rest-warning/20">
+              <p className="text-sm text-rest-text-secondary leading-relaxed">{mensajeSenalLeve}</p>
+            </div>
+          )}
+
           {!isSafety && (
-            <a href="#precio" className="block w-full py-3.5 bg-rest-accent hover:bg-rest-accent-dark text-rest-bg font-semibold rounded-xl transition-all text-center shadow-[0_0_16px_rgba(0,229,160,0.3)] hover:shadow-[0_0_24px_rgba(0,229,160,0.5)]">
-              Ver cómo funciona el Método R.E.S.T.
+            <div className="space-y-3">
+              <a href="https://pay.hotmart.com/L105253165X" target="_blank" rel="noopener noreferrer"
+                className="block w-full py-3.5 bg-rest-accent hover:bg-rest-accent-dark text-rest-bg font-semibold rounded-xl transition-all text-center shadow-[0_0_16px_rgba(0,229,160,0.3)] hover:shadow-[0_0_24px_rgba(0,229,160,0.5)]">
+                Acceder al Método completo
+              </a>
+              <a href="HOTMART_EBOOK_URL" target="_blank" rel="noopener noreferrer"
+                className="block w-full py-3 bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium rounded-xl transition-all text-center text-sm shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]">
+                O empezar solo con el ebook · $14.990
+              </a>
+              <a href="#precio" className="block text-center text-rest-text-muted text-xs hover:text-rest-text-secondary transition pt-1">
+                Ver qué incluye cada opción
+              </a>
+            </div>
+          )}
+
+          {isSafety && (
+            <a href="#precio" className="block w-full py-3 bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium rounded-xl transition-all text-center text-sm shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]">
+              Conocer el Método R.E.S.T.
             </a>
           )}
 
