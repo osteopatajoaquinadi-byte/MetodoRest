@@ -416,12 +416,12 @@ function Precio() {
               ))}
             </ul>
             <a
-              href="HOTMART_EBOOK_URL"
+              href="https://pay.hotmart.com/N107478696O"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full py-3 font-semibold uppercase tracking-wider rounded-xl transition-all duration-200 text-center text-sm bg-white/[0.06] hover:bg-white/[0.1] text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] cursor-pointer"
             >
-              Llevar el ebook
+              Obtener ebook
             </a>
           </div>
 
