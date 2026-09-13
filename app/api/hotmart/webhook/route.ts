@@ -33,41 +33,68 @@ async function sendAccessEmail(email: string, password: string) {
 }
 
 export async function POST(req: NextRequest) {
-  let body;
-  try { body = await req.json(); } catch { return NextResponse.json({ error: "JSON inválido" }, { status: 400 }); }
+  // Hotmart envia JSON en compras reales (Webhook 2.0), pero el boton "Enviar prueba"
+  // manda form-urlencoded (querystring). Soportamos ambos.
+  let body: Record<string, unknown> = {};
+  const contentType = req.headers.get("content-type") || "";
+  try {
+    if (contentType.includes("application/json")) {
+      body = await req.json();
+    } else if (contentType.includes("form")) {
+      const form = await req.formData();
+      form.forEach((value, key) => { body[key] = value; });
+    } else {
+      const raw = await req.text();
+      try {
+        body = JSON.parse(raw);
+      } catch {
+        const params = new URLSearchParams(raw);
+        params.forEach((value, key) => { body[key] = value; });
+      }
+    }
+  } catch {
+    return NextResponse.json({ error: "No se pudo leer el cuerpo" }, { status: 400 });
+  }
 
   // Hotmart 2.0 envia el hottok en el header X-HOTMART-HOTTOK (case-insensitive en Next).
   // Aceptamos header o body por compatibilidad. Si el token no coincide, avisamos en logs
   // pero NO cortamos: preferimos crear el acceso a perder una venta por un mismatch de token.
-  const hottok = req.headers.get("x-hotmart-hottok") || body.hottok || null;
+  const hottok = req.headers.get("x-hotmart-hottok") || (body.hottok as string) || null;
   const tokenOk = HOTMART_TOKEN ? hottok === HOTMART_TOKEN : true;
   if (!tokenOk) {
-    console.warn("[hotmart] hottok no coincide. recibido:", hottok ? hottok.slice(0, 6) + "..." : "null");
+    console.warn("[hotmart] hottok no coincide. recibido:", hottok ? String(hottok).slice(0, 6) + "..." : "null");
   }
 
-  // Estructura del evento en Hotmart 2.0
-  const event = body.event || body.status;
-  const data = body.data || body;
+  // Estructura del evento. Soporta JSON 2.0 (body.event + body.data) y
+  // el formato plano de las pruebas (querystring con campos sueltos).
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  const b = body as any;
+  const data = b.data || b;
+  const event = b.event || b.status || data?.purchase?.status || null;
 
   const isApproved =
     event === "PURCHASE_APPROVED" ||
     event === "approved" ||
+    event === "APPROVED" ||
     data?.purchase?.status === "APPROVED" ||
-    data?.purchase?.approved_date != null;
+    data?.purchase?.approved_date != null ||
+    b.status === "APPROVED";
 
-  console.log("[hotmart] evento:", event, "| approved:", isApproved, "| tokenOk:", tokenOk);
+  console.log("[hotmart] evento:", event, "| approved:", isApproved, "| tokenOk:", tokenOk, "| keys:", Object.keys(b).slice(0, 12).join(","));
 
   if (isApproved) {
-    const buyer = data?.buyer || data?.customer || body.buyer || {};
-    const email = buyer.email;
-    const name = buyer.name || buyer.ucode || "";
+    // Email y nombre: buscamos en la estructura anidada (JSON) y en campos planos (prueba)
+    const buyer = data?.buyer || data?.customer || b.buyer || {};
+    const email = buyer.email || b.email || b.buyer_email || null;
+    const name = buyer.name || b.name || b.buyer_name || "";
     if (!email) {
-      console.error("[hotmart] sin email de comprador. payload keys:", Object.keys(data || {}));
+      console.error("[hotmart] sin email de comprador. keys:", Object.keys(b).join(","));
       return NextResponse.json({ error: "Email del comprador no encontrado" }, { status: 400 });
     }
 
-    const productId = data?.product?.id || data?.product?.ucode || body.product?.id;
+    const productId = data?.product?.id || data?.product?.ucode || b.product?.id || b.prod || b.product_id || null;
     const nivel = resolveNivel(productId ? String(productId) : undefined);
+  /* eslint-enable @typescript-eslint/no-explicit-any */
 
     const existing = await findUserByEmail(email);
     if (existing) {
