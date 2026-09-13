@@ -92,12 +92,12 @@ function computeBand(g: number): string {
 }
 
 const PHENO_INFO: Record<string, { title: string; desc: string; color: string }> = {
-  "SR-1": { title: "Hiperactivación cognitivo-simpática", desc: "Tu sistema nervioso se mantiene en alerta cuando debería descansar. Tu mente no se apaga al acostarte.", color: "text-amber-400" },
-  "SR-2": { title: "Autonómico desregulado", desc: "Tu cuerpo muestra signos de baja modulación vagal: tensión, palpitaciones o frío periférico.", color: "text-orange-400" },
-  "SR-3": { title: "Recuperación alterada", desc: "Tu ritmo energético diario está alterado y la recuperación post-estrés es lenta.", color: "text-purple-400" },
-  "SR-4": { title: "Desregulación silente", desc: "Puntuación global elevada pero tu percepción del insomnio está preservada. El impacto puede estar en otros sistemas.", color: "text-cyan-400" },
-  "SR-5": { title: "Regulación preservada", desc: "No aparecen indicadores relevantes de desregulación. Puedes optimizar lo que ya funciona.", color: "text-rest-accent" },
-  SAFETY: { title: "Evaluación médica prioritaria", desc: "Tus respuestas sugieren posibles signos de trastorno respiratorio del sueño. Consulta con un médico antes de continuar.", color: "text-rest-danger" },
+  "SR-1": { title: "Tu mente no se apaga", desc: "Tu cuerpo termina el día agotado, pero tu sistema nervioso sigue encendido. Este es el patrón que vamos a trabajar: enseñarle a tu cuerpo a soltar por la noche.", color: "text-amber-400" },
+  "SR-2": { title: "Tu cuerpo está tenso", desc: "Tensión, palpitaciones o frío en las manos: tu cuerpo aún no logra bajar la guardia. El método trabaja para que vuelva a sentirse seguro y pueda descansar.", color: "text-orange-400" },
+  "SR-3": { title: "Tu energía perdió su ritmo", desc: "Tus subidas y bajadas de energía y la recuperación lenta tras el estrés muestran un reloj interno alterado. Vamos a reordenarlo paso a paso.", color: "text-purple-400" },
+  "SR-4": { title: "Desgaste silencioso", desc: "Duermes más o menos bien, pero tu cuerpo carga un desgaste acumulado. Detectarlo ahora es una ventaja: podemos frenarlo a tiempo.", color: "text-cyan-400" },
+  "SR-5": { title: "Tu descanso está bien encaminado", desc: "No aparecen señales importantes de desregulación. Partes desde un buen lugar, y el método te ayuda a proteger y afinar lo que ya funciona.", color: "text-rest-accent" },
+  SAFETY: { title: "Vale la pena una revisión médica", desc: "Algunas respuestas muestran señales respiratorias (como ronquidos o pausas al respirar) que conviene revisar con un médico. El método acompaña muy bien ese proceso; si ya estás en control, perfecto.", color: "text-rest-warning" },
 };
 
 interface Props {
@@ -238,10 +238,10 @@ export default function ResetQScale({ onComplete, showResult = true }: Props) {
           ))}
         </div>
         {scores.phenotype === "SAFETY" && (
-          <div className="p-4 rounded-xl bg-rest-danger/10 border border-rest-danger/20">
+          <div className="p-4 rounded-xl bg-rest-warning/10 border border-rest-warning/20">
             <div className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-rest-danger shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" /></svg>
-              <p className="text-sm text-rest-text-secondary"><span className="font-semibold text-rest-danger">Derivación médica sugerida.</span> Tus respuestas indican posibles signos de apnea del sueño. Consulta con un profesional antes de iniciar cualquier protocolo.</p>
+              <svg className="w-5 h-5 text-rest-warning shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <p className="text-sm text-rest-text-secondary"><span className="font-semibold text-rest-warning">Un paso importante para cuidarte.</span> Algunas respuestas muestran señales respiratorias que conviene revisar con un médico. Si ya estás en control, perfecto: el método acompaña muy bien tu proceso. Si no, considéralo una prioridad.</p>
             </div>
           </div>
         )}
