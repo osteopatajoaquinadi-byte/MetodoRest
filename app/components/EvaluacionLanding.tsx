@@ -59,32 +59,32 @@ const B_ITEMS = [
 const PHENO: Record<string, { title: string; desc: string; hook: string }> = {
   "SR-1": {
     title: "Tu mente no se apaga",
-    desc: "Tu cuerpo se acuesta cansado, pero tu sistema nervioso sigue en alerta. Das vueltas pensando cuando deberías estar descansando.",
-    hook: "El Método R.E.S.T. está diseñado para desactivar ese estado de alerta y enseñarle a tu cuerpo a soltar por la noche.",
+    desc: "Si llegaste hasta acá, probablemente ya intentaste de todo para dormir mejor, y sigues igual. Lo que tus respuestas muestran es esto: tu cuerpo termina el día agotado, pero tu mente no se apaga. Sigue en alerta, repasando pendientes, aunque tú solo quieras descansar. No es que estés haciendo algo mal. Es que tu sistema nervioso aprendió a quedarse encendido, y nadie te enseñó a apagarlo.",
+    hook: "La buena noticia: esto se puede revertir. Tu cuerpo puede volver a aprender a soltar, y el Método R.E.S.T. es un camino concreto, paso a paso, diseñado exactamente para este patrón.",
   },
   "SR-2": {
     title: "Tu cuerpo está tenso",
-    desc: "La tensión, las palpitaciones y el frío en manos o pies son señales de un cuerpo que no logra bajar la guardia, ni siquiera al dormir.",
-    hook: "El Método R.E.S.T. trabaja la regulación de tu cuerpo para que pueda entrar en modo descanso de verdad.",
+    desc: "Tus respuestas muestran algo que quizás ya sentías sin poder nombrarlo: tu cuerpo no logra bajar la guardia. La tensión en la mandíbula, las palpitaciones, el frío en las manos, no son cosas sueltas. Son señales de un cuerpo que sigue en modo defensa, incluso cuando debería estar descansando. No estás exagerando, y no está en tu cabeza.",
+    hook: "Esto tiene explicación y tiene salida. Cuando tu cuerpo aprende a sentirse seguro, la tensión cede y el descanso llega. El Método R.E.S.T. trabaja justo en eso.",
   },
   "SR-3": {
     title: "Tu energía está desregulada",
-    desc: "Tus subidas y bajadas de energía, la dependencia del café y el agotamiento del fin de semana muestran un ritmo interno alterado.",
-    hook: "El Método R.E.S.T. reordena tu ritmo circadiano para que recuperes energía estable y un sueño que repara.",
+    desc: "Lo que tus respuestas revelan es un cuerpo agotado que perdió su ritmo. Te cuesta arrancar sin café, te desplomas en la tarde, y cualquier estrés te deja dando vueltas por horas. No es falta de disciplina ni de fuerza de voluntad. Es tu reloj interno pidiendo ayuda, y llevas tiempo funcionando en reserva.",
+    hook: "Tu ritmo se puede reordenar. No de un día para otro, pero sí paso a paso, y el cambio se siente antes de lo que crees. El Método R.E.S.T. está hecho para acompañarte en ese proceso.",
   },
   "SR-4": {
     title: "Desgaste silencioso",
-    desc: "Aunque no lo notes tanto en la noche, tu cuerpo muestra señales de desgaste acumulado que terminan afectando tu descanso.",
-    hook: "El Método R.E.S.T. aborda ese desgaste antes de que se convierta en insomnio crónico.",
+    desc: "Curiosamente, dirías que duermes más o menos bien. Pero tus respuestas muestran un desgaste que tu cuerpo viene cargando en silencio. A veces el agotamiento no se ve en la noche, se acumula por dentro hasta que un día pasa la cuenta. Que lo detectes ahora, antes de que se vuelva un problema mayor, es lo mejor que te podía pasar.",
+    hook: "Estás a tiempo. Con los ajustes correctos, puedes frenar ese desgaste antes de que afecte tu descanso de verdad. El Método R.E.S.T. te muestra cómo.",
   },
   "SR-5": {
     title: "Tu descanso está bastante bien",
-    desc: "No aparecen señales importantes de desregulación. Lo tuyo es mantener y optimizar lo que ya funciona.",
-    hook: "El Método R.E.S.T. te ayuda a proteger y afinar tu descanso para que siga siendo reparador.",
+    desc: "Tus respuestas muestran algo poco común: tu cuerpo sabe descansar. No aparecen señales importantes de desregulación. Eso no significa que no puedas mejorar, siempre se puede afinar, pero partes desde un lugar sano y eso vale mucho.",
+    hook: "Lo tuyo es proteger y optimizar lo que ya funciona. El Método R.E.S.T. te ayuda a afinar tu descanso para que siga siendo tu mejor aliado.",
   },
   SAFETY: {
-    title: "Conviene una revisión médica",
-    desc: "Algunas de tus respuestas sugieren posibles signos de un trastorno respiratorio del sueño (como apnea). Esto merece atención de un profesional de salud.",
+    title: "Vale la pena una revisión médica",
+    desc: "Antes que nada, tranquilo. Tus respuestas muestran algunas señales del sueño que conviene mirar con calma, y eso es algo bueno: detectarlas es el primer paso para cuidarte bien.",
     hook: "",
   },
 };
@@ -284,9 +284,9 @@ export default function EvaluacionLanding() {
     const tieneAlgunaSenalRespiratoria = !isSafety && result.scoreB >= 1;
     let hookMsg = info.hook;
     if (isSafety) {
-      hookMsg = "Te recomendamos consultar con un médico antes de iniciar cualquier programa. El Método R.E.S.T. puede acompañarte, pero la evaluación médica es prioritaria.";
+      hookMsg = "El Método R.E.S.T. sirve como base para restaurar tu sistema nervioso y mejorar tu descanso. Al mismo tiempo, algunas de tus respuestas muestran señales (como ronquidos fuertes o pausas al respirar) que conviene revisar con un médico, porque pueden necesitar una atención específica. Si ya estás en tratamiento médico, perfecto: el método complementa muy bien ese proceso. Si todavía no lo estás, te recomendamos agendar una consulta como prioridad. Cuidarte bien empieza por ahí.";
     }
-    const mensajeSenalLeve = "El Método R.E.S.T. puede acompañarte en el proceso, pero te recomendamos consultar con un médico como prioridad de tu proceso.";
+    const mensajeSenalLeve = "El Método R.E.S.T. puede acompañarte en este proceso. Notamos también alguna señal que conviene comentar con un médico: si ya estás en control, perfecto; si no, considéralo como parte de cuidar bien tu descanso.";
 
     return (
       <div className="max-w-xl mx-auto">
@@ -300,16 +300,17 @@ export default function EvaluacionLanding() {
           {!isSafety && (
             <div className="p-4 rounded-xl bg-rest-bg mb-5">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-rest-text-muted text-xs">Nivel de desregulación</span>
+                <span className="text-rest-text-muted text-xs">Dónde estás hoy</span>
                 <span className="text-rest-accent font-bold text-sm">{result.global}/64</span>
               </div>
               <div className="w-full h-2 bg-black/40 rounded-full overflow-hidden">
                 <div className="h-full rounded-full bg-gradient-to-r from-rest-accent to-teal-400 transition-all" style={{ width: `${(result.global / 64) * 100}%` }} />
               </div>
+              <p className="text-rest-text-muted text-[11px] mt-2 leading-relaxed">Esto es tu punto de partida, no una sentencia. Es justo lo que el método está diseñado para cambiar.</p>
             </div>
           )}
 
-          <div className={`p-4 rounded-xl mb-6 ${isSafety ? "bg-rest-danger/10 border border-rest-danger/20" : "bg-rest-accent/10"}`}>
+          <div className={`p-4 rounded-xl mb-6 ${isSafety ? "bg-rest-warning/10 border border-rest-warning/20" : "bg-rest-accent/10"}`}>
             <p className="text-sm text-rest-text-secondary leading-relaxed">{hookMsg}</p>
           </div>
 
