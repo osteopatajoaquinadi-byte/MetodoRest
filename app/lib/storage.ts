@@ -43,9 +43,11 @@ export function esRutaPremium(pathname: string): boolean {
   return RUTAS_PREMIUM.some((r) => pathname === r || pathname.startsWith(r + "/"));
 }
 
-// Rutas que el usuario de nivel "ebook" SÍ puede ver. Todo lo demás dentro de
-// /app queda bloqueado para ese nivel (incluido el dashboard).
+// Rutas que el usuario de nivel "ebook" SÍ puede ver. El dashboard se permite
+// (lo ve difuminado, para percibir todo lo que ofrece la plataforma) y el ebook
+// es lo único plenamente funcional. El resto queda bloqueado.
 export const RUTAS_EBOOK_PERMITIDAS = [
+  "/app",
   "/app/ebook",
   "/app/onboarding",
 ];
