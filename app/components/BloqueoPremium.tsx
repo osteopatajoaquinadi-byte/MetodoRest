@@ -38,6 +38,9 @@ export default function BloqueoPremium({ pathname }: { pathname: string }) {
           className="block w-full py-3.5 bg-rest-accent hover:bg-[#00B880] text-rest-bg font-semibold rounded-xl transition-all shadow-[0_0_16px_rgba(0,229,160,0.3)] hover:shadow-[0_0_24px_rgba(0,229,160,0.5)]">
           Desbloquear el método completo
         </a>
+        <a href="/app/ebook" className="block w-full mt-3 py-3 bg-white/[0.05] hover:bg-white/[0.08] text-rest-text-secondary hover:text-white font-medium rounded-xl transition-all text-sm">
+          Volver a mi ebook
+        </a>
         <p className="text-rest-text-muted text-[11px] mt-4">
           Pago seguro a través de Hotmart · Acceso inmediato · 7 días de garantía
         </p>

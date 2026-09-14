@@ -43,6 +43,17 @@ export function esRutaPremium(pathname: string): boolean {
   return RUTAS_PREMIUM.some((r) => pathname === r || pathname.startsWith(r + "/"));
 }
 
+// Rutas que el usuario de nivel "ebook" SÍ puede ver. Todo lo demás dentro de
+// /app queda bloqueado para ese nivel (incluido el dashboard).
+export const RUTAS_EBOOK_PERMITIDAS = [
+  "/app/ebook",
+  "/app/onboarding",
+];
+
+export function ebookPuedeVer(pathname: string): boolean {
+  return RUTAS_EBOOK_PERMITIDAS.some((r) => pathname === r || pathname.startsWith(r + "/"));
+}
+
 export interface OnboardingStatus {
   profileCompleted: boolean;
   basalCompleted: boolean;

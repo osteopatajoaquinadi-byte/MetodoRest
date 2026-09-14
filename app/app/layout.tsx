@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import HeroBackground from "../components/HeroBackground";
 import BloqueoPremium from "../components/BloqueoPremium";
-import { getOnboardingStatus, getNivelAcceso, esRutaPremium } from "../lib/storage";
+import { getOnboardingStatus, getNivelAcceso, ebookPuedeVer } from "../lib/storage";
 
 const navItems: { href: string; label: string; mobileLabel?: string; icon?: string; iconSrc?: string }[] = [
   { href: "/app", label: "Inicio", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
@@ -28,17 +28,33 @@ function OnboardingGuard({ children }: { children: React.ReactNode }) {
       setReady(true);
       return;
     }
+
+    const nivel = getNivelAcceso();
+
+    // Usuario ebook: no se le exige onboarding (eso es del metodo completo).
+    // Solo puede ver el ebook; si cae en el dashboard lo mandamos ahi, y
+    // cualquier otra ruta muestra el bloqueo con el CTA de compra.
+    if (nivel === "ebook") {
+      if (!ebookPuedeVer(pathname)) {
+        if (pathname === "/app") {
+          router.replace("/app/ebook");
+          return;
+        }
+        setBloqueado(true);
+      } else {
+        setBloqueado(false);
+      }
+      setReady(true);
+      return;
+    }
+
+    // Usuario completo: se exige onboarding antes de entrar.
     const status = getOnboardingStatus();
     if (!status.profileCompleted || !status.basalCompleted) {
       router.replace("/app/onboarding");
       return;
     }
-    // Control de acceso por nivel: usuarios "ebook" no entran a rutas premium
-    if (getNivelAcceso() === "ebook" && esRutaPremium(pathname)) {
-      setBloqueado(true);
-    } else {
-      setBloqueado(false);
-    }
+    setBloqueado(false);
     setReady(true);
   }, [pathname, router]);
 
@@ -99,7 +115,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <nav className="flex-1 py-2 px-2 space-y-1 overflow-hidden">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
-              const locked = nivel === "ebook" && esRutaPremium(item.href);
+              const locked = nivel === "ebook" && !ebookPuedeVer(item.href);
               return (
                 <Link
                   key={item.href}

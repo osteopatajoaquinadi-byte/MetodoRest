@@ -122,7 +122,13 @@ export default function LoginPage() {
         window.location.href = "/app";
       } else {
         setOnboardingStatus({ profileCompleted: !!f["Perfil Completado"], basalCompleted: false });
-        window.location.href = "/app/onboarding";
+        // El usuario ebook no hace el onboarding del metodo (evaluacion basal):
+        // va directo a su ebook. El onboarding es solo para el metodo completo.
+        if (f.nivel_acceso === "ebook") {
+          window.location.href = "/app/ebook";
+        } else {
+          window.location.href = "/app/onboarding";
+        }
       }
     } catch {
       setError("Error de conexión. Intenta de nuevo.");
