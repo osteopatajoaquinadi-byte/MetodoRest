@@ -104,20 +104,25 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [nivel, setNivel] = useState<"ebook" | "completo">(getNivelAcceso());
 
   useEffect(() => {
-    setNivel(getNivelAcceso());
+    const local = getNivelAcceso();
+    console.log("[MENU] nivel localStorage:", local);
+    setNivel(local);
     // Verifica el nivel real contra la base y corrige el menu si difiere
     const userId = localStorage.getItem("rest-user-id");
+    console.log("[MENU] userId:", userId);
     if (userId) {
       fetch(`/api/user?id=${userId}`)
         .then((r) => r.ok ? r.json() : null)
         .then((data) => {
+          console.log("[MENU] respuesta API:", data?.fields?.nivel_acceso, data);
           if (data?.fields) {
             const nivelReal = data.fields.nivel_acceso === "ebook" ? "ebook" : "completo";
+            console.log("[MENU] nivelReal calculado:", nivelReal);
             setNivelAcceso(nivelReal);
             setNivel(nivelReal);
           }
         })
-        .catch(() => {});
+        .catch((e) => console.log("[MENU] error fetch:", e));
     }
   }, [pathname]);
 
