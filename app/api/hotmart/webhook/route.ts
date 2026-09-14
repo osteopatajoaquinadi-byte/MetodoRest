@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { findUserByEmail, createUser } from "../../../lib/supabase";
+import { findUserByEmail, createUser, updateUser } from "../../../lib/supabase";
 import { Resend } from "resend";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
@@ -29,6 +29,19 @@ async function sendAccessEmail(email: string, password: string) {
     });
   } catch (err) {
     console.error("[hotmart] error enviando correo:", err instanceof Error ? err.message : err);
+  }
+}
+
+async function sendUpgradeEmail(email: string) {
+  if (!resend) return;
+  try {
+    await resend.emails.send({
+      from: "Método R.E.S.T. <no-reply@metodorest.cl>", replyTo: "metodorest@gmail.com", to: email,
+      subject: "Desbloqueaste el Método R.E.S.T. completo",
+      html: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#060E0E;color:#E8F0F0;border-radius:16px"><img src="${BASE_URL}/logo.svg" alt="Método R.E.S.T." style="height:48px;margin-bottom:24px" /><h2 style="color:#00E5A0;margin:0 0 16px">¡Ya tienes el método completo!</h2><p style="color:#A0B0B0;line-height:1.6">Tu compra fue confirmada. Ahora tienes acceso a todo el Método R.E.S.T.: las respiraciones guiadas, el plan de 21 días, el plan nutricional nocturno, la relajación progresiva y el seguimiento completo de tu progreso.</p><p style="color:#A0B0B0;line-height:1.6">Entra con el mismo email y contraseña que ya usabas.</p><a href="${BASE_URL}/login" style="display:inline-block;margin:16px 0;padding:14px 32px;background:#00E5A0;color:#060E0E;text-decoration:none;border-radius:12px;font-weight:600">Ir a la plataforma</a></div>`,
+    });
+  } catch (err) {
+    console.error("[hotmart] error enviando correo upgrade:", err instanceof Error ? err.message : err);
   }
 }
 
@@ -98,7 +111,23 @@ export async function POST(req: NextRequest) {
 
     const existing = await findUserByEmail(email);
     if (existing) {
-      console.log("[hotmart] usuario ya existe:", email);
+      // El usuario ya existe. Si la nueva compra le da MÁS acceso que el que
+      // tiene (compró el completo teniendo solo ebook), le subimos el nivel.
+      // Nunca bajamos el nivel: quien ya tiene completo, se queda con completo
+      // aunque después compre solo el ebook.
+      const nivelActual = existing.nivel_acceso === "ebook" ? "ebook" : "completo";
+      if (nivelActual === "ebook" && nivel === "completo") {
+        try {
+          await updateUser(existing.id, { nivel_acceso: "completo" });
+          console.log("[hotmart] nivel actualizado a completo:", email);
+          await sendUpgradeEmail(email);
+          return NextResponse.json({ ok: true, message: "Nivel actualizado a completo" });
+        } catch (err) {
+          console.error("[hotmart] error actualizando nivel:", err instanceof Error ? err.message : err);
+          return NextResponse.json({ error: "Error actualizando nivel" }, { status: 500 });
+        }
+      }
+      console.log("[hotmart] usuario ya existe, sin cambio de nivel:", email, "actual:", nivelActual, "compra:", nivel);
       return NextResponse.json({ ok: true, message: "Usuario ya existe" });
     }
 
