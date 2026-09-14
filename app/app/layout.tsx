@@ -29,9 +29,10 @@ function OnboardingGuard({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // Verificamos el nivel REAL contra la base de datos, no solo localStorage
-    // (que puede estar desincronizado o manipulado). Si difiere, lo corregimos.
-    const aplicarNivel = (nivel: "ebook" | "completo") => {
+    let cancelled = false;
+
+    const decidir = (nivel: "ebook" | "completo") => {
+      if (cancelled) return;
       if (nivel === "ebook") {
         if (!ebookPuedeVer(pathname)) {
           if (pathname === "/app") {
@@ -45,7 +46,6 @@ function OnboardingGuard({ children }: { children: React.ReactNode }) {
         setReady(true);
         return;
       }
-      // Usuario completo: se exige onboarding antes de entrar.
       const status = getOnboardingStatus();
       if (!status.profileCompleted || !status.basalCompleted) {
         router.replace("/app/onboarding");
@@ -55,25 +55,41 @@ function OnboardingGuard({ children }: { children: React.ReactNode }) {
       setReady(true);
     };
 
-    // Primero aplicamos lo que dice localStorage (respuesta inmediata)
-    aplicarNivel(getNivelAcceso());
-
-    // Luego confirmamos contra la base y corregimos si hace falta
     const userId = localStorage.getItem("rest-user-id");
-    if (userId) {
+    const esRutaSensible = !ebookPuedeVer(pathname); // ruta premium
+
+    // Para rutas premium, esperamos la confirmacion de la base antes de mostrar
+    // nada (evita que se filtre contenido por un localStorage desincronizado).
+    // Para el ebook/dashboard, respondemos inmediato con localStorage.
+    if (esRutaSensible && userId) {
       fetch(`/api/user?id=${userId}`)
         .then((r) => r.ok ? r.json() : null)
         .then((data) => {
-          if (data?.fields) {
-            const nivelReal = data.fields.nivel_acceso === "ebook" ? "ebook" : "completo";
-            if (nivelReal !== getNivelAcceso()) {
-              setNivelAcceso(nivelReal);
-              aplicarNivel(nivelReal);
-            }
-          }
+          const nivelReal = data?.fields?.nivel_acceso === "ebook" ? "ebook" : "completo";
+          setNivelAcceso(nivelReal);
+          decidir(nivelReal);
         })
-        .catch(() => {});
+        .catch(() => decidir(getNivelAcceso()));
+    } else {
+      decidir(getNivelAcceso());
+      // Confirmacion en segundo plano para corregir el localStorage
+      if (userId) {
+        fetch(`/api/user?id=${userId}`)
+          .then((r) => r.ok ? r.json() : null)
+          .then((data) => {
+            if (data?.fields) {
+              const nivelReal = data.fields.nivel_acceso === "ebook" ? "ebook" : "completo";
+              if (nivelReal !== getNivelAcceso()) {
+                setNivelAcceso(nivelReal);
+                decidir(nivelReal);
+              }
+            }
+          })
+          .catch(() => {});
+      }
     }
+
+    return () => { cancelled = true; };
   }, [pathname, router]);
 
   if (!ready) return null;
@@ -83,11 +99,26 @@ function OnboardingGuard({ children }: { children: React.ReactNode }) {
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
   const [expanded, setExpanded] = useState(false);
-  const [nivel, setNivel] = useState<"ebook" | "completo">("completo");
+  const [nivel, setNivel] = useState<"ebook" | "completo">(getNivelAcceso());
 
   useEffect(() => {
     setNivel(getNivelAcceso());
+    // Verifica el nivel real contra la base y corrige el menu si difiere
+    const userId = localStorage.getItem("rest-user-id");
+    if (userId) {
+      fetch(`/api/user?id=${userId}`)
+        .then((r) => r.ok ? r.json() : null)
+        .then((data) => {
+          if (data?.fields) {
+            const nivelReal = data.fields.nivel_acceso === "ebook" ? "ebook" : "completo";
+            setNivelAcceso(nivelReal);
+            setNivel(nivelReal);
+          }
+        })
+        .catch(() => {});
+    }
   }, [pathname]);
 
   if (pathname === "/app/onboarding") {
@@ -137,8 +168,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               return (
                 <Link
                   key={item.href}
-                  href={item.href}
+                  href={locked ? item.href : item.href}
                   title={item.label}
+                  onClick={(e) => {
+                    if (locked) {
+                      e.preventDefault();
+                      router.push(item.href);
+                    }
+                  }}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors whitespace-nowrap overflow-hidden ${
                     isActive
                       ? "bg-[#00E5A0]/15 text-[#00E5A0] shadow-[inset_0_0_0_1px_rgba(0,229,160,0.25)]"
