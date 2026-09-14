@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import HeroBackground from "../components/HeroBackground";
 import BloqueoPremium from "../components/BloqueoPremium";
-import { getOnboardingStatus, getNivelAcceso, ebookPuedeVer } from "../lib/storage";
+import { getOnboardingStatus, getNivelAcceso, setNivelAcceso, ebookPuedeVer } from "../lib/storage";
 
 const navItems: { href: string; label: string; mobileLabel?: string; icon?: string; iconSrc?: string }[] = [
   { href: "/app", label: "Inicio", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
@@ -29,33 +29,51 @@ function OnboardingGuard({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    const nivel = getNivelAcceso();
-
-    // Usuario ebook: no se le exige onboarding (eso es del metodo completo).
-    // Solo puede ver el ebook; si cae en el dashboard lo mandamos ahi, y
-    // cualquier otra ruta muestra el bloqueo con el CTA de compra.
-    if (nivel === "ebook") {
-      if (!ebookPuedeVer(pathname)) {
-        if (pathname === "/app") {
-          router.replace("/app/ebook");
-          return;
+    // Verificamos el nivel REAL contra la base de datos, no solo localStorage
+    // (que puede estar desincronizado o manipulado). Si difiere, lo corregimos.
+    const aplicarNivel = (nivel: "ebook" | "completo") => {
+      if (nivel === "ebook") {
+        if (!ebookPuedeVer(pathname)) {
+          if (pathname === "/app") {
+            router.replace("/app/ebook");
+            return;
+          }
+          setBloqueado(true);
+        } else {
+          setBloqueado(false);
         }
-        setBloqueado(true);
-      } else {
-        setBloqueado(false);
+        setReady(true);
+        return;
       }
+      // Usuario completo: se exige onboarding antes de entrar.
+      const status = getOnboardingStatus();
+      if (!status.profileCompleted || !status.basalCompleted) {
+        router.replace("/app/onboarding");
+        return;
+      }
+      setBloqueado(false);
       setReady(true);
-      return;
-    }
+    };
 
-    // Usuario completo: se exige onboarding antes de entrar.
-    const status = getOnboardingStatus();
-    if (!status.profileCompleted || !status.basalCompleted) {
-      router.replace("/app/onboarding");
-      return;
+    // Primero aplicamos lo que dice localStorage (respuesta inmediata)
+    aplicarNivel(getNivelAcceso());
+
+    // Luego confirmamos contra la base y corregimos si hace falta
+    const userId = localStorage.getItem("rest-user-id");
+    if (userId) {
+      fetch(`/api/user?id=${userId}`)
+        .then((r) => r.ok ? r.json() : null)
+        .then((data) => {
+          if (data?.fields) {
+            const nivelReal = data.fields.nivel_acceso === "ebook" ? "ebook" : "completo";
+            if (nivelReal !== getNivelAcceso()) {
+              setNivelAcceso(nivelReal);
+              aplicarNivel(nivelReal);
+            }
+          }
+        })
+        .catch(() => {});
     }
-    setBloqueado(false);
-    setReady(true);
   }, [pathname, router]);
 
   if (!ready) return null;
