@@ -338,7 +338,7 @@ export default function AppDashboard() {
         {nivel === "ebook" && (
           <div className="absolute inset-0 z-10" style={{ cursor: "not-allowed" }} aria-hidden="true" />
         )}
-        <div className={nivel === "ebook" ? "blur-[3px] opacity-50 pointer-events-none space-y-6" : "space-y-6"}>
+        <div className={nivel === "ebook" ? "blur-lg opacity-30 pointer-events-none select-none space-y-6" : "space-y-6"}>
       {/* Evaluation banner */}
       {evalDue && (
         <Link href="/app/mide-tu-sueno" className="block group">
