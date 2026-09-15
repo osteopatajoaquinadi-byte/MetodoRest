@@ -33,14 +33,12 @@ function OnboardingGuard({ children }: { children: React.ReactNode }) {
 
     const decidir = (nivel: "ebook" | "completo") => {
       if (cancelled) return;
-      console.log("[GUARD] decidir nivel:", nivel, "pathname:", pathname, "puedeVer:", ebookPuedeVer(pathname));
       if (nivel === "ebook") {
         if (!ebookPuedeVer(pathname)) {
           if (pathname === "/app") {
             router.replace("/app/ebook");
             return;
           }
-          console.log("[GUARD] BLOQUEANDO ruta premium");
           setBloqueado(true);
         } else {
           setBloqueado(false);
@@ -107,24 +105,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const local = getNivelAcceso();
-    console.log("[MENU] nivel localStorage:", local);
     setNivel(local);
     // Verifica el nivel real contra la base y corrige el menu si difiere
     const userId = localStorage.getItem("rest-user-id");
-    console.log("[MENU] userId:", userId);
     if (userId) {
       fetch(`/api/user?id=${userId}`)
         .then((r) => r.ok ? r.json() : null)
         .then((data) => {
-          console.log("[MENU] respuesta API:", data?.fields?.nivel_acceso, data);
           if (data?.fields) {
             const nivelReal = data.fields.nivel_acceso === "ebook" ? "ebook" : "completo";
-            console.log("[MENU] nivelReal calculado:", nivelReal);
             setNivelAcceso(nivelReal);
             setNivel(nivelReal);
           }
         })
-        .catch((e) => console.log("[MENU] error fetch:", e));
     }
   }, [pathname]);
 
