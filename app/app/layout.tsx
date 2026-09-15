@@ -33,12 +33,14 @@ function OnboardingGuard({ children }: { children: React.ReactNode }) {
 
     const decidir = (nivel: "ebook" | "completo") => {
       if (cancelled) return;
+      console.log("[GUARD] decidir nivel:", nivel, "pathname:", pathname, "puedeVer:", ebookPuedeVer(pathname));
       if (nivel === "ebook") {
         if (!ebookPuedeVer(pathname)) {
           if (pathname === "/app") {
             router.replace("/app/ebook");
             return;
           }
+          console.log("[GUARD] BLOQUEANDO ruta premium");
           setBloqueado(true);
         } else {
           setBloqueado(false);
