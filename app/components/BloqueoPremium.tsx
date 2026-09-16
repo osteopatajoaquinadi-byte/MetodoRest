@@ -1,6 +1,6 @@
 "use client";
 
-const HOTMART_UPGRADE = "https://pay.hotmart.com/P107616181R?off=tg9msg8c";
+const HOTMART_UPGRADE = "https://pay.hotmart.com/P107616181R?off=lpb4zoe7";
 
 const SECCION_INFO: Record<string, { titulo: string; desc: string }> = {
   "/app/respiraciones": { titulo: "Respiraciones guiadas", desc: "Técnicas de respiración 4-7-8 y diafragmática con guía paso a paso para calmar tu sistema nervioso en minutos." },
