@@ -24,6 +24,7 @@ export default function RelajacionProgresivaPage() {
   const [audioProgress, setAudioProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [audioLoading, setAudioLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -34,11 +35,20 @@ export default function RelajacionProgresivaPage() {
       setAudioProgress(audio.duration ? (audio.currentTime / audio.duration) * 100 : 0);
     };
     const onMeta = () => setDuration(audio.duration);
+    const onWaiting = () => setAudioLoading(true);
+    const onPlaying = () => setAudioLoading(false);
+    const onCanPlay = () => setAudioLoading(false);
     audio.addEventListener("timeupdate", onTime);
     audio.addEventListener("loadedmetadata", onMeta);
+    audio.addEventListener("waiting", onWaiting);
+    audio.addEventListener("playing", onPlaying);
+    audio.addEventListener("canplay", onCanPlay);
     return () => {
       audio.removeEventListener("timeupdate", onTime);
       audio.removeEventListener("loadedmetadata", onMeta);
+      audio.removeEventListener("waiting", onWaiting);
+      audio.removeEventListener("playing", onPlaying);
+      audio.removeEventListener("canplay", onCanPlay);
     };
   }, []);
 
@@ -106,7 +116,12 @@ export default function RelajacionProgresivaPage() {
             }}
             className="shrink-0 w-12 h-12 rounded-full bg-rest-accent flex items-center justify-center hover:bg-rest-accent/80 transition shadow-[0_0_15px_rgba(0,229,160,0.3)]"
           >
-            {isPlaying ? (
+            {audioLoading ? (
+              <svg className="w-5 h-5 text-rest-bg animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+            ) : isPlaying ? (
               <svg className="w-5 h-5 text-rest-bg" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
               </svg>
