@@ -327,7 +327,7 @@ export default function EvaluacionLanding() {
                 className="block w-full py-3.5 bg-rest-accent hover:bg-rest-accent-dark text-rest-bg font-semibold rounded-xl transition-all text-center shadow-[0_0_16px_rgba(0,229,160,0.3)] hover:shadow-[0_0_24px_rgba(0,229,160,0.5)]">
                 Acceder al Método completo
               </a>
-              <a href="https://pay.hotmart.com/N107478696O" target="_blank" rel="noopener noreferrer"
+              <a href="https://pay.hotmart.com/N107478696O?off=1xspnyoc" target="_blank" rel="noopener noreferrer"
                 className="block w-full py-3 bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium rounded-xl transition-all text-center text-sm shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]">
                 O empezar solo con el ebook · $14.990
               </a>
