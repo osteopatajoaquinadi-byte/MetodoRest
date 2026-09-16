@@ -50,14 +50,24 @@ function Hero() {
           <span className="text-gradient-green">Aparece cuando te sientes seguro.</span>
         </h1>
 
-        <p className="animate-fade-in-up delay-400 text-rest-text-secondary text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-          Si das vueltas en la cama, te despiertas a las 3 de la madrugada o
-          amaneces sin energía por más que duermas, no es falta de voluntad:
-          es tu sistema nervioso en alerta. El Método R.E.S.T. te enseña a
-          calmarlo en 21 días, sin pastillas.
+        <div className="animate-fade-in-up delay-400 max-w-2xl mx-auto mb-6">
+          <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%", borderRadius: "16px", overflow: "hidden", boxShadow: "0 0 40px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(94,155,143,0.15)" }}>
+            <iframe
+              src="https://www.youtube.com/embed/_ouz4nLmT7w?rel=0&modestbranding=1"
+              title="Método R.E.S.T."
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+            />
+          </div>
+        </div>
+
+        <p className="animate-fade-in-up delay-500 text-rest-text-secondary text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+          No es falta de voluntad. Es tu sistema nervioso en alerta, y se puede
+          calmar en 21 días.
         </p>
 
-        <div id="evaluacion" className="animate-fade-in-up delay-500 max-w-lg mx-auto scroll-mt-24">
+        <div id="evaluacion" className="animate-fade-in-up delay-600 max-w-lg mx-auto scroll-mt-24">
           <EvaluacionLanding />
         </div>
 
