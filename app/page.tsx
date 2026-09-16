@@ -449,7 +449,7 @@ function Precio() {
               ))}
             </ul>
             <a
-              href="https://pay.hotmart.com/L105253165X"
+              href="https://pay.hotmart.com/L105253165X?off=z03q3xpq"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full py-3.5 font-semibold uppercase tracking-wider rounded-xl transition-all duration-200 text-center text-sm bg-rest-accent hover:bg-[#00B880] active:bg-[#009960] active:scale-[0.97] text-rest-bg shadow-[0_0_16px_rgba(0,229,160,0.3)] hover:shadow-[0_0_24px_rgba(0,229,160,0.5)] cursor-pointer"
