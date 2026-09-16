@@ -1,6 +1,6 @@
 "use client";
 
-const HOTMART_COMPLETO = "https://pay.hotmart.com/L105253165X";
+const HOTMART_UPGRADE = "https://pay.hotmart.com/P107616181R?off=tg9msg8c";
 
 const SECCION_INFO: Record<string, { titulo: string; desc: string }> = {
   "/app/respiraciones": { titulo: "Respiraciones guiadas", desc: "Técnicas de respiración 4-7-8 y diafragmática con guía paso a paso para calmar tu sistema nervioso en minutos." },
@@ -34,7 +34,7 @@ export default function BloqueoPremium({ pathname }: { pathname: string }) {
           </p>
         </div>
 
-        <a href={HOTMART_COMPLETO} target="_blank" rel="noopener noreferrer"
+        <a href={HOTMART_UPGRADE} target="_blank" rel="noopener noreferrer"
           className="block w-full py-3.5 bg-rest-accent hover:bg-[#00B880] text-rest-bg font-semibold rounded-xl transition-all shadow-[0_0_16px_rgba(0,229,160,0.3)] hover:shadow-[0_0_24px_rgba(0,229,160,0.5)]">
           Desbloquear el método completo
         </a>

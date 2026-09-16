@@ -326,7 +326,7 @@ export default function AppDashboard() {
           <p className="text-sm text-rest-text-secondary leading-relaxed mb-3">
             Esto es lo que incluye el <span className="text-white font-medium">Método R.E.S.T. completo</span>: respiraciones guiadas, plan de 21 días, nutrición nocturna y seguimiento de tu sueño. Míralo abajo.
           </p>
-          <a href="https://pay.hotmart.com/L105253165X" target="_blank" rel="noopener noreferrer"
+          <a href="https://pay.hotmart.com/P107616181R?off=tg9msg8c" target="_blank" rel="noopener noreferrer"
             className="inline-block px-6 py-2.5 bg-rest-accent hover:bg-[#00B880] text-rest-bg text-sm font-semibold rounded-xl transition-all shadow-[0_0_16px_rgba(0,229,160,0.3)]">
             Desbloquear el método completo
           </a>
