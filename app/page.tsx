@@ -53,7 +53,7 @@ function Hero() {
         <div className="animate-fade-in-up delay-400 max-w-2xl mx-auto mb-6">
           <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%", borderRadius: "16px", overflow: "hidden", boxShadow: "0 0 40px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(94,155,143,0.15)" }}>
             <iframe
-              src="https://www.youtube.com/embed/_ouz4nLmT7w?rel=0&modestbranding=1"
+              src="https://www.youtube.com/embed/_ouz4nLmT7w?rel=0&modestbranding=1&autoplay=1&mute=1&playsinline=1&vq=hd1080"
               title="Método R.E.S.T."
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
