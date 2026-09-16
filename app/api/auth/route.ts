@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { findUserByEmail, createUser, updateUser } from "../../lib/supabase";
+import { findUserByEmail, createUser, updateUser, getUserById } from "../../lib/supabase";
 import bcrypt from "bcryptjs";
 
 export async function POST(req: NextRequest) {
@@ -41,6 +41,19 @@ export async function POST(req: NextRequest) {
         onboarding_completado: true, basal_completado: true,
         fecha_onboarding: new Date().toISOString(), fecha_inicio_programa: new Date().toISOString(),
       });
+      return NextResponse.json({ ok: true });
+    }
+
+    if (action === "change-password") {
+      const { userId, currentPassword, newPassword } = body;
+      if (!userId || !currentPassword || !newPassword) return NextResponse.json({ error: "Datos incompletos" }, { status: 400 });
+      if (newPassword.length < 6) return NextResponse.json({ error: "La nueva contraseña debe tener al menos 6 caracteres" }, { status: 400 });
+      let user;
+      try { user = await getUserById(userId); } catch { return NextResponse.json({ error: "Usuario no encontrado" }, { status: 404 }); }
+      const valid = user.password_hash.startsWith("$2") ? await bcrypt.compare(currentPassword, user.password_hash) : user.password_hash === currentPassword;
+      if (!valid) return NextResponse.json({ error: "La contraseña actual no es correcta" }, { status: 401 });
+      const hash = await bcrypt.hash(newPassword, 10);
+      await updateUser(userId, { password_hash: hash });
       return NextResponse.json({ ok: true });
     }
 

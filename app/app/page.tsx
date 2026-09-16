@@ -164,19 +164,47 @@ function AmbientMusic() {
 }
 
 function ChangePasswordCard() {
+  const [open, setOpen] = useState(false);
+  const [current, setCurrent] = useState("");
+  const [next, setNext] = useState("");
+  const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
-  const [sent, setSent] = useState(false);
+  const [done, setDone] = useState(false);
+  const [error, setError] = useState("");
+  const [emailSent, setEmailSent] = useState(false);
 
-  const handleSend = async () => {
+  const handleChange = async () => {
+    setError("");
+    if (next.length < 6) { setError("La nueva contraseña debe tener al menos 6 caracteres."); return; }
+    if (next !== confirm) { setError("Las contraseñas no coinciden."); return; }
+    const userId = localStorage.getItem("rest-user-id");
+    if (!userId) { setError("No se pudo identificar tu sesión."); return; }
+    setLoading(true);
+    try {
+      const res = await fetch("/api/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "change-password", userId, currentPassword: current, newPassword: next }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setError(data.error || "No se pudo cambiar la contraseña."); setLoading(false); return; }
+      localStorage.setItem("rest-pwd-changed", "1");
+      setDone(true);
+    } catch {
+      setError("Error de conexión. Intenta de nuevo.");
+    }
+    setLoading(false);
+  };
+
+  const handleForgot = async () => {
     const profile = getProfile();
     if (!profile?.email) return;
     setLoading(true);
     await fetch("/api/auth/forgot-password", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: profile.email }),
     });
-    setSent(true);
+    setEmailSent(true);
     setLoading(false);
   };
 
@@ -189,22 +217,47 @@ function ChangePasswordCard() {
           </svg>
         </div>
         <div className="flex-1">
-          {sent ? (
+          {done ? (
+            <>
+              <p className="font-semibold text-sm text-white">Contraseña actualizada</p>
+              <p className="text-rest-text-muted text-xs mt-1">La próxima vez entra con tu nueva contraseña.</p>
+            </>
+          ) : emailSent ? (
             <>
               <p className="font-semibold text-sm text-white">Enlace enviado</p>
               <p className="text-rest-text-muted text-xs mt-1">Revisa tu correo para configurar tu nueva contraseña.</p>
             </>
-          ) : (
+          ) : !open ? (
             <>
               <p className="font-semibold text-sm text-white">¿Quieres cambiar tu contraseña?</p>
-              <p className="text-rest-text-muted text-xs mt-1">Te enviaremos un correo con un enlace para configurar una nueva.</p>
-              <button
-                onClick={handleSend}
-                disabled={loading}
-                className="mt-3 px-4 py-2 text-xs font-medium rounded-lg bg-rest-accent/10 text-rest-accent hover:bg-rest-accent/20 transition-colors disabled:opacity-50"
-              >
-                {loading ? "Enviando..." : "Enviar enlace al correo"}
+              <p className="text-rest-text-muted text-xs mt-1">Crea una contraseña que puedas recordar fácilmente.</p>
+              <button onClick={() => setOpen(true)}
+                className="mt-3 px-4 py-2 text-xs font-medium rounded-lg bg-rest-accent/10 text-rest-accent hover:bg-rest-accent/20 transition-colors">
+                Cambiar mi contraseña
               </button>
+            </>
+          ) : (
+            <>
+              <p className="font-semibold text-sm text-white mb-3">Cambiar contraseña</p>
+              <div className="space-y-2.5">
+                <input type="password" value={current} onChange={(e) => setCurrent(e.target.value)} placeholder="Contraseña actual"
+                  className="w-full bg-rest-bg rounded-lg px-3 py-2.5 text-sm text-white shadow-[inset_0_0_0_1px_rgba(0,229,160,0.08)] focus:shadow-[inset_0_0_0_1px_rgba(0,229,160,0.25)] focus:outline-none placeholder:text-rest-text-muted/50" />
+                <input type="password" value={next} onChange={(e) => setNext(e.target.value)} placeholder="Nueva contraseña"
+                  className="w-full bg-rest-bg rounded-lg px-3 py-2.5 text-sm text-white shadow-[inset_0_0_0_1px_rgba(0,229,160,0.08)] focus:shadow-[inset_0_0_0_1px_rgba(0,229,160,0.25)] focus:outline-none placeholder:text-rest-text-muted/50" />
+                <input type="password" value={confirm} onChange={(e) => setConfirm(e.target.value)} placeholder="Repite la nueva contraseña"
+                  className="w-full bg-rest-bg rounded-lg px-3 py-2.5 text-sm text-white shadow-[inset_0_0_0_1px_rgba(0,229,160,0.08)] focus:shadow-[inset_0_0_0_1px_rgba(0,229,160,0.25)] focus:outline-none placeholder:text-rest-text-muted/50" />
+              </div>
+              {error && <p className="text-rest-danger text-xs mt-2">{error}</p>}
+              <div className="flex items-center gap-3 mt-3">
+                <button onClick={handleChange} disabled={loading || !current || !next || !confirm}
+                  className="px-4 py-2 text-xs font-semibold rounded-lg bg-rest-accent text-rest-bg hover:bg-[#00B880] transition-colors disabled:opacity-40">
+                  {loading ? "Guardando..." : "Guardar"}
+                </button>
+                <button onClick={handleForgot} disabled={loading}
+                  className="text-rest-text-muted text-xs hover:text-rest-text-secondary transition">
+                  Olvidé mi contraseña actual
+                </button>
+              </div>
             </>
           )}
         </div>
@@ -224,6 +277,7 @@ export default function AppDashboard() {
   const [weekCompleted, setWeekCompleted] = useState(0);
   const [daySaved, setDaySaved] = useState(false);
   const [nivel, setNivel] = useState<"ebook" | "completo">("completo");
+  const [showPwdReminder, setShowPwdReminder] = useState(false);
 
   const todayKey = new Date().toISOString().split("T")[0];
   const weekHabits = getHabitsForWeek(currentWeek);
@@ -233,6 +287,7 @@ export default function AppDashboard() {
     const profile = getProfile();
     if (profile) setUserName(profile.name.split(" ")[0]);
     setNivel(getNivelAcceso());
+    setShowPwdReminder(localStorage.getItem("rest-pwd-changed") !== "1");
     setCurrentDay(getCurrentDay());
     setCurrentWeek(getCurrentWeek());
     setEvalDue(isEvaluationDue());
@@ -296,6 +351,23 @@ export default function AppDashboard() {
           <p className="text-rest-text-muted mt-1">Día {currentDay} de tu plan R.E.S.T. — Semana {currentWeek}</p>
         )}
       </div>
+
+      {/* Recordatorio de cambiar contraseña temporal */}
+      {showPwdReminder && (
+        <a href="#cambiar-contrasena" onClick={() => { const el = document.getElementById("cambiar-contrasena"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}
+          className="block p-4 rounded-xl bg-rest-warning/[0.08] border border-rest-warning/20 hover:bg-rest-warning/[0.12] transition-all">
+          <div className="flex items-center gap-3">
+            <svg className="w-5 h-5 text-rest-warning shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <div className="flex-1">
+              <p className="text-sm text-white font-medium">Crea tu propia contraseña</p>
+              <p className="text-rest-text-muted text-xs mt-0.5">Entraste con una contraseña temporal. Cámbiala por una que recuerdes fácilmente.</p>
+            </div>
+            <svg className="w-4 h-4 text-rest-warning shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+          </div>
+        </a>
+      )}
 
       {/* Ebook access — destacado para nivel ebook, arriba de todo */}
       {nivel === "ebook" && (
@@ -554,7 +626,9 @@ export default function AppDashboard() {
       </div>
 
       {/* Cambiar contraseña — disponible para todos los niveles */}
-      <ChangePasswordCard />
+      <div id="cambiar-contrasena">
+        <ChangePasswordCard />
+      </div>
     </div>
   );
 }
