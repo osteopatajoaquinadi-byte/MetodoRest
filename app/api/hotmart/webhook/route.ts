@@ -8,8 +8,12 @@ const HOTMART_TOKEN = process.env.HOTMART_WEBHOOK_TOKEN;
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://metodorest.cl";
 
-// IDs de producto de Hotmart. El ebook da acceso solo al ebook;
-// cualquier otro producto (el metodo completo) da acceso completo.
+// IDs de producto de Hotmart:
+//   - Ebook "¿Duermes bien?" (ID 8460398): da acceso solo al ebook.
+//   - Metodo completo (L105253165X) y Upgrade desde ebook (ID 8522819):
+//     dan acceso completo. Cualquier producto que NO sea el ebook da completo.
+// Cuando un usuario que ya tiene ebook compra el upgrade (o el completo),
+// el flujo mas abajo detecta que ya existe y le sube el nivel a completo.
 const EBOOK_PRODUCT_IDS = (process.env.HOTMART_EBOOK_PRODUCT_IDS || "").split(",").map((s) => s.trim()).filter(Boolean);
 
 function generatePassword(): string { return crypto.randomBytes(4).toString("hex"); }
