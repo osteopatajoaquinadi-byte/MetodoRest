@@ -295,12 +295,41 @@ export default function AppDashboard() {
     setStreak(getStreakDays());
     setWeekCompleted(getWeekCompletedDays());
 
+    // Respuesta inmediata desde localStorage
     const saved = getDailyHabits(todayKey);
     if (saved) {
       setChecked(saved.habits);
       if (saved.completedCount === saved.totalCount && saved.totalCount > 0) {
         setDaySaved(true);
       }
+    }
+
+    // Sincronizacion cross-device: consultamos Supabase por los habitos de HOY
+    // y corregimos si difieren de localStorage (ej. se marcaron en otro dispositivo).
+    const userId = localStorage.getItem("rest-user-id");
+    if (userId) {
+      fetch(`/api/habits?userId=${userId}&from=${todayKey}`)
+        .then((r) => r.ok ? r.json() : null)
+        .then((habits) => {
+          if (!Array.isArray(habits)) return;
+          const hoy = habits.find((h: Record<string, unknown>) => h.fecha === todayKey);
+          if (hoy && hoy.habitos_detalle) {
+            const remoto = typeof hoy.habitos_detalle === "string" ? JSON.parse(hoy.habitos_detalle) : hoy.habitos_detalle;
+            const localCount = saved ? saved.completedCount : 0;
+            const remotoCount = (hoy.completados as number) || 0;
+            // Solo sobreescribimos si el remoto tiene mas o igual info (evita perder marcas locales recien hechas)
+            if (remotoCount >= localCount) {
+              setChecked(remoto);
+              setDailyHabits({
+                date: todayKey,
+                habits: remoto,
+                completedCount: remotoCount,
+                totalCount: (hoy.total as number) || weekHabits.length,
+              });
+            }
+          }
+        })
+        .catch(() => {});
     }
   }, [todayKey]);
 
