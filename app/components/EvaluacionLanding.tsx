@@ -111,7 +111,7 @@ export default function EvaluacionLanding() {
   });
   const [bAns, setBAns] = useState<(boolean | null)[]>([null, null, null, null]);
   const [email, setEmail] = useState("");
-  const [result, setResult] = useState<{ phenotype: string; global: number; scoreB: number } | null>(null);
+  const [result, setResult] = useState<{ phenotype: string; global: number; scoreB: number; sH: number; sA: number; sR: number; sI: number } | null>(null);
   const [saving, setSaving] = useState(false);
 
   const stepIdx = STEPS.indexOf(phase as Phase);
@@ -133,7 +133,7 @@ export default function EvaluacionLanding() {
     const sB = bAns.filter(Boolean).length;
     const g = sH + sA + sR + sI;
     const phenotype = computePhenotype(sH, sA, sR, sI, sB, g);
-    setResult({ phenotype, global: g, scoreB: sB });
+    setResult({ phenotype, global: g, scoreB: sB, sH, sA, sR, sI });
     setPhase("result");
     // Guardado best-effort del lead (no bloquea la UI)
     if (email) {
@@ -307,6 +307,38 @@ export default function EvaluacionLanding() {
                 <div className="h-full rounded-full bg-gradient-to-r from-rest-accent to-teal-400 transition-all" style={{ width: `${(result.global / 64) * 100}%` }} />
               </div>
               <p className="text-rest-text-muted text-[11px] mt-2 leading-relaxed">Esto es tu punto de partida, no una sentencia. Es justo lo que el método está diseñado para cambiar.</p>
+            </div>
+          )}
+
+          {/* Desglose resumido por área (sin textos largos: esos van al correo) */}
+          {!isSafety && (
+            <div className="p-4 rounded-xl bg-rest-bg mb-5">
+              <p className="text-rest-text-muted text-[10px] uppercase tracking-wide mb-3">Tu desglose por área</p>
+              <div className="space-y-3">
+                {([
+                  { l: "Cuando cierras los ojos", s: result.sH },
+                  { l: "Lo que siente tu cuerpo", s: result.sA },
+                  { l: "Tu energía durante el día", s: result.sR },
+                  { l: "Tu noche", s: result.sI },
+                ] as const).map((d) => {
+                  const pct = (d.s / 16) * 100;
+                  const color = d.s >= 11 ? "bg-orange-400" : d.s >= 6 ? "bg-amber-400" : "bg-rest-accent";
+                  return (
+                    <div key={d.l}>
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-rest-text-secondary text-xs">{d.l}</span>
+                        <span className="text-rest-text-muted text-[11px]">{d.s}/16</span>
+                      </div>
+                      <div className="w-full h-1.5 bg-black/40 rounded-full overflow-hidden">
+                        <div className={`h-full rounded-full ${color}`} style={{ width: `${pct}%` }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="text-rest-text-muted text-[11px] mt-3 leading-relaxed">
+                {email ? "Te enviamos el desglose completo de cada área a tu correo." : "Deja tu correo para recibir el desglose completo de cada área."}
+              </p>
             </div>
           )}
 

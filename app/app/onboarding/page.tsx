@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   setProfile,
+  getProfile,
   setOnboardingStatus,
   setBasalEvaluation,
   setProgramStart,
@@ -13,7 +14,7 @@ import {
 import ResetQScale, { type ResetQScores } from "../../components/questionnaires/ResetQScale";
 import SSSScale from "../../components/questionnaires/SSSScale";
 
-type Step = "profile" | "intro" | "resetq" | "sss" | "results";
+type Step = "profile" | "encontrado" | "intro" | "resetq" | "sss" | "results";
 
 const sleepGoals = [
   "Mejorar la calidad del sueño",
@@ -38,10 +39,58 @@ export default function OnboardingPage() {
   const [sssDone, setSssDone] = useState(false);
   const [saving, setSaving] = useState(false);
 
+  // Lead previo: si el usuario ya hizo el test en la landing
+  const [leadPrevio, setLeadPrevio] = useState<{ phenotype: string; global: number; scores: Record<string, number>; date: string } | null>(null);
+  const [buscandoLead, setBuscandoLead] = useState(false);
+
+  // Pre-llenar nombre y email desde la cuenta (evita desincronización con Hotmart)
+  useEffect(() => {
+    const p = getProfile();
+    if (p) {
+      if (p.name) setName(p.name);
+      if (p.email) setEmail(p.email);
+    }
+  }, []);
+
   const steps: Step[] = ["profile", "intro", "resetq", "sss", "results"];
-  const currentIndex = steps.indexOf(step);
+  const currentIndex = Math.max(0, steps.indexOf(step));
   const progress = (currentIndex / (steps.length - 1)) * 100;
   const canAdvanceProfile = name.trim() && age.trim() && email.trim();
+
+  // Al salir del perfil, busca si el email ya hizo el test en la landing
+  const handleProfileNext = async () => {
+    setBuscandoLead(true);
+    try {
+      const res = await fetch(`/api/lead-lookup?email=${encodeURIComponent(email.trim())}`);
+      const data = await res.json();
+      if (data.found && data.scores) {
+        setLeadPrevio({ phenotype: data.phenotype, global: data.global, scores: data.scores, date: data.date });
+        setStep("encontrado");
+        setBuscandoLead(false);
+        return;
+      }
+    } catch { /* si falla, seguimos al flujo normal */ }
+    setBuscandoLead(false);
+    setStep("intro");
+  };
+
+  // Usa el lead previo como evaluación basal (sin repetir el test)
+  const usarLeadPrevio = () => {
+    if (!leadPrevio) return;
+    const s = leadPrevio.scores;
+    const sH = s.sH ?? 0, sA = s.sA ?? 0, sR = s.sR ?? 0, sI = s.sI ?? 0, sB = s.sB ?? 0;
+    resetqRef.current = {
+      h: [], a: [], r: [], i: [], b: [],
+      scoreH: sH, scoreA: sA, scoreR: sR, scoreI: sI, scoreB: sB,
+      global: leadPrevio.global ?? (sH + sA + sR + sI),
+      phenotype: leadPrevio.phenotype || "",
+      band: "",
+      date: new Date().toISOString(),
+    };
+    setResetqDone(true);
+    // El lead no incluye SSS, así que ese paso sí se hace
+    setStep("sss");
+  };
 
   const handleResetQComplete = (scores: ResetQScores) => {
     resetqRef.current = { ...scores, date: new Date().toISOString() };
@@ -152,7 +201,42 @@ export default function OnboardingPage() {
               ))}</div>
             </div>
           </div>
-          <button onClick={() => setStep("intro")} disabled={!canAdvanceProfile} className="w-full py-3 bg-rest-accent hover:bg-[#00B880] text-rest-bg font-semibold rounded-xl transition-all shadow-[0_0_16px_rgba(0,229,160,0.3)] disabled:opacity-30 disabled:cursor-not-allowed">Continuar</button>
+          <button onClick={handleProfileNext} disabled={!canAdvanceProfile || buscandoLead} className="w-full py-3 bg-rest-accent hover:bg-[#00B880] text-rest-bg font-semibold rounded-xl transition-all shadow-[0_0_16px_rgba(0,229,160,0.3)] disabled:opacity-30 disabled:cursor-not-allowed">{buscandoLead ? "Un momento..." : "Continuar"}</button>
+        </div>
+      )}
+
+      {/* ENCONTRADO - ya hizo el test en la landing */}
+      {step === "encontrado" && leadPrevio && (
+        <div className="p-6 rounded-2xl glass-card space-y-5">
+          <div className="text-center space-y-4 py-2">
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-rest-accent/15 flex items-center justify-center">
+              <svg className="w-8 h-8 text-rest-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <h1 className="text-2xl font-bold text-white">Ya te conocemos</h1>
+            <p className="text-rest-text-secondary text-sm leading-relaxed max-w-md mx-auto">
+              Vimos que ya hiciste tu evaluación RESET-Q{leadPrevio.date ? ` el ${new Date(leadPrevio.date).toLocaleDateString("es-CL", { day: "numeric", month: "long" })}` : ""}. No tienes que repetirla: podemos usarla como tu punto de partida y empezar tu plan de inmediato.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-rest-bg text-center">
+            <p className="text-rest-text-muted text-[10px] uppercase tracking-wide mb-2">Tu resultado</p>
+            <p className="text-2xl font-bold text-white">{leadPrevio.phenotype}</p>
+            {leadPrevio.global != null && leadPrevio.phenotype !== "SAFETY" && (
+              <p className="text-rest-accent text-sm mt-1">Nivel general: {leadPrevio.global}/64</p>
+            )}
+          </div>
+
+          <div className="space-y-3">
+            <button onClick={usarLeadPrevio} className="w-full py-3 bg-rest-accent hover:bg-[#00B880] text-rest-bg font-semibold rounded-xl transition-all shadow-[0_0_16px_rgba(0,229,160,0.3)]">
+              Usar mi evaluación y empezar
+            </button>
+            <button onClick={() => setStep("intro")} className="w-full py-3 bg-white/[0.05] hover:bg-white/[0.08] text-rest-text-secondary hover:text-white font-medium rounded-xl transition-all text-sm">
+              Prefiero hacer la evaluación de nuevo
+            </button>
+          </div>
+          <p className="text-rest-text-muted text-[11px] text-center leading-relaxed">
+            Hacerla de nuevo puede ser útil si sientes que tu descanso cambió desde entonces.
+          </p>
         </div>
       )}
 
