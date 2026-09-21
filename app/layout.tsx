@@ -17,9 +17,13 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://metodorest.cl"),
-  title: "Método R.E.S.T. — Recupera el descanso que mereces",
+  title: {
+    default: "Método R.E.S.T. — Protocolo de 21 días para dormir mejor",
+    template: "%s | Método R.E.S.T.",
+  },
   description:
-    "Protocolo clínico de sueño basado en evidencia científica. Respiración, hábitos y herramientas prácticas para transformar tu descanso en 21 días.",
+    "Protocolo de 21 días para dormir mejor, basado en fisiología del sueño y regulación del estrés. Creado por un kinesiólogo y osteópata.",
+  alternates: { canonical: "/" },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -40,16 +44,18 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Método R.E.S.T. — Recupera el descanso que mereces",
-    description: "Protocolo clínico de sueño del osteópata Joaquín Adi. 21 días para transformar tu descanso.",
     type: "website",
     locale: "es_CL",
+    url: "https://metodorest.cl",
+    siteName: "Método R.E.S.T.",
+    title: "Método R.E.S.T. — Protocolo de 21 días para dormir mejor",
+    description: "Protocolo de 21 días basado en fisiología del sueño y regulación del estrés.",
     images: [{ url: "/api/og", width: 1200, height: 630, alt: "Método R.E.S.T." }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Método R.E.S.T.",
-    description: "Lo que los osteópatas recetan cuando todo lo demás falla.",
+    title: "Método R.E.S.T. — Protocolo de 21 días para dormir mejor",
+    description: "Protocolo de 21 días basado en fisiología del sueño y regulación del estrés.",
     images: ["/api/og"],
   },
 };

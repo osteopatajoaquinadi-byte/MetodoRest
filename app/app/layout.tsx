@@ -141,6 +141,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <OnboardingGuard>
+      <meta name="robots" content="noindex, nofollow" />
       <div className="min-h-screen flex relative overflow-hidden">
         <div className="fixed inset-0 z-0 opacity-40" style={{ contain: "strict" }}>
           <HeroBackground />

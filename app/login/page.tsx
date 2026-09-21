@@ -138,6 +138,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-rest-bg relative overflow-hidden">
+      <meta name="robots" content="noindex, nofollow" />
       <HeroBackground />
 
       <div className="relative z-10 flex-1 flex items-start justify-center p-4 pt-6 sm:pt-10">

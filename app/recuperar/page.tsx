@@ -207,6 +207,7 @@ function RecuperarContent() {
 export default function RecuperarPage() {
   return (
     <Suspense>
+      <meta name="robots" content="noindex, nofollow" />
       <RecuperarContent />
     </Suspense>
   );

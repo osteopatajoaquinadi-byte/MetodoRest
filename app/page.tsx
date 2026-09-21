@@ -507,6 +507,26 @@ function Footer() {
 export default function LandingPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: "Método R.E.S.T.",
+            description:
+              "Protocolo de 21 días para mejorar el sueño, basado en fisiología del sueño y regulación del estrés.",
+            brand: { "@type": "Brand", name: "Método R.E.S.T." },
+            offers: {
+              "@type": "Offer",
+              price: "39990",
+              priceCurrency: "CLP",
+              availability: "https://schema.org/InStock",
+              url: "https://metodorest.cl",
+            },
+          }),
+        }}
+      />
       <NavBar />
       <Hero />
       <ElProblema />
