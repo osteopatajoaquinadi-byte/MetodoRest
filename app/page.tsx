@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import HeroBackground from "./components/HeroBackground";
 import ChatbotWidget from "./components/ChatbotWidget";
 import EvaluacionLanding from "./components/EvaluacionLanding";
@@ -351,7 +352,7 @@ function Autor() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img src="/autor-bg.png" alt="Joaquín Adi" className="w-full h-full object-cover" loading="lazy" />
+        <Image src="/autor-bg.png" alt="Joaquín Adi" fill sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-black/40" />
       </div>
       <div className="relative z-10 py-20 sm:py-28">
