@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/", disallow: ["/api/", "/app/", "/login", "/recuperar", "/admin"] },
+    rules: { userAgent: "*", allow: "/", disallow: ["/api/"] },
     sitemap: "https://metodorest.cl/sitemap.xml",
   };
 }
