@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Space_Grotesk } from "next/font/google";
 import GoogleAnalytics from "./components/GoogleAnalytics";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -73,6 +74,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-rest-bg text-rest-text font-[family-name:var(--font-dm-sans)] antialiased">
         <GoogleAnalytics />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
