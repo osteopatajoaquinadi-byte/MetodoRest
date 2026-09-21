@@ -65,7 +65,7 @@ export default function SobreMiPage() {
         <div className="space-y-8 text-rest-text-secondary text-base leading-relaxed">
           <section>
             <p>
-              Soy kinesiólogo y osteópata (D.O.), con un magíster en
+              Soy kinesiólogo y osteópata (D.O.), con un máster en
               Psiconeuroinmunología Clínica (MSc PNIc). Dirijo{" "}
               <a
                 href="https://www.clinicasakros.cl"
