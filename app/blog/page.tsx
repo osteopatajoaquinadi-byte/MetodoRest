@@ -37,22 +37,7 @@ export default function BlogIndex() {
           .
         </p>
 
-        <ul className="space-y-6">
-          {articles.map((a) => (
-            <li key={a.slug} className="pb-6 border-b border-white/10 last:border-0">
-              <Link href={`/blog/${a.slug}`} className="group block">
-                <h2 className="font-[family-name:var(--font-space)] text-xl font-semibold text-white group-hover:text-rest-accent transition mb-2">
-                  {a.title}
-                </h2>
-                <p className="text-rest-text-secondary text-sm leading-relaxed">
-                  {a.description}
-                </p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-14 p-6 rounded-2xl bg-white/[0.03] ring-1 ring-rest-accent/30 text-center">
+        <div className="mb-12 p-6 rounded-2xl bg-white/[0.03] ring-1 ring-rest-accent/30 text-center">
           <h2 className="font-[family-name:var(--font-space)] text-xl font-semibold text-white mb-2">
             ¿Sobre qué te gustaría leer?
           </h2>
@@ -68,6 +53,34 @@ export default function BlogIndex() {
             Proponer un tema
           </a>
         </div>
+
+        <ul className="space-y-6">
+          {articles.map((a) => (
+            <li key={a.slug} className="pb-6 border-b border-white/10 last:border-0">
+              <Link href={`/blog/${a.slug}`} className="group block">
+                <h2 className="font-[family-name:var(--font-space)] text-xl font-semibold text-white group-hover:text-rest-accent transition mb-2 flex items-baseline gap-2.5">
+                  <svg
+                    className="w-4 h-4 shrink-0 translate-y-px text-rest-accent transition-transform duration-200 group-hover:translate-x-1"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2.5}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h13" />
+                    <path d="M13 6l6 6-6 6" />
+                  </svg>
+                  <span>{a.title}</span>
+                </h2>
+                <p className="text-rest-text-secondary text-sm leading-relaxed pl-[26px]">
+                  {a.description}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
