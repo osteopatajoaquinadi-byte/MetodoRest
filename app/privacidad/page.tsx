@@ -16,7 +16,7 @@ export default function PrivacidadPage() {
           <section>
             <h2 className="text-lg font-semibold text-white mb-3">1. Responsable del tratamiento</h2>
             <p>El responsable del tratamiento de los datos personales recabados a través de la plataforma &ldquo;Método R.E.S.T.&rdquo; (en adelante, &ldquo;la Plataforma&rdquo;) es Joaquín Adi A., con domicilio en Chile.</p>
-            <p className="mt-2">Correo de contacto: <a href="mailto:metodorest@gmail.com" className="text-rest-accent hover:underline">metodorest@gmail.com</a></p>
+            <p className="mt-2">Correo de contacto: <a href="mailto:metodorest@gmail.com" className="link-inline">metodorest@gmail.com</a></p>
           </section>
 
           <section>
@@ -91,7 +91,7 @@ export default function PrivacidadPage() {
               <li><strong className="text-white">Cancelación:</strong> solicitar la eliminación de sus datos personales.</li>
               <li><strong className="text-white">Oposición:</strong> oponerse al tratamiento de sus datos en determinados supuestos.</li>
             </ul>
-            <p className="mt-2">Para ejercer estos derechos, envíe un correo a <a href="mailto:metodorest@gmail.com" className="text-rest-accent hover:underline">metodorest@gmail.com</a> con el asunto &ldquo;Ejercicio de derechos ARCO&rdquo; indicando su nombre completo, correo asociado a la cuenta y el derecho que desea ejercer. Responderemos en un plazo máximo de 15 días hábiles.</p>
+            <p className="mt-2">Para ejercer estos derechos, envíe un correo a <a href="mailto:metodorest@gmail.com" className="link-inline">metodorest@gmail.com</a> con el asunto &ldquo;Ejercicio de derechos ARCO&rdquo; indicando su nombre completo, correo asociado a la cuenta y el derecho que desea ejercer. Responderemos en un plazo máximo de 15 días hábiles.</p>
           </section>
 
           <section>
@@ -118,7 +118,7 @@ export default function PrivacidadPage() {
             <h2 className="text-lg font-semibold text-white mb-3">12. Contacto</h2>
             <p>Para cualquier consulta sobre privacidad o protección de datos:</p>
             <p className="mt-2">
-              <a href="mailto:metodorest@gmail.com" className="text-rest-accent hover:underline">metodorest@gmail.com</a>
+              <a href="mailto:metodorest@gmail.com" className="link-inline">metodorest@gmail.com</a>
             </p>
           </section>
         </div>

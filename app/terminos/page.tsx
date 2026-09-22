@@ -16,7 +16,7 @@ export default function TerminosPage() {
           <section>
             <h2 className="text-lg font-semibold text-white mb-3">1. Identificación del prestador</h2>
             <p>El presente sitio web y la plataforma digital &ldquo;Método R.E.S.T.&rdquo; (en adelante, &ldquo;la Plataforma&rdquo;) es propiedad y está operada por Joaquín Adi A., profesional independiente con domicilio en Chile. La Plataforma ofrece contenido educativo digital relacionado con la mejora del sueño y el bienestar.</p>
-            <p className="mt-2">Desarrollo tecnológico: <a href="https://micelia.cl" target="_blank" rel="noopener noreferrer" className="text-rest-accent hover:underline">Micelia</a>.</p>
+            <p className="mt-2">Desarrollo tecnológico: <a href="https://micelia.cl" target="_blank" rel="noopener noreferrer" className="link-inline">Micelia</a>.</p>
           </section>
 
           <section>
@@ -65,7 +65,7 @@ export default function TerminosPage() {
           <section>
             <h2 className="text-lg font-semibold text-white mb-3">7. Política de reembolso</h2>
             <p>Se ofrece una <strong className="text-white">garantía condicionada de 21 días</strong>: si el usuario demuestra haber seguido el protocolo completo durante 21 días consecutivos y su puntuación ISI (Índice de Severidad del Insomnio) no muestra mejoría, podrá solicitar la devolución total del monto pagado.</p>
-            <p className="mt-2">Para solicitar el reembolso, el usuario deberá enviar evidencia del cumplimiento del plan a <a href="mailto:metodorest@gmail.com" className="text-rest-accent hover:underline">metodorest@gmail.com</a> dentro de los 30 días posteriores a la compra.</p>
+            <p className="mt-2">Para solicitar el reembolso, el usuario deberá enviar evidencia del cumplimiento del plan a <a href="mailto:metodorest@gmail.com" className="link-inline">metodorest@gmail.com</a> dentro de los 30 días posteriores a la compra.</p>
           </section>
 
           <section>
@@ -94,7 +94,7 @@ export default function TerminosPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-white mb-3">12. Contacto</h2>
-            <p>Para consultas relacionadas con estos términos, puede escribir a: <a href="mailto:metodorest@gmail.com" className="text-rest-accent hover:underline">metodorest@gmail.com</a></p>
+            <p>Para consultas relacionadas con estos términos, puede escribir a: <a href="mailto:metodorest@gmail.com" className="link-inline">metodorest@gmail.com</a></p>
           </section>
         </div>
       </div>

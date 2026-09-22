@@ -24,7 +24,7 @@ function NavBar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-center">
         <div className="flex items-center gap-4 sm:gap-8">
           <a href="#metodo" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">El Método</a>
-          <a href="#evaluacion" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Evaluación</a>
+          <Link href="/blog" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Blog</Link>
           <a href="#pilares" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Pilares</a>
 
           <a href="#testimonios" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Testimonios</a>
@@ -42,14 +42,18 @@ function Hero() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
         <div className="animate-fade-in-up mb-2 sm:mb-3">
-          <img src="/logo.svg" alt="Método R.E.S.T." className="h-32 sm:h-40 mx-auto" width={320} height={160} />
+          <img src="/logo.svg" alt="Método R.E.S.T. — protocolo de 21 días para dormir mejor" className="h-32 sm:h-40 mx-auto" width={320} height={160} />
         </div>
 
-        <h1 className="animate-fade-in-up delay-200 font-[family-name:var(--font-space)] text-4xl sm:text-5xl md:text-7xl font-semibold leading-[1.1] mb-6">
+        <h1 className="animate-fade-in-up delay-100 font-[family-name:var(--font-space)] text-lg sm:text-xl font-medium text-rest-accent tracking-[0.02em] mb-4">
+          Método R.E.S.T.: un protocolo de 21 días para dormir mejor
+        </h1>
+
+        <p className="animate-fade-in-up delay-200 font-[family-name:var(--font-space)] text-4xl sm:text-5xl md:text-7xl font-semibold leading-[1.1] mb-6">
           El sueño no se fuerza.
           <br />
           <span className="text-gradient-green">Aparece cuando te sientes seguro.</span>
-        </h1>
+        </p>
 
         <div className="animate-fade-in-up delay-400 max-w-2xl mx-auto mb-6">
           <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%", borderRadius: "16px", overflow: "hidden", boxShadow: "0 0 40px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(94,155,143,0.15)" }}>
@@ -63,9 +67,18 @@ function Hero() {
           </div>
         </div>
 
-        <p className="animate-fade-in-up delay-500 text-rest-text-secondary text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+        <p className="animate-fade-in-up delay-500 text-rest-text-secondary text-base sm:text-lg max-w-xl mx-auto mb-4 leading-relaxed">
           No es falta de voluntad. Es tu sistema nervioso en alerta, y se puede
           calmar en 21 días.
+        </p>
+
+        <p className="animate-fade-in-up delay-500 text-rest-text-muted text-sm max-w-xl mx-auto mb-10">
+          Creado por{" "}
+          <a href="/sobre-mi" className="link-inline font-medium">
+            Joaquín Adi
+          </a>
+          , kinesiólogo y osteópata (D.O., MSc en Psiconeuroinmunología Clínica),
+          director de Clínica Sakros.
         </p>
 
         <div id="evaluacion" className="animate-fade-in-up delay-600 max-w-lg mx-auto scroll-mt-24">
@@ -481,6 +494,69 @@ function Precio() {
   );
 }
 
+function Evidencia() {
+  return (
+    <section className="relative py-20 sm:py-28 px-4 sm:px-6">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-14">
+          <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">La evidencia</span>
+          <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">
+            ¿Por qué importa <span className="text-gradient-green">dormir bien</span>?
+          </h2>
+          <p className="text-rest-text-secondary mt-4 max-w-2xl mx-auto text-base sm:text-lg">
+            No lo decimos nosotros: lo dicen los grandes estudios sobre sueño. Y
+            distinguimos siempre qué está firmemente demostrado y qué todavía se
+            debate.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-3 gap-5 mb-10">
+          <div className="p-6 rounded-2xl bg-white/[0.03] ring-1 ring-white/10">
+            <p className="font-[family-name:var(--font-space)] text-3xl font-bold text-rest-accent mb-2">7–8 h</p>
+            <p className="text-rest-text-secondary text-sm leading-relaxed">
+              Es el rango que la investigación asocia con menor riesgo
+              cardiovascular en adultos. Dormir de forma habitual mucho menos se
+              asocia a más riesgo.
+            </p>
+          </div>
+          <div className="p-6 rounded-2xl bg-white/[0.03] ring-1 ring-white/10">
+            <p className="font-[family-name:var(--font-space)] text-3xl font-bold text-rest-accent mb-2">+ riesgo</p>
+            <p className="text-rest-text-secondary text-sm leading-relaxed">
+              Metaanálisis con cientos de miles de personas asocian el sueño corto
+              sostenido con mayor riesgo de enfermedad coronaria y de diabetes
+              tipo 2.
+            </p>
+          </div>
+          <div className="p-6 rounded-2xl bg-white/[0.03] ring-1 ring-white/10">
+            <p className="font-[family-name:var(--font-space)] text-3xl font-bold text-rest-accent mb-2">Salud</p>
+            <p className="text-rest-text-secondary text-sm leading-relaxed">
+              Dormir bien no es solo la ausencia de insomnio: es una dimensión de
+              salud medible, con satisfacción, duración y regularidad.
+            </p>
+          </div>
+        </div>
+
+        <p className="text-center text-rest-text-muted text-sm max-w-2xl mx-auto leading-relaxed">
+          Estas asociaciones provienen de estudios epidemiológicos: muestran
+          correlación, no una relación causal simple. Puedes revisar{" "}
+          <Link href="/evidencia" className="link-inline">
+            cómo clasificamos la evidencia
+          </Link>
+          , la guía completa sobre{" "}
+          <Link href="/sueno-y-estres" className="link-inline">
+            insomnio por estrés
+          </Link>{" "}
+          y los artículos del{" "}
+          <Link href="/blog" className="link-inline">
+            blog
+          </Link>
+          .
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   return (
     <footer className="relative overflow-hidden py-10" style={{ boxShadow: "0 -8px 30px rgba(0, 0, 0, 0.4)" }}>
@@ -491,10 +567,17 @@ function Footer() {
           <span className="text-rest-text-muted text-sm">por Osteópata Joaquín Adi</span>
         </div>
         <div className="section-divider my-4" />
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-rest-text-muted text-sm mb-3">
+          <Link href="/sobre-mi" className="link-nav">Sobre mí</Link>
+          <Link href="/sueno-y-estres" className="link-nav">Sueño y estrés</Link>
+          <Link href="/blog" className="link-nav">Blog</Link>
+          <Link href="/test-sueno" className="link-nav">Test de sueño</Link>
+          <Link href="/evidencia" className="link-nav">Evidencia</Link>
+        </div>
         <div className="flex items-center justify-center gap-6 text-rest-text-muted text-sm mb-3">
-          <Link href="/terminos" className="hover:text-rest-accent transition-colors">Términos</Link>
-          <Link href="/privacidad" className="hover:text-rest-accent transition-colors">Privacidad</Link>
-          <a href="mailto:metodorest@gmail.com" className="hover:text-rest-accent transition-colors">Contacto</a>
+          <Link href="/terminos" className="link-nav">Términos</Link>
+          <Link href="/privacidad" className="link-nav">Privacidad</Link>
+          <a href="mailto:metodorest@gmail.com" className="link-nav">Contacto</a>
         </div>
         <p className="text-center text-rest-text-muted text-xs px-2">Este material es educativo y no reemplaza una evaluación médica profesional.</p>
         <p className="text-center text-rest-text-muted/30 text-[10px] mt-3">
@@ -532,6 +615,7 @@ export default function LandingPage() {
       <Hero />
       <ElProblema />
       <CostoDeNoResolver />
+      <Evidencia />
       <Testimonios />
       <Autor />
       <Pilares />

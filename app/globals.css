@@ -272,3 +272,35 @@ input[type="range"]::-webkit-slider-runnable-track {
     transform: translateY(0);
   }
 }
+
+/* Enlaces dentro de texto: verde, subrayado animado que crece en hover + brillo */
+.link-inline {
+  color: var(--color-rest-accent);
+  font-weight: 500;
+  text-decoration: none;
+  background-image: linear-gradient(var(--color-rest-accent), var(--color-rest-accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1.5px;
+  transition: background-size 0.25s ease, color 0.2s ease, text-shadow 0.2s ease;
+}
+.link-inline:hover,
+.link-inline:focus-visible {
+  color: var(--color-rest-accent-light);
+  background-size: 100% 1.5px;
+  text-shadow: 0 0 12px var(--color-rest-accent-glow);
+}
+
+/* Enlaces sueltos (footer/nav): resaltan y se agrandan levemente en hover */
+.link-nav {
+  color: var(--color-rest-text-secondary, #b8c4c0);
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
+}
+.link-nav:hover,
+.link-nav:focus-visible {
+  color: var(--color-rest-accent);
+  transform: scale(1.06);
+  text-shadow: 0 0 14px var(--color-rest-accent-glow);
+}

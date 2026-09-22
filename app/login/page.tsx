@@ -220,7 +220,7 @@ export default function LoginPage() {
             <div className="mt-6 text-center">
               <p className="text-rest-text-muted text-sm">
                 ¿Aún no tienes acceso?{" "}
-                <Link href="/#precio" className="text-rest-accent hover:underline">
+                <Link href="/#precio" className="link-inline">
                   Comprar el método
                 </Link>
               </p>
