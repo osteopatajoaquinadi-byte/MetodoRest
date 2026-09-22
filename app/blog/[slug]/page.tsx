@@ -97,8 +97,9 @@ export default async function ArticlePage({
         {/* CTA secundario al test */}
         <div className="mt-6 p-6 rounded-2xl bg-white/[0.03] ring-1 ring-white/10">
           <p className="text-rest-text-secondary text-base leading-relaxed mb-4">
-            ¿Quieres saber cómo estás durmiendo? Responde la evaluación gratuita de
-            sueño y estrés.
+            ¿Quieres saber cómo estás durmiendo? Responde un cuestionario que te
+            orientará sobre tu sueño y tu nivel de estrés, gratis y en pocos
+            minutos.
           </p>
           <Link
             href="/test-sueno"

@@ -38,16 +38,13 @@ Resultados relevantes:
 
 **[DEBATIDO]** La creencia de que el ejercicio nocturno perjudica el sueño tiene poco respaldo en la evidencia actual. La mayoría de estudios sugieren que el ejercicio moderado en la tarde no afecta negativamente el sueño. Sin embargo, el ejercicio de alta intensidad en las 2 horas previas a acostarse puede retrasar el inicio del sueño por elevación sostenida de cortisol y temperatura.
 
-**Recomendación práctica:** si puedes, entrena por la mañana o a media tarde. Si solo puedes por la noche, no dejes de hacerlo, pero reduce la intensidad y deja al menos 2 horas antes de acostarte.
+El momento óptimo y la intensidad según tu horario y tu perfil de sueño es una de las variables que el Método R.E.S.T. deja resuelta, en lugar de dejarte adivinar.
 
-## Qué tipo de ejercicio y cuánto
+## Qué tipo de ejercicio (y por qué la dosis importa)
 
-No hay una prescripción universal. Pero con la evidencia disponible, una orientación razonable:
+No hay una prescripción universal, y ahí está el punto: el tipo de ejercicio, la frecuencia y la intensidad tienen que ajustarse a tu situación para generar la presión homeostática suficiente sin caer en sobreentrenamiento. La evidencia apunta al trabajo de fuerza multiarticular combinado con caminata y exposición a luz natural, pero la dosis exacta es lo que marca la diferencia entre que ayude o que fragmente el sueño.
 
-- **Frecuencia:** 3–4 sesiones por semana.
-- **Tipo:** ejercicios multiarticulares (sentadilla, peso muerto, press, remo) combinados con caminata.
-- **Intensidad:** moderada a alta (RPE 6–8 sobre 10). El ejercicio suave no genera la presión homeostática suficiente.
-- **Complemento:** caminar 20–30 minutos al día, idealmente con exposición a luz natural por la mañana.
+Esa dosificación —cuánto, de qué tipo y en qué momento— es justamente lo que el Método R.E.S.T. programa como parte del protocolo, sobre la base de esta misma evidencia.
 
 ## Lo que no funciona
 

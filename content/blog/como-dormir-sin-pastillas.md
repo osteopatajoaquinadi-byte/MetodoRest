@@ -17,11 +17,7 @@ La terapia cognitivo-conductual para el insomnio (TCC-I) es el tratamiento de pr
 
 **[EVIDENCIA FIRME]** Chan et al. (2021) revisaron la evidencia y concluyeron que la TCC-I es eficaz tanto en insomnio primario como en insomnio asociado a otras condiciones (dolor crónico, depresión, cáncer). Funciona en formato presencial, grupal y digital. ([DOI](https://doi.org/10.1007/s13311-021-01029-2))
 
-Los componentes principales son:
-
-- **Restricción del tiempo en cama:** reduces las horas que pasas en la cama al tiempo que realmente duermes. Contraproducente al principio (más cansancio), pero aumenta la presión homeostática y consolida el sueño.
-- **Control de estímulos:** la cama solo para dormir. Si no te duermes en 20 minutos, te levantas.
-- **Reestructuración cognitiva:** identificar pensamientos catastróficos sobre el sueño ("si no duermo 8 horas mañana no funciono") que alimentan la hiperactivación.
+Trabaja sobre tres frentes: el tiempo que pasas en la cama, la asociación entre la cama y el sueño, y los pensamientos catastróficos sobre dormir ("si no duermo 8 horas mañana no funciono") que alimentan la hiperactivación. Cómo se ajusta cada frente a tu caso es lo que el Método R.E.S.T. programa y dosifica: aplicados sin criterio (por ejemplo, restringir el sueño mal calculado) pueden ser contraproducentes.
 
 ## Ejercicio de fuerza
 
@@ -31,11 +27,11 @@ El entrenamiento de fuerza mejora el sueño por varios mecanismos: aumenta la pr
 
 **[RAZONAMIENTO MECANICISTA]** El ejercicio de fuerza genera un gasto energético que aumenta la necesidad de recuperación durante el sueño profundo. Además, la contracción muscular libera mioquinas (IL-6, irisina) que tienen efectos antiinflamatorios y sobre la regulación del eje HPA.
 
-**Nota práctica:** evita el entrenamiento intenso en las 2–3 horas previas a acostarte. El ejercicio moderado por la mañana o la tarde es más favorable para el sueño.
+El momento del día y la intensidad cambian su efecto sobre el sueño, y ajustarlos es parte de lo que el Método R.E.S.T. deja programado.
 
 ## Respiración lenta
 
-La respiración diafragmática a frecuencia baja (~6 respiraciones por minuto, o 0,1 Hz) es una herramienta que actúa directamente sobre el sistema nervioso autónomo.
+La respiración diafragmática a baja frecuencia es una herramienta que actúa directamente sobre el sistema nervioso autónomo.
 
 **[RAZONAMIENTO MECANICISTA]** Jerath et al. (2019) proponen que la respiración lenta promueve la sincronización cardiorrespiratoria y facilita la transición de dominancia simpática a parasimpática, reduciendo la hiperactivación que bloquea el inicio del sueño. ([DOI](https://doi.org/10.3389/fpsyt.2018.00780))
 
@@ -50,13 +46,7 @@ La respiración diafragmática a frecuencia baja (~6 respiraciones por minuto, o
 
 ## El orden importa
 
-Si quieres dormir sin pastillas, la evidencia sugiere este orden de prioridad:
-
-1. TCC-I (componentes básicos, pueden aplicarse con guía profesional o programas digitales validados)
-2. Ejercicio regular, idealmente con componente de fuerza
-3. Respiración lenta como complemento nocturno
-4. Revisión de hábitos (luz, horarios, cafeína, alcohol)
-5. Consulta profesional si el patrón persiste más de 3 meses
+Dormir sin pastillas no es cuestión de acumular técnicas, sino de aplicarlas en el orden correcto y con la dosis adecuada a tu situación: primero lo que tiene más evidencia (TCC-I), luego ejercicio, respiración como complemento y la revisión de hábitos, con consulta profesional si el patrón persiste. Ese ordenamiento es precisamente lo que el Método R.E.S.T. resuelve por ti: toma estas mismas intervenciones y las secuencia y dosifica según la desregulación que tengas, en un protocolo de 21 días.
 
 **Esto no reemplaza la evaluación de un profesional de salud.**
 

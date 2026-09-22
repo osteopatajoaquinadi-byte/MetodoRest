@@ -33,14 +33,13 @@ Tsai et al. (2020) midieron la variabilidad de frecuencia cardíaca (HRV) en per
 
 ## Qué puedes hacer
 
-No existe una pastilla para "arreglar" el despertar de madrugada. Pero sí hay intervenciones con base fisiológica:
+No existe una pastilla para "arreglar" el despertar de madrugada. Pero sí hay intervenciones con base fisiológica que actúan sobre los mecanismos de arriba, en vez de forzar el sueño:
 
-- **Exposición a luz natural por la mañana:** ayuda a anclar el ritmo circadiano del cortisol.
-- **Evitar pantallas y luz artificial intensa después de las 21:00:** la luz azul suprime la melatonina y retrasa el inicio del sueño, desplazando toda la arquitectura.
-- **Respiración lenta antes de dormir:** activa la rama parasimpática. Hay evidencia preliminar de que la respiración a ~0,1 Hz (6 respiraciones por minuto) modula el tono vagal (Jerath et al., 2019; [DOI](https://doi.org/10.3389/fpsyt.2018.00780)).
-- **Ejercicio de fuerza, no cerca de la hora de dormir:** mejora la presión homeostática de sueño (adenosina) y la proporción de sueño profundo.
+- **Anclar el ritmo circadiano del cortisol** mediante la exposición a luz y la regulación de la señal de luz nocturna, que influye sobre la melatonina y la arquitectura del sueño.
+- **Bajar la activación simpática** con respiración lenta, que modula el tono vagal (Jerath et al., 2019; [DOI](https://doi.org/10.3389/fpsyt.2018.00780)).
+- **Aumentar la presión homeostática de sueño** con ejercicio de fuerza, que favorece la proporción de sueño profundo.
 
-Si te despiertas y no puedes volver a dormirte en 20 minutos, sal de la cama. Quédate en un lugar con poca luz, sin pantallas, y vuelve cuando sientas sueño. Quedarte en la cama despierto refuerza la asociación cama = vigilia.
+El Método R.E.S.T. toma exactamente estas vías y las convierte en un protocolo: las intervenciones están programadas y dosificadas para optimizar cada desregulación del sueño, sin que tengas que armar el rompecabezas por tu cuenta.
 
 **Esto no reemplaza la evaluación de un profesional de salud.** Si el patrón se repite más de 3 noches por semana durante más de un mes, consulta.
 

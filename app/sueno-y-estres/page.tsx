@@ -179,6 +179,13 @@ export default function SuenoYEstresPage() {
               </Link>
               .
             </p>
+            <p className="mt-4">
+              Todas estas intervenciones comparten algo: actúan sobre las vías
+              fisiológicas que están desreguladas, no sobre el síntoma. El Método
+              R.E.S.T. está construido sobre exactamente estas vías, con cada
+              intervención programada y dosificada para optimizar la desregulación
+              específica de tu sueño, en un protocolo de 21 días.
+            </p>
           </section>
 
           <section>

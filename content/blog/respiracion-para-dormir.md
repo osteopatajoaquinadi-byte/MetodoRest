@@ -7,23 +7,19 @@
 
 ---
 
-Internet está lleno de técnicas de respiración para dormir: 4-7-8, box breathing, respiración cuadrada. Pocas te dicen cuáles tienen evidencia y cuáles son invento. Acá vamos a separar lo que se sabe de lo que se supone.
+Internet está lleno de técnicas de respiración para dormir: 4-7-8, box breathing, respiración cuadrada. Pocas te dicen cuáles tienen evidencia y cuáles son invento, ni por qué funcionan. Acá vamos a separar lo que se sabe de lo que se supone.
 
 ## El mecanismo: por qué la respiración puede ayudarte a dormir
 
 Para dormirte, tu sistema nervioso autónomo necesita pasar de dominancia simpática (activación) a dominancia parasimpática (recuperación). La respiración es una de las pocas funciones autonómicas que puedes controlar voluntariamente, y por eso es un punto de entrada al sistema.
 
-**[RAZONAMIENTO MECANICISTA]** Jerath et al. (2019) publicaron una revisión en *Frontiers in Psychiatry* proponiendo que la respiración lenta a ~0,1 Hz (unas 6 respiraciones por minuto) puede actuar como tratamiento complementario del insomnio. Los mecanismos propuestos incluyen: activación del nervio vago por la exhalación prolongada, sincronización cardiorrespiratoria (la HRV se alinea con el ritmo respiratorio) y reducción de la hiperactivación simpática que bloquea el inicio del sueño. ([DOI](https://doi.org/10.3389/fpsyt.2018.00780))
+**[RAZONAMIENTO MECANICISTA]** Jerath et al. (2019) publicaron una revisión en *Frontiers in Psychiatry* proponiendo que la respiración lenta puede actuar como tratamiento complementario del insomnio. Los mecanismos propuestos incluyen: activación del nervio vago por la exhalación prolongada, sincronización cardiorrespiratoria (la HRV se alinea con el ritmo respiratorio) y reducción de la hiperactivación simpática que bloquea el inicio del sueño. ([DOI](https://doi.org/10.3389/fpsyt.2018.00780))
 
-## La frecuencia que importa: 0,1 Hz
+## Lo que realmente importa no es la técnica, es la frecuencia
 
-No es la técnica específica lo que importa, sino la frecuencia respiratoria resultante. La mayoría de las técnicas que funcionan te llevan al mismo rango: entre 5 y 7 respiraciones por minuto (0,08–0,12 Hz). Eso incluye:
+No es la técnica de moda lo que produce el efecto, sino la frecuencia respiratoria a la que llegas. La literatura de HRV apunta a un rango lento y sostenido como el que se asocia a mayor tono vagal, y hacia ahí convergen las técnicas que sí funcionan; las demás son variantes del mismo principio, con o sin retención.
 
-- **4-7-8:** 4 segundos de inhalación, 7 de retención, 8 de exhalación. Total: ~19 segundos por ciclo = ~3 respiraciones por minuto. Es la más lenta y puede ser incómoda para principiantes.
-- **Respiración coherente (5-5):** 5 segundos de inhalación, 5 de exhalación. Total: 10 segundos = 6 respiraciones por minuto. Es la más estudiada en contexto de HRV.
-- **Box breathing (4-4-4-4):** 4 segundos cada fase. Total: 16 segundos = ~3,75 respiraciones por minuto. Incluye retención, que puede generar ansiedad en algunas personas.
-
-**Recomendación práctica:** si no has hecho esto antes, empieza con respiración coherente (5-5) sin retención. Es la más fácil de mantener y la que más coincide con la frecuencia de 0,1 Hz que tiene respaldo en la literatura de HRV.
+Cuál se ajusta mejor a ti, a qué frecuencia y en qué momento de la rutina de sueño, es lo que el Método R.E.S.T. deja programado y dosificado, para que no tengas que experimentar a ciegas con protocolos de internet que pueden incluso generarte más activación.
 
 ## Lo que dice la evidencia (y lo que no)
 
@@ -40,10 +36,10 @@ Esto no significa que no funcione. Significa que no podemos poner la respiració
 
 La respiración lenta es útil como complemento, no como tratamiento único:
 
-- **Sirve para:** facilitar la transición al sueño cuando el problema es inicio del sueño (hiperactivación), reducir la activación después de un día estresante, como parte de una rutina pre-sueño.
+- **Sirve para:** facilitar la transición al sueño cuando el problema es el inicio del sueño (hiperactivación), reducir la activación después de un día estresante, como parte de una rutina pre-sueño.
 - **No alcanza para:** insomnio crónico de más de 3 meses, despertar de madrugada con incapacidad de volver a dormirse, apnea del sueño, trastornos del ritmo circadiano.
 
-Si llevas más de 3 meses con dificultad para dormir, la respiración sola probablemente no es suficiente. Consulta a un profesional y considera TCC-I como base.
+Por eso, dentro del Método R.E.S.T. la respiración no va sola: se integra con las demás intervenciones y se dosifica según tu desregulación, en lugar de quedar como un truco aislado. Si llevas más de 3 meses con dificultad para dormir, la respiración sola probablemente no es suficiente; consulta a un profesional y considera TCC-I como base.
 
 **Esto no reemplaza la evaluación de un profesional de salud.**
 

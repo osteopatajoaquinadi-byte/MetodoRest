@@ -35,7 +35,7 @@ Grimaldi et al. (2019) revisaron la evidencia sobre control autonómico cardiova
 
 El punto no es darte un diagnóstico. Es mostrarte que "no puedo dormir por estrés" no es debilidad ni falta de disciplina: es una respuesta fisiológica que se puede modular.
 
-Las intervenciones que apuntan al sistema nervioso autónomo —respiración lenta, regulación del ritmo de actividad, exposición a luz natural, ejercicio de fuerza— tienen una base mecanicista que las respalda. No son "tips de bienestar": son herramientas que actúan sobre las mismas vías que el problema.
+Las intervenciones que apuntan al sistema nervioso autónomo —respiración lenta, regulación del ritmo de actividad, exposición a luz natural, ejercicio de fuerza— tienen una base mecanicista que las respalda. No son "tips de bienestar": son herramientas que actúan sobre las mismas vías que el problema. El Método R.E.S.T. está diseñado sobre estas vías, con las intervenciones programadas para optimizar cada desregulación del sueño.
 
 **Esto no reemplaza la evaluación de un profesional de salud.** Si llevas más de tres meses con dificultad para dormir, consulta.
 

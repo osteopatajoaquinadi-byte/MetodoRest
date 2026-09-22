@@ -37,17 +37,19 @@ Correia et al. (2022) revisaron 41 estudios y encontraron que la HRV durante el 
 
 ## El enfoque que funciona: bajar la activación, no forzar el sueño
 
-Las estrategias más respaldadas para abordar la hiperactivación no se basan en "intentar dormir más fuerte", sino en reducir la activación del sistema nervioso:
+Las estrategias más respaldadas para abordar la hiperactivación no se basan en "intentar dormir más fuerte", sino en reducir la activación del sistema nervioso. Estas son las vías con más evidencia:
 
-- **Terapia cognitivo-conductual para insomnio (TCC-I):** es el tratamiento de primera línea según las guías clínicas. Incluye restricción del tiempo en cama, control de estímulos e higiene del sueño. Chan et al. (2021) revisaron la evidencia y encontraron eficacia consistente en poblaciones diversas, tanto para insomnio primario como comórbido. ([DOI](https://doi.org/10.1007/s13311-021-01029-2))
+- **Terapia cognitivo-conductual para insomnio (TCC-I):** es el tratamiento de primera línea según las guías clínicas. Chan et al. (2021) revisaron la evidencia y encontraron eficacia consistente en poblaciones diversas, tanto para insomnio primario como comórbido. ([DOI](https://doi.org/10.1007/s13311-021-01029-2))
 
-- **Respiración lenta:** Jerath et al. (2019) proponen que la respiración a ~0,1 Hz (6 respiraciones por minuto) puede actuar como tratamiento complementario del insomnio al promover la sincronización cardiorrespiratoria y favorecer la transición hacia dominancia parasimpática. ([DOI](https://doi.org/10.3389/fpsyt.2018.00780))
+- **Respiración lenta:** Jerath et al. (2019) proponen que respirar a baja frecuencia puede actuar como tratamiento complementario del insomnio al promover la sincronización cardiorrespiratoria y favorecer la transición hacia dominancia parasimpática. ([DOI](https://doi.org/10.3389/fpsyt.2018.00780))
 
-- **Ejercicio de fuerza:** aumenta la presión homeostática de sueño y favorece el sueño profundo. Hasan et al. (2022), en un metaanálisis en red, encontraron que el entrenamiento de resistencia combinado con caminata mejoró la calidad del sueño en adultos mayores de forma significativa comparado con cuidado habitual. ([DOI](https://doi.org/10.1016/j.smrv.2022.101673))
+- **Ejercicio de fuerza:** aumenta la presión homeostática de sueño y favorece el sueño profundo. Hasan et al. (2022), en un metaanálisis en red, encontraron que el entrenamiento de resistencia combinado con caminata mejoró la calidad del sueño de forma significativa comparado con cuidado habitual. ([DOI](https://doi.org/10.1016/j.smrv.2022.101673))
+
+El Método R.E.S.T. está construido sobre exactamente estas vías. La diferencia es que ahí cada intervención está programada y dosificada para optimizar la desregulación específica que tengas, en lugar de aplicar recomendaciones sueltas.
 
 Lo que no funciona: quedarse en la cama "intentando", usar el celular en la cama, tomar alcohol para relajarse (suprime el REM), o depender indefinidamente de somníferos sin abordar la causa.
 
-**Esto no reemplaza la evaluación de un profesional de salud.** Si estás cansado y no puedes dormir de forma recurrente, ese patrón tiene solución, pero necesita evaluación.
+**Esto no reemplaza la evaluación de un profesional de salud.** Si estás cansado y no puedes dormir de forma recurrente, ese patrón se puede abordar, pero necesita evaluación.
 
 ---
 

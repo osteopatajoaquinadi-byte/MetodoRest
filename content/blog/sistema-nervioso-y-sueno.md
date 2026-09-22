@@ -35,12 +35,14 @@ Lo que sí está claro es que hay una relación. La dirección causal probableme
 
 ## Cómo se modula el SNA para mejorar el sueño
 
-Las intervenciones que modulan el balance simpático/parasimpático tienen sentido fisiológico y evidencia acumulada:
+Las intervenciones que modulan el balance simpático/parasimpático tienen sentido fisiológico y evidencia acumulada. Estas son las vías con respaldo:
 
-- **Respiración diafragmática lenta (0,1 Hz):** activa el nervio vago y favorece la transición parasimpática. Jerath et al. (2019) proponen que puede ser un complemento útil para el insomnio, aunque los estudios aún son pequeños. ([DOI](https://doi.org/10.3389/fpsyt.2018.00780))
+- **Respiración diafragmática lenta:** activa el nervio vago y favorece la transición parasimpática. Jerath et al. (2019) proponen que puede ser un complemento útil para el insomnio, aunque los estudios aún son pequeños. ([DOI](https://doi.org/10.3389/fpsyt.2018.00780))
 - **Ejercicio de fuerza:** modula el eje HPA y el balance autonómico. Un metaanálisis (Hasan et al., 2022) encontró que el entrenamiento de resistencia combinado con caminata mejoró la calidad del sueño. ([DOI](https://doi.org/10.1016/j.smrv.2022.101673))
-- **Exposición matutina a luz natural:** sincroniza el reloj circadiano con el ambiente, lo que permite que el cortisol y la melatonina se alineen y el SNA haga la transición adecuada.
-- **Restricción del tiempo en cama (TCC-I):** paradójicamente, pasar menos tiempo en la cama consolida el sueño y puede reducir la activación simpática nocturna.
+- **Exposición a luz natural:** sincroniza el reloj circadiano con el ambiente, lo que permite que el cortisol y la melatonina se alineen y el SNA haga la transición adecuada.
+- **Terapia cognitivo-conductual para insomnio (TCC-I):** ajustar la relación entre tiempo en cama y sueño consolida el descanso y puede reducir la activación simpática nocturna.
+
+El Método R.E.S.T. toma estas vías y las convierte en un protocolo, con cada intervención programada y dosificada para la desregulación específica que tengas, en lugar de dejarte aplicar recomendaciones sueltas.
 
 ## Una aclaración necesaria sobre la HRV como "indicador de salud"
 

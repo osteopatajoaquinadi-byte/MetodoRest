@@ -41,11 +41,9 @@ Estos trastornos producen micro-despertares que no registras conscientemente per
 
 ## Qué hacer
 
-1. **Descarta apnea.** Si roncas o te dijeron que dejas de respirar, pide una poligrafía.
-2. **Revisa tus horarios.** Si duermes y despiertas a horas distintas cada día, empieza por fijar la hora de despertar (todos los días, incluyendo fines de semana).
-3. **Prioriza sueño profundo.** Ejercicio de fuerza (Hasan et al., 2022; [DOI](https://doi.org/10.1016/j.smrv.2022.101673)), evitar alcohol (suprime ondas lentas), y mantener la habitación fresca y oscura.
-4. **No compenses con más horas.** Dormir 10 horas "por si acaso" no mejora la calidad. Puede empeorarla al reducir la presión homeostática.
-5. **Consulta si persiste.** Si llevas más de un mes despertando cansado a pesar de dormir suficiente, un profesional puede evaluar causas que tú no puedes detectar solo.
+Lo primero es descartar lo que necesita evaluación médica, y eso no lo reemplaza ningún programa: si roncas o te dijeron que dejas de respirar mientras duermes, pide una poligrafía para descartar apnea; y si llevas más de un mes despertando cansado a pesar de dormir suficiente, consulta, porque hay causas que solo un profesional puede detectar.
+
+Descartado eso, la calidad del sueño no reparador se aborda sobre las mismas vías fisiológicas de siempre: la alineación de tus horarios con tu cronotipo, el ejercicio de fuerza que favorece el sueño profundo (Hasan et al., 2022; [DOI](https://doi.org/10.1016/j.smrv.2022.101673)) y el entorno de sueño. Cómo se combinan y dosifican esas piezas para *tu* caso es lo que el Método R.E.S.T. deja programado, en lugar de dejarte probar por ensayo y error. Lo que sí sabemos que no ayuda: compensar con más horas en la cama, porque reduce la presión homeostática y puede empeorar la calidad.
 
 **Esto no reemplaza la evaluación de un profesional de salud.**
 
