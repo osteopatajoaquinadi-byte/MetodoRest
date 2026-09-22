@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CortisolNocturno, BalanceAutonomico } from "../components/Diagramas";
 
 export const metadata: Metadata = {
   title: "Insomnio por estrés — Guía completa basada en evidencia",
@@ -76,6 +77,7 @@ export default function SuenoYEstresPage() {
               predominio simpático explique la sensación de "cuerpo cansado, mente
               encendida", aunque la cadena causal exacta se sigue estudiando.
             </p>
+            <CortisolNocturno />
           </section>
 
           <section>
@@ -134,6 +136,7 @@ export default function SuenoYEstresPage() {
               </Link>
               .
             </p>
+            <BalanceAutonomico />
           </section>
 
           <section>
