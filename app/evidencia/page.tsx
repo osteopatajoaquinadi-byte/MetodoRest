@@ -83,7 +83,7 @@ export default function EvidenciaPage() {
           </p>
           <p>
             Si quieres ver esto aplicado, la{" "}
-            <Link href="/sueno-y-estres" className="text-rest-accent hover:underline">
+            <Link href="/sueno-y-estres" className="link-inline">
               guía sobre insomnio por estrés
             </Link>{" "}
             usa esta clasificación a lo largo de todo el texto.

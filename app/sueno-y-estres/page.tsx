@@ -48,7 +48,7 @@ export default function SuenoYEstresPage() {
           estar bajando la guardia. Esta guía recorre lo que se sabe sobre por qué
           ocurre y qué intervenciones tienen base para revertirlo. A lo largo del
           texto marcamos cada afirmación según{" "}
-          <Link href="/evidencia" className="text-rest-accent hover:underline">
+          <Link href="/evidencia" className="link-inline">
             su nivel de evidencia
           </Link>
           .
@@ -94,14 +94,14 @@ export default function SuenoYEstresPage() {
               Si te reconoces en esto, el artículo{" "}
               <Link
                 href="/blog/cansado-pero-no-puedo-dormir"
-                className="text-rest-accent hover:underline"
+                className="link-inline"
               >
                 cansado pero no puedo dormir
               </Link>{" "}
               entra en detalle sobre la hiperactivación, y{" "}
               <Link
                 href="/blog/despertar-3am"
-                className="text-rest-accent hover:underline"
+                className="link-inline"
               >
                 por qué me despierto a las 3 de la mañana
               </Link>{" "}
@@ -128,7 +128,7 @@ export default function SuenoYEstresPage() {
               medición con dispositivos de consumo. Puedes profundizar en{" "}
               <Link
                 href="/blog/sistema-nervioso-y-sueno"
-                className="text-rest-accent hover:underline"
+                className="link-inline"
               >
                 sistema nervioso autónomo y sueño
               </Link>
@@ -148,7 +148,7 @@ export default function SuenoYEstresPage() {
               que perpetúan la hiperactivación. Lo desarrollamos en{" "}
               <Link
                 href="/blog/como-dormir-sin-pastillas"
-                className="text-rest-accent hover:underline"
+                className="link-inline"
               >
                 cómo dormir sin pastillas
               </Link>
@@ -160,7 +160,7 @@ export default function SuenoYEstresPage() {
               múltiples estudios. Más en{" "}
               <Link
                 href="/blog/ejercicio-fuerza-y-sueno"
-                className="text-rest-accent hover:underline"
+                className="link-inline"
               >
                 ejercicio de fuerza y sueño
               </Link>
@@ -173,7 +173,7 @@ export default function SuenoYEstresPage() {
               pequeños alentadores, aunque falta evidencia de ensayos grandes. Ver{" "}
               <Link
                 href="/blog/respiracion-para-dormir"
-                className="text-rest-accent hover:underline"
+                className="link-inline"
               >
                 respiración para dormir
               </Link>
@@ -197,7 +197,7 @@ export default function SuenoYEstresPage() {
               funcionamiento diario, o aparecen señales como ronquidos fuertes o
               pausas al respirar, conviene una evaluación médica. Una buena forma de
               empezar a ordenar tu situación es conocer tu perfil:{" "}
-              <Link href="/test-sueno" className="text-rest-accent hover:underline">
+              <Link href="/test-sueno" className="link-inline">
                 responde la evaluación gratuita de sueño y estrés
               </Link>
               .
@@ -213,7 +213,7 @@ export default function SuenoYEstresPage() {
 
         <div className="mt-8 flex items-center gap-3 text-sm">
           <span className="text-rest-text-muted">Escrito por</span>
-          <Link href="/sobre-mi" className="text-rest-accent hover:underline font-medium">
+          <Link href="/sobre-mi" className="link-inline font-medium">
             Joaquín Adi — Kinesiólogo y Osteópata
           </Link>
         </div>

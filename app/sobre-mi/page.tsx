@@ -71,7 +71,7 @@ export default function SobreMiPage() {
                 href="https://www.clinicasakros.cl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-rest-accent hover:underline"
+                className="link-inline"
               >
                 Clínica Sakros
               </a>
@@ -102,12 +102,12 @@ export default function SobreMiPage() {
               En todo el contenido distingo con claridad cuándo una afirmación se
               apoya en evidencia firme, cuándo es razonamiento fisiológico y cuándo
               es un punto todavía debatido. Puedes revisar{" "}
-              <Link href="/evidencia" className="text-rest-accent hover:underline">
+              <Link href="/evidencia" className="link-inline">
                 cómo clasifico la evidencia
               </Link>{" "}
               y, si quieres empezar por conocer tu propio perfil de sueño,
               responder la{" "}
-              <Link href="/test-sueno" className="text-rest-accent hover:underline">
+              <Link href="/test-sueno" className="link-inline">
                 evaluación gratuita
               </Link>
               .

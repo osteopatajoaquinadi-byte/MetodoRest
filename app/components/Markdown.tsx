@@ -51,14 +51,14 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-rest-accent hover:underline"
+              className="link-inline"
             >
               {label}
             </a>,
           );
         } else {
           nodes.push(
-            <Link key={`${keyPrefix}-l${i}`} href={url} className="text-rest-accent hover:underline">
+            <Link key={`${keyPrefix}-l${i}`} href={url} className="link-inline">
               {label}
             </Link>,
           );

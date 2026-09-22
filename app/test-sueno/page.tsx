@@ -32,7 +32,7 @@ export default function TestSuenoPage() {
         <p className="text-rest-text-muted text-sm mb-10">
           Este cuestionario es un screener orientativo, no un diagnóstico clínico.
           Puedes revisar{" "}
-          <Link href="/evidencia" className="text-rest-accent hover:underline">
+          <Link href="/evidencia" className="link-inline">
             cómo clasificamos la evidencia
           </Link>{" "}
           detrás de cada interpretación.

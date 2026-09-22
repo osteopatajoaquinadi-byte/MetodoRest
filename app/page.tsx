@@ -74,7 +74,7 @@ function Hero() {
 
         <p className="animate-fade-in-up delay-500 text-rest-text-muted text-sm max-w-xl mx-auto mb-10">
           Creado por{" "}
-          <a href="/sobre-mi" className="text-rest-accent hover:underline font-medium">
+          <a href="/sobre-mi" className="link-inline font-medium">
             Joaquín Adi
           </a>
           , kinesiólogo y osteópata (D.O., MSc en Psiconeuroinmunología Clínica),
@@ -539,15 +539,15 @@ function Evidencia() {
         <p className="text-center text-rest-text-muted text-sm max-w-2xl mx-auto leading-relaxed">
           Estas asociaciones provienen de estudios epidemiológicos: muestran
           correlación, no una relación causal simple. Puedes revisar{" "}
-          <Link href="/evidencia" className="text-rest-accent hover:underline">
+          <Link href="/evidencia" className="link-inline">
             cómo clasificamos la evidencia
           </Link>
           , la guía completa sobre{" "}
-          <Link href="/sueno-y-estres" className="text-rest-accent hover:underline">
+          <Link href="/sueno-y-estres" className="link-inline">
             insomnio por estrés
           </Link>{" "}
           y los artículos del{" "}
-          <Link href="/blog" className="text-rest-accent hover:underline">
+          <Link href="/blog" className="link-inline">
             blog
           </Link>
           .
@@ -568,16 +568,16 @@ function Footer() {
         </div>
         <div className="section-divider my-4" />
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-rest-text-muted text-sm mb-3">
-          <Link href="/sobre-mi" className="hover:text-rest-accent transition-colors">Sobre mí</Link>
-          <Link href="/sueno-y-estres" className="hover:text-rest-accent transition-colors">Sueño y estrés</Link>
-          <Link href="/blog" className="hover:text-rest-accent transition-colors">Blog</Link>
-          <Link href="/test-sueno" className="hover:text-rest-accent transition-colors">Test de sueño</Link>
-          <Link href="/evidencia" className="hover:text-rest-accent transition-colors">Evidencia</Link>
+          <Link href="/sobre-mi" className="link-nav">Sobre mí</Link>
+          <Link href="/sueno-y-estres" className="link-nav">Sueño y estrés</Link>
+          <Link href="/blog" className="link-nav">Blog</Link>
+          <Link href="/test-sueno" className="link-nav">Test de sueño</Link>
+          <Link href="/evidencia" className="link-nav">Evidencia</Link>
         </div>
         <div className="flex items-center justify-center gap-6 text-rest-text-muted text-sm mb-3">
-          <Link href="/terminos" className="hover:text-rest-accent transition-colors">Términos</Link>
-          <Link href="/privacidad" className="hover:text-rest-accent transition-colors">Privacidad</Link>
-          <a href="mailto:metodorest@gmail.com" className="hover:text-rest-accent transition-colors">Contacto</a>
+          <Link href="/terminos" className="link-nav">Términos</Link>
+          <Link href="/privacidad" className="link-nav">Privacidad</Link>
+          <a href="mailto:metodorest@gmail.com" className="link-nav">Contacto</a>
         </div>
         <p className="text-center text-rest-text-muted text-xs px-2">Este material es educativo y no reemplaza una evaluación médica profesional.</p>
         <p className="text-center text-rest-text-muted/30 text-[10px] mt-3">

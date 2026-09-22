@@ -31,7 +31,7 @@ export default function BlogIndex() {
           Artículos sobre sueño, estrés y sistema nervioso, con referencias y
           niveles de evidencia explícitos. Si buscas una visión de conjunto,
           empieza por la guía{" "}
-          <Link href="/sueno-y-estres" className="text-rest-accent hover:underline">
+          <Link href="/sueno-y-estres" className="link-inline">
             Insomnio por estrés
           </Link>
           .

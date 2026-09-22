@@ -88,7 +88,7 @@ export default async function ArticlePage({
         <div className="mt-10 p-5 rounded-2xl bg-white/[0.03] ring-1 ring-white/10 text-rest-text-muted text-sm leading-relaxed">
           Este contenido tiene fines educativos y no reemplaza la evaluación ni el
           tratamiento de un profesional de salud. Puedes revisar{" "}
-          <Link href="/evidencia" className="text-rest-accent hover:underline">
+          <Link href="/evidencia" className="link-inline">
             cómo clasificamos la evidencia
           </Link>{" "}
           detrás de cada afirmación.
@@ -112,7 +112,7 @@ export default async function ArticlePage({
         {/* Enlace a la pilar */}
         <p className="mt-6 text-rest-text-secondary text-sm">
           Este artículo forma parte de la guía{" "}
-          <Link href="/sueno-y-estres" className="text-rest-accent hover:underline">
+          <Link href="/sueno-y-estres" className="link-inline">
             Insomnio por estrés
           </Link>
           .
@@ -129,7 +129,7 @@ export default async function ArticlePage({
                 <li key={r.slug}>
                   <Link
                     href={`/blog/${r.slug}`}
-                    className="text-rest-accent hover:underline font-medium"
+                    className="link-inline font-medium"
                   >
                     {r.title}
                   </Link>
@@ -141,7 +141,7 @@ export default async function ArticlePage({
 
         <div className="mt-10 flex items-center gap-3 text-sm">
           <span className="text-rest-text-muted">Escrito por</span>
-          <Link href="/sobre-mi" className="text-rest-accent hover:underline font-medium">
+          <Link href="/sobre-mi" className="link-inline font-medium">
             Joaquín Adi — Kinesiólogo y Osteópata
           </Link>
         </div>
