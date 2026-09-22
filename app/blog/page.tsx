@@ -51,6 +51,23 @@ export default function BlogIndex() {
             </li>
           ))}
         </ul>
+
+        <div className="mt-14 p-6 rounded-2xl bg-white/[0.03] ring-1 ring-rest-accent/30 text-center">
+          <h2 className="font-[family-name:var(--font-space)] text-xl font-semibold text-white mb-2">
+            ¿Sobre qué te gustaría leer?
+          </h2>
+          <p className="text-rest-text-secondary text-sm leading-relaxed mb-5 max-w-md mx-auto">
+            Estos artículos se escriben a partir de las dudas reales de quienes
+            duermen mal. Si hay un tema sobre sueño o estrés que te gustaría que
+            abordemos, cuéntanoslo.
+          </p>
+          <a
+            href="mailto:metodorest@gmail.com?subject=Sugerencia%20para%20el%20blog&body=Me%20gustar%C3%ADa%20leer%20sobre%3A%0A%0A"
+            className="inline-flex items-center justify-center rounded-full bg-rest-accent px-6 py-3 text-sm font-semibold text-rest-bg hover:opacity-90 transition"
+          >
+            Proponer un tema
+          </a>
+        </div>
       </div>
     </div>
   );
