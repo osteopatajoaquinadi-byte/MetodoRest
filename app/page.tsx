@@ -24,7 +24,7 @@ function NavBar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-center">
         <div className="flex items-center gap-4 sm:gap-8">
           <a href="#metodo" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">El Método</a>
-          <a href="#evaluacion" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Evaluación</a>
+          <Link href="/blog" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Blog</Link>
           <a href="#pilares" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Pilares</a>
 
           <a href="#testimonios" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Testimonios</a>
