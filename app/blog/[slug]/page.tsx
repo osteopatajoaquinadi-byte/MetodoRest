@@ -3,6 +3,18 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getArticle, getSlugs, getAllArticles, RELATED } from "../../lib/blog";
 import { Markdown } from "../../components/Markdown";
+import {
+  CortisolNocturno,
+  BalanceAutonomico,
+  ArquitecturaSueno,
+} from "../../components/Diagramas";
+
+const DIAGRAMA: Record<string, React.ComponentType> = {
+  "despertar-3am": CortisolNocturno,
+  "sistema-nervioso-y-sueno": BalanceAutonomico,
+  "cansado-pero-no-puedo-dormir": BalanceAutonomico,
+  "despertar-cansado": ArquitecturaSueno,
+};
 
 export function generateStaticParams() {
   return getSlugs().map((slug) => ({ slug }));
@@ -82,6 +94,10 @@ export default async function ArticlePage({
         </h1>
 
         <div className="text-rest-text-secondary text-base">
+          {(() => {
+            const Diag = DIAGRAMA[slug];
+            return Diag ? <Diag /> : null;
+          })()}
           <Markdown body={article.body} />
         </div>
 

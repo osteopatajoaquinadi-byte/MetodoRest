@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { NivelesEvidencia } from "../components/Diagramas";
 
 export const metadata: Metadata = {
   title: "Cómo clasificamos la evidencia",
@@ -52,6 +53,8 @@ export default function EvidenciaPage() {
           En todo nuestro contenido marcamos cada afirmación relevante con uno de
           tres niveles, para que sepas con qué firmeza está sostenida.
         </p>
+
+        <NivelesEvidencia />
 
         <div className="space-y-5 mb-12">
           {niveles.map((n) => (
