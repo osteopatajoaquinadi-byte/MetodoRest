@@ -115,16 +115,16 @@ function ElProblema() {
             ¿Por qué no puedes dormir?
           </h2>
           <p className="text-rest-text-secondary mt-4 max-w-2xl mx-auto text-base sm:text-lg">
-            No es que no sepas dormir. Es que tu cuerpo olvidó cómo bajar la guardia.
+            No es que no quieras dormir. Es que tu cuerpo está agotado, pero por dentro no logra bajar la guardia.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {[
-            { icon: "M13 10V3L4 14h7v7l9-11h-7z", title: "Tu mente no se apaga", desc: "Te acuestas agotado, pero apenas apoyas la cabeza se enciende: pendientes, conversaciones, preocupaciones. Tu cuerpo pide descanso, pero por dentro sigues en alerta." },
-            { icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", title: "Te despiertas a las 3 de la madrugada", desc: "Logras dormirte, pero de madrugada abres los ojos y ya no puedes volver. Das vueltas mirando el reloj, calculando cuántas horas te quedan." },
+            { icon: "M13 10V3L4 14h7v7l9-11h-7z", title: "Tu mente no se apaga", desc: "Tu cuerpo está agotado, pero la mente parece despertar justo cuando apagas la luz. Aparecen los pendientes, las conversaciones, la sensación de que 'algo no está bien'. No es que no quieras dormir: es que tu mente no te deja." },
+            { icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", title: "Te despiertas a las 3 de la madrugada", desc: "Logras dormirte, pero a las 3 de la madrugada abres los ojos como si alguien hubiera encendido una alarma, y ya no puedes volver. Te quedas despierto mientras el resto de la casa duerme, calculando cuántas horas te quedan." },
             { icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z", title: "Amaneces sin haber descansado", desc: "Dormiste las horas, pero despiertas como si te hubiera pasado un camión por encima. Necesitas café solo para arrancar el día." },
-            { icon: "M13 10V3L4 14h7v7l9-11h-7z", title: "Vives con el motor acelerado", desc: "Irritabilidad, tensión en el cuello, antojos de azúcar, la sensación de que no puedes bajar el ritmo ni cuando quieres. Tu cuerpo no encuentra el freno." },
+            { icon: "M13 10V3L4 14h7v7l9-11h-7z", title: "Vives con el motor acelerado", desc: "Irritabilidad, tensión en el cuello, antojos de azúcar, la sensación de que no puedes bajar el ritmo ni cuando quieres. Tu sistema nervioso no encuentra el freno." },
           ].map((item, i) => (
             <div key={i} className="card-glow group p-6 sm:p-8 rounded-3xl glass-card">
               <div className="w-12 h-12 rounded-xl bg-rest-accent/10 flex items-center justify-center mb-4 group-hover:bg-rest-accent/20 transition-colors">
