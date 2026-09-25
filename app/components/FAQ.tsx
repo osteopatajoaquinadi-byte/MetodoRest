@@ -16,6 +16,10 @@ const FAQS = [
     a: "El Método R.E.S.T. es material educativo y no reemplaza la indicación de tu médico. No suspendas ni modifiques ninguna medicación para dormir sin consultar antes con el profesional que te la indicó. Si tienes un trastorno del sueño diagnosticado, consúltalo con tu médico.",
   },
   {
+    q: "¿Sirve si ya tomo melatonina y no me funcionó?",
+    a: "Sí, y de hecho puede ser justo lo que te falta. La melatonina regula el reloj circadiano, no el sistema nervioso en alerta, que es la causa más común del insomnio por estrés. Por eso a muchos no les funciona: la están usando para un problema que no resuelve. El Método R.E.S.T. trabaja sobre esa otra vía, la regulación del sistema nervioso, y no reemplaza tu medicación. Si tomas algún fármaco para dormir, no lo modifiques por tu cuenta.",
+  },
+  {
     q: "¿Necesito conocimientos previos o algún equipo especial?",
     a: "No. El protocolo está diseñado para seguirse paso a paso, sin conocimientos previos ni equipamiento especial. Solo necesitas seguir los estímulos diarios de forma constante.",
   },
