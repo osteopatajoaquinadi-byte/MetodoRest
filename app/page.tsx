@@ -7,6 +7,7 @@ import HeroBackground from "./components/HeroBackground";
 import ChatbotWidget from "./components/ChatbotWidget";
 import EvaluacionLanding from "./components/EvaluacionLanding";
 import FAQ from "./components/FAQ";
+import ProductMockup from "./components/ProductMockup";
 
 function NavBar() {
   const [hidden, setHidden] = useState(false);
@@ -413,6 +414,8 @@ function Precio() {
         <p className="text-rest-text-secondary text-sm mb-10 max-w-xl mx-auto">
           Elige por dónde empezar. Un solo pago, acceso de por vida.
         </p>
+
+        <ProductMockup className="w-full max-w-md mx-auto h-auto mb-12" />
 
         <div className="grid md:grid-cols-2 gap-6 items-start text-left">
           {/* Ebook solo */}
