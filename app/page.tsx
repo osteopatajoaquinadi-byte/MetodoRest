@@ -6,6 +6,7 @@ import Image from "next/image";
 import HeroBackground from "./components/HeroBackground";
 import ChatbotWidget from "./components/ChatbotWidget";
 import EvaluacionLanding from "./components/EvaluacionLanding";
+import FAQ from "./components/FAQ";
 
 function NavBar() {
   const [hidden, setHidden] = useState(false);
@@ -620,6 +621,7 @@ export default function LandingPage() {
       <Autor />
       <Pilares />
       <ParaQuien />
+      <FAQ />
       <Precio />
       <Footer />
       <ChatbotWidget />
