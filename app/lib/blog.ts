@@ -14,12 +14,13 @@ const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 export const RELATED: Record<string, string[]> = {
   "insomnio-por-estres": ["despertar-3am", "cansado-pero-no-puedo-dormir", "sistema-nervioso-y-sueno"],
   "despertar-3am": ["insomnio-por-estres", "despertar-cansado", "respiracion-para-dormir"],
-  "cansado-pero-no-puedo-dormir": ["insomnio-por-estres", "como-dormir-sin-pastillas", "sistema-nervioso-y-sueno"],
-  "como-dormir-sin-pastillas": ["cansado-pero-no-puedo-dormir", "ejercicio-fuerza-y-sueno", "respiracion-para-dormir"],
+  "cansado-pero-no-puedo-dormir": ["insomnio-por-estres", "como-dormir-sin-pastillas", "melatonina-no-me-funciona"],
+  "como-dormir-sin-pastillas": ["cansado-pero-no-puedo-dormir", "melatonina-no-me-funciona", "respiracion-para-dormir"],
   "sistema-nervioso-y-sueno": ["insomnio-por-estres", "despertar-cansado", "ejercicio-fuerza-y-sueno"],
   "ejercicio-fuerza-y-sueno": ["como-dormir-sin-pastillas", "respiracion-para-dormir", "cansado-pero-no-puedo-dormir"],
   "respiracion-para-dormir": ["como-dormir-sin-pastillas", "sistema-nervioso-y-sueno", "despertar-3am"],
   "despertar-cansado": ["despertar-3am", "sistema-nervioso-y-sueno", "insomnio-por-estres"],
+  "melatonina-no-me-funciona": ["como-dormir-sin-pastillas", "sistema-nervioso-y-sueno", "insomnio-por-estres"],
 };
 
 // Orden de aparición en el índice (P1 primero, luego P2), según el prompt
@@ -28,6 +29,7 @@ export const ORDER: string[] = [
   "despertar-3am",
   "cansado-pero-no-puedo-dormir",
   "como-dormir-sin-pastillas",
+  "melatonina-no-me-funciona",
   "sistema-nervioso-y-sueno",
   "ejercicio-fuerza-y-sueno",
   "respiracion-para-dormir",
