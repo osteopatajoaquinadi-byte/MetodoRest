@@ -73,14 +73,34 @@ function Hero() {
           calmar en 21 días.
         </p>
 
-        <p className="animate-fade-in-up delay-500 text-rest-text-muted text-sm max-w-xl mx-auto mb-10">
-          Creado por{" "}
-          <a href="/sobre-mi" className="link-inline font-medium">
-            Joaquín Adi
-          </a>
-          , kinesiólogo y osteópata (D.O., MSc en Psiconeuroinmunología Clínica),
-          director de Clínica Sakros.
-        </p>
+        <div className="animate-fade-in-up delay-500 max-w-xl mx-auto mb-10">
+          <p className="text-rest-text-muted text-sm mb-4">
+            Creado por{" "}
+            <a href="/sobre-mi" className="link-inline font-medium">
+              Joaquín Adi
+            </a>
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            {[
+              { tag: "D.O.", label: "Osteópata" },
+              { tag: "Kinesiólogo", label: "Rehabilitación" },
+              { tag: "MSc PNIc", label: "Psiconeuroinmunología" },
+              { tag: "Director", label: "Clínica Sakros" },
+            ].map((c) => (
+              <div
+                key={c.tag}
+                className="rounded-xl bg-white/[0.04] ring-1 ring-white/10 px-3 py-2.5 text-center"
+              >
+                <p className="font-[family-name:var(--font-space)] text-sm font-semibold text-rest-accent leading-tight">
+                  {c.tag}
+                </p>
+                <p className="text-rest-text-muted text-[11px] leading-tight mt-0.5">
+                  {c.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
 
         <div id="evaluacion" className="animate-fade-in-up delay-600 max-w-lg mx-auto scroll-mt-24">
           <EvaluacionLanding />
