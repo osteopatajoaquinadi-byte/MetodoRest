@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { ACOMPANADO_URL, HOTMART, nivelResultado, type Nivel } from "../lib/oferta";
+import { track } from "../lib/analytics";
 
 const LIKERT = [
   { value: 0, label: "Nunca" },
@@ -100,6 +102,48 @@ function computePhenotype(sH: number, sA: number, sR: number, sI: number, sB: nu
   return "SR-5";
 }
 
+const BTN_PRINCIPAL = "block w-full py-3.5 bg-rest-accent hover:bg-rest-accent-dark text-rest-bg font-semibold rounded-xl transition-all text-center shadow-[0_0_16px_rgba(0,229,160,0.3)] hover:shadow-[0_0_24px_rgba(0,229,160,0.5)]";
+const BTN_SECUNDARIO = "block w-full py-3 bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium rounded-xl transition-all text-center text-sm shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]";
+
+// Botones según el nivel: leve → ebook, moderado → método, alto → acompañado.
+function Recomendacion({ nivel }: { nivel: Nivel }) {
+  const verOpciones = (
+    <a href="#precio" className="block text-center text-rest-text-muted text-xs hover:text-rest-text-secondary transition pt-1">
+      Ver qué incluye cada opción
+    </a>
+  );
+  if (nivel === "alto") {
+    return (
+      <div className="space-y-3">
+        <div className="p-4 rounded-xl bg-rest-bg">
+          <p className="text-white text-sm font-semibold mb-1">Te recomiendo hacerlo acompañado</p>
+          <p className="text-rest-text-secondary text-sm leading-relaxed">
+            El Método R.E.S.T. acompañado incluye una sesión online conmigo y 21 días de seguimiento por WhatsApp, con respuesta diaria en horario laboral. Escríbeme <strong className="text-white">SUEÑO</strong> por Instagram y te cuento cómo funciona.
+          </p>
+        </div>
+        <a href={ACOMPANADO_URL} target="_blank" rel="noopener noreferrer" className={BTN_PRINCIPAL}>
+          Escribir SUEÑO por Instagram
+        </a>
+        <a href={HOTMART.metodo} target="_blank" rel="noopener noreferrer" className={BTN_SECUNDARIO}>
+          Prefiero el Método por mi cuenta · $39.990
+        </a>
+        {verOpciones}
+      </div>
+    );
+  }
+  const [principal, secundario] =
+    nivel === "leve"
+      ? [{ href: HOTMART.ebook, t: "Empezar con el ebook · $14.990" }, { href: HOTMART.metodo, t: "O ir al Método completo · $39.990" }]
+      : [{ href: HOTMART.metodo, t: "Acceder al Método completo" }, { href: HOTMART.ebook, t: "O empezar solo con el ebook · $14.990" }];
+  return (
+    <div className="space-y-3">
+      <a href={principal.href} target="_blank" rel="noopener noreferrer" className={BTN_PRINCIPAL}>{principal.t}</a>
+      <a href={secundario.href} target="_blank" rel="noopener noreferrer" className={BTN_SECUNDARIO}>{secundario.t}</a>
+      {verOpciones}
+    </div>
+  );
+}
+
 type Phase = "intro" | "H" | "A" | "R" | "I" | "B" | "email" | "result";
 const STEPS: Phase[] = ["H", "A", "R", "I", "B"];
 
@@ -135,6 +179,7 @@ export default function EvaluacionLanding() {
     const phenotype = computePhenotype(sH, sA, sR, sI, sB, g);
     setResult({ phenotype, global: g, scoreB: sB, sH, sA, sR, sI });
     setPhase("result");
+    track("test_completado", { perfil: phenotype, nivel: nivelResultado(phenotype, g), puntaje: g, con_email: email ? 1 : 0 });
     // Guardado best-effort del lead (no bloquea la UI)
     if (email) {
       setSaving(true);
@@ -353,21 +398,7 @@ export default function EvaluacionLanding() {
             </div>
           )}
 
-          {!isSafety && (
-            <div className="space-y-3">
-              <a href="https://pay.hotmart.com/L105253165X?off=z03q3xpq" target="_blank" rel="noopener noreferrer"
-                className="block w-full py-3.5 bg-rest-accent hover:bg-rest-accent-dark text-rest-bg font-semibold rounded-xl transition-all text-center shadow-[0_0_16px_rgba(0,229,160,0.3)] hover:shadow-[0_0_24px_rgba(0,229,160,0.5)]">
-                Acceder al Método completo
-              </a>
-              <a href="https://pay.hotmart.com/N107478696O?off=1xspnyoc" target="_blank" rel="noopener noreferrer"
-                className="block w-full py-3 bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium rounded-xl transition-all text-center text-sm shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]">
-                O empezar solo con el ebook · $14.990
-              </a>
-              <a href="#precio" className="block text-center text-rest-text-muted text-xs hover:text-rest-text-secondary transition pt-1">
-                Ver qué incluye cada opción
-              </a>
-            </div>
-          )}
+          {!isSafety && <Recomendacion nivel={nivelResultado(result.phenotype, result.global)} />}
 
           {isSafety && (
             <a href="#precio" className="block w-full py-3 bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium rounded-xl transition-all text-center text-sm shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]">

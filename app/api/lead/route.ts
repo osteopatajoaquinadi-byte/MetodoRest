@@ -2,9 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "../../lib/supabase";
 import { Resend } from "resend";
 import { DOMINIOS_INTERP, interpretacionB } from "../../lib/resetq-interpretacion";
+import { nivelResultado } from "../../lib/oferta";
+import { correoConsejo, correoOferta, recomendacionHTML } from "../../lib/correos-seguimiento";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://metodorest.cl";
+const FROM = "Método R.E.S.T. <no-reply@metodorest.cl>";
+const REPLY_TO = "metodorest@gmail.com";
+// Código del cupón de Hotmart (20%). Sin él no se programa el correo de oferta.
+const HOTMART_CUPON = process.env.HOTMART_CUPON;
+const DIA = 24 * 3600 * 1000;
 
 const PHENO_EMAIL: Record<string, { title: string; desc: string }> = {
   "SR-1": { title: "Tu mente no se apaga", desc: "Tu sistema nervioso sigue en alerta cuando deberías descansar." },
@@ -44,6 +51,13 @@ export async function POST(req: NextRequest) {
   const { email, phenotype, global, scores } = body;
   if (!email) return NextResponse.json({ error: "Email requerido" }, { status: 400 });
 
+  // El seguimiento se programa solo la primera vez que un correo hace el test.
+  const { count: previos } = await supabase
+    .from("mr_leads")
+    .select("id", { count: "exact", head: true })
+    .ilike("email", String(email).replace(/[%_\\]/g, "\\$&"));
+  const esNuevo = !previos;
+
   const { error: insertError } = await supabase.from("mr_leads").insert({
     email,
     phenotype: phenotype || null,
@@ -57,6 +71,7 @@ export async function POST(req: NextRequest) {
 
   const info = PHENO_EMAIL[phenotype] || PHENO_EMAIL["SR-3"];
   const isSafety = phenotype === "SAFETY";
+  const nivel = nivelResultado(phenotype, Number(global) || 0);
 
   // Desglose por dominio (si vienen los scores)
   let desgloseHTML = "";
@@ -82,8 +97,8 @@ export async function POST(req: NextRequest) {
   if (resend) {
     try {
       await resend.emails.send({
-        from: "Método R.E.S.T. <no-reply@metodorest.cl>",
-        replyTo: "metodorest@gmail.com",
+        from: FROM,
+        replyTo: REPLY_TO,
         to: email,
         subject: `Tu perfil de sueño: ${info.title}`,
         html: `<div style="font-family:sans-serif;max-width:520px;margin:0 auto;padding:32px;background:#060E0E;color:#E0E6EB;border-radius:16px">
@@ -98,12 +113,37 @@ export async function POST(req: NextRequest) {
           <div style="padding:20px;background:#0A1E1E;border-radius:12px;border:1px solid rgba(0,229,160,0.15);margin-bottom:24px">
             <p style="color:#9BAABD;font-size:14px;line-height:1.6;margin:0">Recuerda: esto es un punto de partida, no un diagnóstico. Lo importante es que ahora entiendes un poco mejor qué está pasando dentro de ti, y eso ya es el primer paso.</p>
           </div>
-          <p style="color:#E0E6EB;font-size:15px;line-height:1.6;margin:0 0 20px">Si quieres trabajar en esto de forma guiada, el Método R.E.S.T. tiene un plan de 21 días diseñado exactamente para tu patrón.</p>
-          <a href="${BASE_URL}/#precio" style="display:inline-block;padding:14px 32px;background:#00E5A0;color:#060E0E;text-decoration:none;border-radius:12px;font-weight:600">Ver el Método R.E.S.T.</a>
+          ${recomendacionHTML(nivel)}
           <p style="color:#506070;font-size:11px;line-height:1.5;margin-top:28px">RESET-Q está en fase de validación. Los resultados son orientativos y no constituyen un diagnóstico ni reemplazan una evaluación clínica profesional.</p>
         </div>`,
       });
-    } catch { /* silent */ }
+    } catch (e) {
+      console.error("lead resultado email error:", e);
+    }
+
+    // Seguimiento programado en Resend: consejo (día 2) y oferta con plazo (día 5).
+    const ahora = Date.now();
+    const seguimiento: { subject: string; html: string; at: Date }[] = [];
+    if (esNuevo) seguimiento.push({ ...correoConsejo(phenotype), at: new Date(ahora + 2 * DIA) });
+    if (esNuevo && HOTMART_CUPON && !isSafety) {
+      const diaCinco = new Date(ahora + 5 * DIA);
+      seguimiento.push({ ...correoOferta(nivel, HOTMART_CUPON, diaCinco), at: diaCinco });
+    }
+    for (const c of seguimiento) {
+      try {
+        const { error } = await resend.emails.send({
+          from: FROM,
+          replyTo: REPLY_TO,
+          to: email,
+          subject: c.subject,
+          html: c.html,
+          scheduledAt: c.at.toISOString(),
+        });
+        if (error) console.error("lead seguimiento email error:", error.message);
+      } catch (e) {
+        console.error("lead seguimiento email error:", e);
+      }
+    }
   }
 
   return NextResponse.json({ ok: true });
