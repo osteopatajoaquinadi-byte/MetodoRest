@@ -9,7 +9,7 @@
   --font-body: "DM Sans", system-ui, sans-serif;
 }
 
-:root {
+@theme static {
   --color-rest-bg: #060E0E;
   --color-rest-bg-alt: #0A1E1E;
   --color-rest-card: rgba(10, 44, 44, 0.65);
