@@ -370,6 +370,14 @@ function Autor() {
               En la consulta veía lo mismo: pacientes que llegaban por migrañas, ansiedad, fatiga o dolor crónico, y que tenían
               en común un sueño que no reparaba. De esas dos experiencias nació el Método R.E.S.T.
             </p>
+            <blockquote className="mt-6 pt-6 border-t border-white/10">
+              <p className="font-[family-name:var(--font-space)] text-xl sm:text-2xl font-semibold leading-snug text-white">
+                &ldquo;El sueño no se fuerza.
+                <br />
+                <span className="text-gradient-green">Aparece cuando te sientes seguro.&rdquo;</span>
+              </p>
+              <footer className="mt-3 text-rest-text-muted text-xs">— Joaquín Adi</footer>
+            </blockquote>
           </div>
         </div>
       </div>
