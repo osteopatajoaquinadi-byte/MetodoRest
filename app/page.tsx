@@ -358,7 +358,7 @@ function Autor() {
             <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Quién soy</span>
             <h3 className="font-[family-name:var(--font-space)] text-2xl sm:text-3xl font-semibold mt-1 mb-3 text-white">Joaquín Adi A.</h3>
             <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
-              {["Osteópata", "Kinesiólogo", "Magíster Terapia Manual", "PNI Clínica"].map((t, i) => (
+              {["Osteópata", "Kinesiólogo", "Magíster Terapia Manual", "Máster en Psiconeuroinmunología Clínica"].map((t, i) => (
                 <span key={i} className="text-[10px] sm:text-xs px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg bg-[#0a1e1e] shadow-[0_1px_4px_rgba(0,0,0,0.15)] text-rest-accent font-medium">{t}</span>
               ))}
             </div>
