@@ -349,7 +349,7 @@ function Autor() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <Image src="/autor-bg.png" alt="Joaquín Adi" fill sizes="100vw" className="object-cover" />
+        <Image src="/autor-bg-sin-rostro.png" alt="Joaquín Adi meditando" fill sizes="100vw" className="object-cover object-top" />
         <div className="absolute inset-0 bg-black/40" />
       </div>
       <div className="relative z-10 py-20 sm:py-28">
