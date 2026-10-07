@@ -355,7 +355,7 @@ function Autor() {
       <div className="relative z-10 py-20 sm:py-28">
         <div className="max-w-2xl mx-auto px-4 sm:px-6">
           <div className="p-8 sm:p-10 rounded-3xl bg-black/30 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.3)]">
-            <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Quién está detrás</span>
+            <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Quién soy</span>
             <h3 className="font-[family-name:var(--font-space)] text-2xl sm:text-3xl font-semibold mt-1 mb-3 text-white">Joaquín Adi A.</h3>
             <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
               {["Osteópata", "Kinesiólogo", "Magíster Terapia Manual", "PNI Clínica"].map((t, i) => (
@@ -363,12 +363,12 @@ function Autor() {
               ))}
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
-              Cuando lo diagnosticaron con diabetes, Joaquín empezó a dormir mal. Él también conoció las noches dando vueltas
-              y las mañanas sin energía.
+              Cuando me diagnosticaron diabetes, empecé a dormir mal. Conozco las noches dando vueltas y las mañanas
+              sin energía porque las viví.
             </p>
             <p className="text-white/70 text-sm leading-relaxed mt-3">
-              En la consulta veía lo mismo: pacientes que llegaban por migrañas, ansiedad, fatiga o dolor crónico, y que tenían
-              en común un sueño que no reparaba. De esas dos experiencias nació el Método R.E.S.T.
+              En mi consulta veía lo mismo una y otra vez: pacientes que llegaban por migrañas, ansiedad, fatiga o dolor
+              crónico, y que tenían en común un sueño que no reparaba. De esas dos experiencias nació el Método R.E.S.T.
             </p>
             <blockquote className="mt-6 pt-6 border-t border-white/10">
               <p className="font-[family-name:var(--font-space)] text-xl sm:text-2xl font-semibold leading-snug text-white">
