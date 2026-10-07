@@ -252,63 +252,26 @@ function ParaQuien() {
 
 function ComoFunciona() {
   const pilares = [
-    { letter: "R", name: "Ritmo", desc: "Luz de mañana y horarios fijos para que tu reloj interno vuelva a marcar cuándo dormir.", iconGradient: "from-rest-accent to-teal-400" },
-    { letter: "E", name: "Eje intestino-cerebro", desc: "Qué y cuándo cenar para no sabotear tu sueño sin darte cuenta.", iconGradient: "from-emerald-400 to-teal-400" },
-    { letter: "S", name: "Sistema nervioso", desc: "Respiraciones y relajación guiada para salir del modo alerta al acostarte.", iconGradient: "from-rest-luna to-indigo-300" },
-    { letter: "T", name: "Timing", desc: "Trabajar y descansar en bloques de 90 minutos para llegar a la noche sin el motor acelerado.", iconGradient: "from-blue-300 to-cyan-300" },
+    { letter: "R", name: "Ritmo", desc: "Que tu reloj interno vuelva a marcar cuándo es hora de dormir y cuándo de despertar.", iconGradient: "from-rest-accent to-teal-400" },
+    { letter: "E", name: "Eje intestino-cerebro", desc: "Dejar de sabotear tu sueño sin darte cuenta con lo que comes.", iconGradient: "from-emerald-400 to-teal-400" },
+    { letter: "S", name: "Sistema nervioso", desc: "Que tu cuerpo salga del modo alerta cuando llega la noche.", iconGradient: "from-rest-luna to-indigo-300" },
+    { letter: "T", name: "Timing", desc: "Llegar a la noche sin el motor acelerado.", iconGradient: "from-blue-300 to-cyan-300" },
   ];
-  // Solo los 2 primeros hábitos de cada semana son reales. El resto se muestra
-  // como relleno desenfocado: el texto real no se incluye en la página.
-  const semanas = [
-    { n: "Semana 1", foco: "Ordenar tu reloj", items: ["Luz solar 10-20 min al despertar", "Despertar y acostarte a la misma hora"], ocultos: 3 },
-    { n: "Semana 2", foco: "Dejar de sabotearte en la cena", items: ["Cenar 2-3 horas antes de dormir", "Cena antiinflamatoria (con plan incluido)"], ocultos: 2 },
-    { n: "Semana 3", foco: "Consolidar", items: ["Trabajar en bloques de 90 min con pausas", "Pausas activas: respiración o caminata"], ocultos: 1 },
-  ];
-  const relleno = ["Lorem ipsum dolor sit amet consec", "Sed do eiusmod tempor incididunt ut", "Ut enim ad minim veniam quis nostr"];
 
   return (
     <section id="como-funciona" className="py-20 sm:py-28 relative scroll-mt-16" style={{ backgroundColor: "#091A1A" }}>
       <div className="absolute inset-0 bg-gradient-to-b from-rest-bg via-transparent to-rest-bg opacity-40" />
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-14">
+        <div id="pilares" className="text-center mb-14">
           <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Cómo funciona</span>
           <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">
-            Qué vas a hacer <span className="text-gradient-green">cada día</span>
+            Los 4 pilares del Método <span className="text-gradient-green">R.E.S.T.</span>
           </h2>
           <p className="text-rest-text-secondary mt-4 max-w-2xl mx-auto">
-            Cada día abres la plataforma y sigues una checklist corta. Cada semana se suma un pilar nuevo.
+            Durante 21 días, la plataforma te guía paso a paso. Cada semana se suma un pilar nuevo.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5 mb-16">
-          {semanas.map((w) => (
-            <div key={w.n} className="p-6 rounded-3xl glass-card">
-              <p className="text-rest-accent text-xs font-medium uppercase tracking-wider">{w.n}</p>
-              <h3 className="font-[family-name:var(--font-space)] text-lg font-semibold mt-1 mb-4">{w.foco}</h3>
-              <ul className="space-y-2.5">
-                {w.items.map((t) => (
-                  <li key={t} className="flex items-start gap-2.5 text-sm">
-                    <svg className="w-4 h-4 text-rest-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    <span className="text-rest-text-secondary">{t}</span>
-                  </li>
-                ))}
-                {relleno.slice(0, w.ocultos).map((t, k) => (
-                  <li key={k} aria-hidden="true" className="flex items-start gap-2.5 text-sm blur-[5px] select-none pointer-events-none">
-                    <svg className="w-4 h-4 text-rest-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    <span className="text-rest-text-secondary">{t}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="text-rest-text-muted text-xs mt-4">+ {w.ocultos} {w.ocultos === 1 ? "hábito más" : "hábitos más"} dentro del plan</p>
-            </div>
-          ))}
-        </div>
-
-        <div id="pilares" className="text-center mb-8">
-          <h3 className="font-[family-name:var(--font-space)] text-2xl sm:text-3xl font-semibold">
-            Los 4 pilares del Método <span className="text-gradient-green">R.E.S.T.</span>
-          </h3>
-        </div>
         <div className="grid sm:grid-cols-2 gap-5">
           {pilares.map((p) => (
             <div key={p.letter} className="p-6 rounded-3xl glass-card flex items-start gap-4">
