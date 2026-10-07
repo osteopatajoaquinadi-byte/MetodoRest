@@ -257,11 +257,14 @@ function ComoFunciona() {
     { letter: "S", name: "Sistema nervioso", desc: "Respiraciones y relajación guiada para salir del modo alerta al acostarte.", iconGradient: "from-rest-luna to-indigo-300" },
     { letter: "T", name: "Timing", desc: "Trabajar y descansar en bloques de 90 minutos para llegar a la noche sin el motor acelerado.", iconGradient: "from-blue-300 to-cyan-300" },
   ];
+  // Solo los 2 primeros hábitos de cada semana son reales. El resto se muestra
+  // como relleno desenfocado: el texto real no se incluye en la página.
   const semanas = [
-    { n: "Semana 1", foco: "Ordenar tu reloj", items: ["Luz solar 10-20 min al despertar", "Despertar y acostarte a la misma hora", "Sin cafeína después de las 15:00", "Bajar luces y pantallas antes de dormir", "Respiración guiada al acostarte"] },
-    { n: "Semana 2", foco: "Dejar de sabotearte en la cena", items: ["Cenar 2-3 horas antes de dormir", "Cena antiinflamatoria (con plan incluido)", "Menos azúcar, ultraprocesados y alcohol", "Una porción de fermentados al día"] },
-    { n: "Semana 3", foco: "Consolidar", items: ["Trabajar en bloques de 90 min con pausas", "Pausas activas: respiración o caminata", "Ajustar tus horas de sueño a ciclos de 90 min"] },
+    { n: "Semana 1", foco: "Ordenar tu reloj", items: ["Luz solar 10-20 min al despertar", "Despertar y acostarte a la misma hora"], ocultos: 3 },
+    { n: "Semana 2", foco: "Dejar de sabotearte en la cena", items: ["Cenar 2-3 horas antes de dormir", "Cena antiinflamatoria (con plan incluido)"], ocultos: 2 },
+    { n: "Semana 3", foco: "Consolidar", items: ["Trabajar en bloques de 90 min con pausas", "Pausas activas: respiración o caminata"], ocultos: 1 },
   ];
+  const relleno = ["Lorem ipsum dolor sit amet consec", "Sed do eiusmod tempor incididunt ut", "Ut enim ad minim veniam quis nostr"];
 
   return (
     <section id="como-funciona" className="py-20 sm:py-28 relative scroll-mt-16" style={{ backgroundColor: "#091A1A" }}>
@@ -289,7 +292,14 @@ function ComoFunciona() {
                     <span className="text-rest-text-secondary">{t}</span>
                   </li>
                 ))}
+                {relleno.slice(0, w.ocultos).map((t, k) => (
+                  <li key={k} aria-hidden="true" className="flex items-start gap-2.5 text-sm blur-[5px] select-none pointer-events-none">
+                    <svg className="w-4 h-4 text-rest-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                    <span className="text-rest-text-secondary">{t}</span>
+                  </li>
+                ))}
               </ul>
+              <p className="text-rest-text-muted text-xs mt-4">+ {w.ocultos} {w.ocultos === 1 ? "hábito más" : "hábitos más"} dentro del plan</p>
             </div>
           ))}
         </div>
