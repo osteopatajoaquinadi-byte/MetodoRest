@@ -82,7 +82,7 @@ const PHENO: Record<string, { title: string; desc: string; hook: string }> = {
   "SR-5": {
     title: "Tu descanso está bastante bien",
     desc: "Tus respuestas muestran algo poco común: tu cuerpo sabe descansar. No aparecen señales importantes de desregulación. Eso no significa que no puedas mejorar, siempre se puede afinar, pero partes desde un lugar sano y eso vale mucho.",
-    hook: "Lo tuyo es proteger y optimizar lo que ya funciona. El Método R.E.S.T. te ayuda a afinar tu descanso para que siga siendo tu mejor aliado.",
+    hook: "Siendo honesto: probablemente no necesitas el Método completo. Si quieres afinar detalles, el ebook te basta para entender qué cuidar y mantener lo que ya funciona.",
   },
   SAFETY: {
     title: "Vale la pena una revisión médica",
