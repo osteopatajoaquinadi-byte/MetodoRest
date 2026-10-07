@@ -25,9 +25,9 @@ function NavBar() {
     <nav className={`fixed top-0 left-0 right-0 z-50 bg-rest-bg/70 backdrop-blur-lg transition-transform duration-300 will-change-transform ${hidden ? "-translate-y-full" : "translate-y-0"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-center">
         <div className="flex items-center gap-4 sm:gap-8">
-          <a href="#metodo" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">El Método</a>
+          <a href="#como-funciona" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">El Método</a>
+          <a href="#evaluacion" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Test</a>
           <Link href="/blog" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Blog</Link>
-          <a href="#pilares" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Pilares</a>
 
           <a href="#testimonios" className="text-xs sm:text-sm text-rest-text-secondary hover:text-rest-accent transition-colors">Testimonios</a>
           <Link href="/login" className="text-xs sm:text-sm text-rest-accent hover:text-rest-accent-light transition-colors font-medium">Ya tengo mi acceso</Link>
@@ -42,22 +42,51 @@ function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pb-12 sm:pb-20">
       <HeroBackground />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-        <div className="animate-fade-in-up mb-2 sm:mb-3">
-          <img src="/logo.svg" alt="Método R.E.S.T. — protocolo de 21 días para dormir mejor" className="h-32 sm:h-40 mx-auto" width={320} height={160} />
+      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pt-20 sm:pt-24">
+        <div className="animate-fade-in-up mb-2">
+          <img src="/logo.svg" alt="Método R.E.S.T. — protocolo de 21 días para dormir mejor" className="h-16 sm:h-20 mx-auto" width={160} height={80} />
         </div>
 
-        <h1 className="animate-fade-in-up delay-100 font-[family-name:var(--font-space)] text-lg sm:text-xl font-medium text-rest-accent tracking-[0.02em] mb-4">
+        <h1 className="animate-fade-in-up delay-100 font-[family-name:var(--font-space)] text-sm sm:text-base font-medium text-rest-accent tracking-[0.02em] mb-4">
           Método R.E.S.T.: un protocolo de 21 días para dormir mejor
         </h1>
 
-        <p className="animate-fade-in-up delay-200 font-[family-name:var(--font-space)] text-4xl sm:text-5xl md:text-7xl font-semibold leading-[1.1] mb-6">
-          El sueño no se fuerza.
+        <p className="animate-fade-in-up delay-200 font-[family-name:var(--font-space)] text-3xl sm:text-5xl md:text-6xl font-semibold leading-[1.1] mb-6">
+          ¿Despiertas a las 3 a.m.
           <br />
-          <span className="text-gradient-green">Aparece cuando te sientes seguro.</span>
+          <span className="text-gradient-green">y ya no vuelves a dormir?</span>
         </p>
 
-        <div className="animate-fade-in-up delay-400 max-w-2xl mx-auto mb-6">
+        <p className="animate-fade-in-up delay-300 text-rest-text-secondary text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+          No es falta de voluntad: es tu sistema nervioso, que no sabe apagarse.
+          Un plan de <span className="text-white font-medium">10 a 15 minutos al día durante 21 días</span> para
+          enseñarle a hacerlo.
+        </p>
+
+        <div className="animate-fade-in-up delay-400 flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
+          <a
+            href="#evaluacion"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-rest-accent text-rest-bg font-semibold text-base transition-all hover:scale-105 shadow-[0_4px_24px_rgba(0,229,160,0.3)] hover:shadow-[0_4px_32px_rgba(0,229,160,0.5)]"
+          >
+            Haz el test gratis · 3 min
+          </a>
+          <a
+            href="#precio"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-white font-medium text-base transition-all shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]"
+          >
+            Ver el plan · $39.990
+          </a>
+        </div>
+
+        <p className="animate-fade-in-up delay-500 text-rest-text-muted text-sm max-w-xl mx-auto mb-10">
+          Creado por{" "}
+          <a href="/sobre-mi" className="link-inline font-medium">
+            Joaquín Adi
+          </a>
+          , kinesiólogo y osteópata, que también pasó por el insomnio.
+        </p>
+
+        <div className="animate-fade-in-up delay-600 max-w-2xl mx-auto">
           <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%", borderRadius: "16px", overflow: "hidden", boxShadow: "0 0 40px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(94,155,143,0.15)" }}>
             <iframe
               src="https://www.youtube.com/embed/_ouz4nLmT7w?rel=0&modestbranding=1&autoplay=1&mute=1&playsinline=1&vq=hd1080"
@@ -66,59 +95,6 @@ function Hero() {
               allowFullScreen
               style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
             />
-          </div>
-        </div>
-
-        <p className="animate-fade-in-up delay-500 text-rest-text-secondary text-base sm:text-lg max-w-xl mx-auto mb-4 leading-relaxed">
-          No es falta de voluntad. Es tu sistema nervioso en alerta, y se puede
-          calmar en 21 días.
-        </p>
-
-        <div className="animate-fade-in-up delay-500 max-w-xl mx-auto mb-10">
-          <p className="text-rest-text-muted text-sm mb-4">
-            Creado por{" "}
-            <a href="/sobre-mi" className="link-inline font-medium">
-              Joaquín Adi
-            </a>
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-            {[
-              { tag: "D.O.", label: "Osteópata" },
-              { tag: "Kinesiólogo", label: "Rehabilitación" },
-              { tag: "MSc PNIc", label: "Psiconeuroinmunología" },
-              { tag: "Director", label: "Clínica Sakros" },
-            ].map((c) => (
-              <div
-                key={c.tag}
-                className="rounded-xl bg-white/[0.04] ring-1 ring-white/10 px-3 py-2.5 text-center"
-              >
-                <p className="font-[family-name:var(--font-space)] text-sm font-semibold text-rest-accent leading-tight">
-                  {c.tag}
-                </p>
-                <p className="text-rest-text-muted text-[11px] leading-tight mt-0.5">
-                  {c.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div id="evaluacion" className="animate-fade-in-up delay-600 max-w-lg mx-auto scroll-mt-24">
-          <EvaluacionLanding />
-        </div>
-
-        <div className="animate-fade-in-up delay-700 mt-16 flex flex-row items-center justify-center gap-3 sm:gap-10 text-rest-text-muted text-[10px] sm:text-sm">
-          <div className="flex items-center gap-1 sm:gap-2">
-            <svg className="w-3 h-3 sm:w-5 sm:h-5 text-rest-accent shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-            <span>Basado en ciencia</span>
-          </div>
-          <div className="flex items-center gap-1 sm:gap-2">
-            <svg className="w-3 h-3 sm:w-5 sm:h-5 text-rest-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <span>Plan de 21 días</span>
-          </div>
-          <div className="flex items-center gap-1 sm:gap-2">
-            <svg className="w-3 h-3 sm:w-5 sm:h-5 text-rest-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-            <span>Osteópata clínico</span>
           </div>
         </div>
       </div>
@@ -159,69 +135,57 @@ function ElProblema() {
           ))}
         </div>
 
-        {/* Banner CTA: reemplaza la cita duplicada del hero e invita a la compra */}
-        <div className="mt-12 relative overflow-hidden rounded-3xl border border-rest-accent/20 glow-accent-sm" style={{ backgroundColor: "#0C2626" }}>
-          <div className="absolute -top-24 -right-16 w-72 h-72 rounded-full bg-rest-accent/10 blur-3xl" />
-          <div className="relative z-10 p-8 sm:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div className="text-center md:text-left">
-              <span className="inline-block px-3 py-1 text-xs font-medium bg-rest-accent/10 text-rest-accent rounded-lg mb-3">
-                Precio de lanzamiento · $39.990 CLP
-              </span>
-              <h3 className="font-[family-name:var(--font-space)] text-2xl sm:text-3xl font-semibold leading-snug">
-                Deja de pelear con tu insomnio.
-              </h3>
-              <p className="text-rest-text-secondary text-sm sm:text-base mt-2 max-w-md">
-                Empieza hoy el plan de 21 días y recupera un sueño que sí repara.
-              </p>
-            </div>
-            <a
-              href="#precio"
-              className="shrink-0 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-rest-accent text-rest-bg font-semibold text-base transition-all hover:scale-105 shadow-[0_4px_24px_rgba(0,229,160,0.3)] hover:shadow-[0_4px_32px_rgba(0,229,160,0.5)]"
-            >
-              Quiero mi acceso
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-        </div>
+        <p className="text-center text-rest-text-secondary text-base sm:text-lg mt-12 max-w-2xl mx-auto">
+          Si te reconociste en al menos una, no estás solo. Y probablemente ya probaste de todo.
+        </p>
       </div>
     </section>
   );
 }
 
-function CostoDeNoResolver() {
-  const costos = [
-    { icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1", title: "El dinero que gastas sin resultado", desc: "Café, melatonina, infusiones, magnesio, suplementos que compras mes a mes y no resuelven el fondo del problema." },
-    { icon: "M13 10V3L4 14h7v7l9-11h-7z", title: "Las horas de productividad perdidas", desc: "La niebla mental del día siguiente te hace rendir a la mitad. Tareas que deberían tomar una hora te toman tres." },
-    { icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z", title: "El desgaste en tu ánimo y tus vínculos", desc: "Irritabilidad, poca paciencia, sentir que no eres tú. El mal sueño no se queda en la noche: se filtra en todo tu día." },
-    { icon: "M4.5 12.75l6 6 9-13.5", title: "El deterioro que se acumula en tu salud", desc: "Dormir mal de forma sostenida afecta tu presión, tu peso, tu memoria y tu sistema inmune. El costo no es solo hoy." },
+function PorQueNoFunciono() {
+  const intentos = [
+    { title: "Melatonina", desc: "Regula tu reloj interno, no el sistema nervioso en alerta. Si tu problema es que la mente no se apaga, la melatonina está resolviendo otra cosa." },
+    { title: "Café para arrancar", desc: "Te saca del paso en la mañana, pero si lo tomas tarde sigue activo cuando intentas dormir. Es parte del círculo, no la salida." },
+    { title: "Suplementos e infusiones", desc: "Magnesio, valeriana, tés. Pueden ayudar algo, pero ninguno le enseña a tu cuerpo a bajar la guardia por sí solo." },
   ];
   return (
-    <section className="py-20 sm:py-28 relative" style={{ backgroundColor: "#081818" }}>
+    <section id="por-que" className="py-20 sm:py-28 relative" style={{ backgroundColor: "#081818" }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-14">
-          <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">El costo real</span>
+          <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Por qué no te ha funcionado</span>
           <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">
-            Cada noche sin dormir bien <span className="text-gradient-green">te cuesta más de lo que crees</span>
+            Estabas tratando <span className="text-gradient-green">el síntoma equivocado</span>
           </h2>
+          <p className="text-rest-text-secondary mt-4 max-w-2xl mx-auto text-base sm:text-lg">
+            La causa más común del insomnio por estrés es un sistema nervioso que se quedó en modo alerta.
+            Casi todo lo que se vende para dormir apunta a otra parte.
+          </p>
         </div>
-        <div className="grid sm:grid-cols-2 gap-5">
-          {costos.map((c, i) => (
-            <div key={i} className="flex gap-4 p-6 rounded-2xl glass-card">
-              <div className="w-10 h-10 shrink-0 rounded-xl bg-rest-accent/10 flex items-center justify-center">
-                <svg className="w-5 h-5 text-rest-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={c.icon} /></svg>
-              </div>
-              <div>
-                <h3 className="font-[family-name:var(--font-space)] text-base font-semibold mb-1">{c.title}</h3>
-                <p className="text-rest-text-secondary text-sm leading-relaxed">{c.desc}</p>
-              </div>
+        <div className="grid md:grid-cols-3 gap-5">
+          {intentos.map((c, i) => (
+            <div key={i} className="p-6 rounded-2xl glass-card">
+              <h3 className="font-[family-name:var(--font-space)] text-base font-semibold mb-2">{c.title}</h3>
+              <p className="text-rest-text-secondary text-sm leading-relaxed">{c.desc}</p>
             </div>
           ))}
         </div>
         <p className="text-center text-rest-text-secondary text-base sm:text-lg mt-12 max-w-2xl mx-auto">
-          El Método R.E.S.T. cuesta menos que <span className="text-white font-medium">un mes de suplementos que no funcionan</span>.
+          El Método R.E.S.T. trabaja sobre esa otra vía: <span className="text-white font-medium">enseñarle a tu cuerpo a sentirse seguro para dormir</span>.
         </p>
+        <p className="text-center text-rest-text-muted text-xs mt-4 max-w-xl mx-auto">
+          No reemplaza tu medicación. Si tomas algún fármaco para dormir, no lo modifiques sin hablar con tu médico.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Test() {
+  return (
+    <section id="evaluacion" className="py-20 sm:py-28 relative scroll-mt-16" style={{ backgroundColor: "#081818" }}>
+      <div className="max-w-lg mx-auto px-4 text-center">
+        <EvaluacionLanding />
       </div>
     </section>
   );
@@ -286,38 +250,64 @@ function ParaQuien() {
   );
 }
 
-function Pilares() {
+function ComoFunciona() {
   const pilares = [
-    { letter: "R", name: "Ritmo Circadiano + Sleep Drive", iconGradient: "from-rest-accent to-teal-400" },
-    { letter: "E", name: "Eje Intestino-Cerebro", iconGradient: "from-emerald-400 to-teal-400" },
-    { letter: "S", name: "Sistema Nervioso", iconGradient: "from-rest-luna to-indigo-300" },
-    { letter: "T", name: "Timing + Ritmos Ultradianos", iconGradient: "from-blue-300 to-cyan-300" },
+    { letter: "R", name: "Ritmo", desc: "Luz de mañana y horarios fijos para que tu reloj interno vuelva a marcar cuándo dormir.", iconGradient: "from-rest-accent to-teal-400" },
+    { letter: "E", name: "Eje intestino-cerebro", desc: "Qué y cuándo cenar para no sabotear tu sueño sin darte cuenta.", iconGradient: "from-emerald-400 to-teal-400" },
+    { letter: "S", name: "Sistema nervioso", desc: "Respiraciones y relajación guiada para salir del modo alerta al acostarte.", iconGradient: "from-rest-luna to-indigo-300" },
+    { letter: "T", name: "Timing", desc: "Trabajar y descansar en bloques de 90 minutos para llegar a la noche sin el motor acelerado.", iconGradient: "from-blue-300 to-cyan-300" },
+  ];
+  const semanas = [
+    { n: "Semana 1", foco: "Ordenar tu reloj", items: ["Luz solar 10-20 min al despertar", "Despertar y acostarte a la misma hora", "Sin cafeína después de las 15:00", "Bajar luces y pantallas antes de dormir", "Respiración guiada al acostarte"] },
+    { n: "Semana 2", foco: "Dejar de sabotearte en la cena", items: ["Cenar 2-3 horas antes de dormir", "Cena antiinflamatoria (con plan incluido)", "Menos azúcar, ultraprocesados y alcohol", "Una porción de fermentados al día"] },
+    { n: "Semana 3", foco: "Consolidar", items: ["Trabajar en bloques de 90 min con pausas", "Pausas activas: respiración o caminata", "Ajustar tus horas de sueño a ciclos de 90 min"] },
   ];
 
   return (
-    <section id="pilares" className="py-20 sm:py-28 relative" style={{ backgroundColor: "#091A1A" }}>
+    <section id="como-funciona" className="py-20 sm:py-28 relative scroll-mt-16" style={{ backgroundColor: "#091A1A" }}>
       <div className="absolute inset-0 bg-gradient-to-b from-rest-bg via-transparent to-rest-bg opacity-40" />
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
-          <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Los 4 Pilares</span>
+        <div className="text-center mb-14">
+          <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Cómo funciona</span>
           <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">
-            El Método <span className="text-gradient-green">R.E.S.T.</span>
+            Qué vas a hacer <span className="text-gradient-green">cada día</span>
           </h2>
           <p className="text-rest-text-secondary mt-4 max-w-2xl mx-auto">
-            No interviene síntomas sueltos. Regula el sistema nervioso completo a través de 4 pilares integrados.
+            Cada día abres la plataforma y sigues una checklist corta. Cada semana se suma un pilar nuevo.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-6">
-          {pilares.map((p, i) => (
-            <div key={i} className="group relative p-6 sm:p-8 rounded-3xl glass-card transition-colors">
-              <div className="flex items-center gap-4">
-                <div className={`shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${p.iconGradient} flex items-center justify-center shadow-lg`}>
-                  <span className="text-2xl font-bold text-rest-bg font-[family-name:var(--font-space)]">{p.letter}</span>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-[family-name:var(--font-space)] text-lg font-semibold">{p.name}</h3>
-                </div>
+        <div className="grid md:grid-cols-3 gap-5 mb-16">
+          {semanas.map((w) => (
+            <div key={w.n} className="p-6 rounded-3xl glass-card">
+              <p className="text-rest-accent text-xs font-medium uppercase tracking-wider">{w.n}</p>
+              <h3 className="font-[family-name:var(--font-space)] text-lg font-semibold mt-1 mb-4">{w.foco}</h3>
+              <ul className="space-y-2.5">
+                {w.items.map((t) => (
+                  <li key={t} className="flex items-start gap-2.5 text-sm">
+                    <svg className="w-4 h-4 text-rest-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                    <span className="text-rest-text-secondary">{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div id="pilares" className="text-center mb-8">
+          <h3 className="font-[family-name:var(--font-space)] text-2xl sm:text-3xl font-semibold">
+            Los 4 pilares del Método <span className="text-gradient-green">R.E.S.T.</span>
+          </h3>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-5">
+          {pilares.map((p) => (
+            <div key={p.letter} className="p-6 rounded-3xl glass-card flex items-start gap-4">
+              <div className={`shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${p.iconGradient} flex items-center justify-center shadow-lg`}>
+                <span className="text-xl font-bold text-rest-bg font-[family-name:var(--font-space)]">{p.letter}</span>
+              </div>
+              <div>
+                <h4 className="font-[family-name:var(--font-space)] text-base font-semibold">{p.name}</h4>
+                <p className="text-rest-text-secondary text-sm leading-relaxed mt-1">{p.desc}</p>
               </div>
             </div>
           ))}
@@ -326,7 +316,6 @@ function Pilares() {
     </section>
   );
 }
-
 
 function Testimonios() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -337,9 +326,9 @@ function Testimonios() {
   }, []);
 
   const reviews = [
-    { name: "Cristina Caballero", role: "Estrés crónico · Recuperó su descanso", text: "El conocimiento integral del funcionamiento del cuerpo, su estructura, funcionalidad y sobre todo de los procesos que pueden estar afectando su normal desempeño, me ha llevado a recomendarlos una y otra vez a todos los que amo y conozco. La combinación de dieta, respiraciones, vitaminas, ejercicios y movimientos hacen despertar el cuerpo, devolviéndolo a su estado original.", stars: 5 },
-    { name: "María Fernanda Rojas", role: "Dolor y estrés crónico · De la alerta constante a dormir en calma", text: "Cuando comencé a acompañarme terapéuticamente con Joaquín tenía un estado de alerta permanente, muchas contracturas por estrés crónico, alteraciones del sueño y molestias digestivas. Con los protocolos indicados he mejorado en todos los aspectos y he aprendido a reconocer cuando mi cuerpo envía señales y a actuar para volver a calmar mi sistema nervioso.", stars: 5 },
     { name: "Alicia Aramburú Fernández", role: "Fibromialgia · Antes 3-4h, hoy +6,5h de sueño", text: "Hubo un tiempo en que el dolor, la fatiga y el mal dormir controlaban cada uno de mis días. Dormir 3-4 horas no es normal ni sano. Hoy duermo más de 6,5 horas, el dolor ya no define mi vida y volví a disfrutar de cosas que creía perdidas. Sanar no fue un milagro, fue un proceso.", stars: 5 },
+    { name: "María Fernanda Rojas", role: "Dolor y estrés crónico · De la alerta constante a dormir en calma", text: "Cuando comencé a acompañarme terapéuticamente con Joaquín tenía un estado de alerta permanente, muchas contracturas por estrés crónico, alteraciones del sueño y molestias digestivas. Con los protocolos indicados he mejorado en todos los aspectos y he aprendido a reconocer cuando mi cuerpo envía señales y a actuar para volver a calmar mi sistema nervioso.", stars: 5 },
+    { name: "Cristina Caballero", role: "Estrés crónico · Recuperó su descanso", text: "El conocimiento integral del funcionamiento del cuerpo, su estructura, funcionalidad y sobre todo de los procesos que pueden estar afectando su normal desempeño, me ha llevado a recomendarlos una y otra vez a todos los que amo y conozco. La combinación de dieta, respiraciones, vitaminas, ejercicios y movimientos hacen despertar el cuerpo, devolviéndolo a su estado original.", stars: 5 },
   ];
 
   return (
@@ -359,8 +348,8 @@ function Testimonios() {
       </div>
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
-          <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Resultados reales</span>
-          <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">Lo que dicen quienes ya lo aplican</h2>
+          <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Testimonios</span>
+          <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">Personas que trabajaron este enfoque con Joaquín</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {reviews.map((r, i) => (
@@ -393,7 +382,7 @@ function Autor() {
       <div className="relative z-10 py-20 sm:py-28">
         <div className="max-w-2xl mx-auto px-4 sm:px-6">
           <div className="p-8 sm:p-10 rounded-3xl bg-black/30 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.3)]">
-            <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Tu guía</span>
+            <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Quién está detrás</span>
             <h3 className="font-[family-name:var(--font-space)] text-2xl sm:text-3xl font-semibold mt-1 mb-3 text-white">Joaquín Adi A.</h3>
             <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
               {["Osteópata", "Kinesiólogo", "Magíster Terapia Manual", "PNI Clínica"].map((t, i) => (
@@ -401,9 +390,12 @@ function Autor() {
               ))}
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
-              Tras años de atención clínica, descubrió que sus pacientes consultaban por migrañas, ansiedad, fatiga y dolor crónico,
-              pero el origen común era siempre el mismo: un sueño no reparador. Esa experiencia, sumada a su propia batalla
-              con el insomnio tras ser diagnosticado con diabetes, lo llevó a crear el Método R.E.S.T.
+              Cuando lo diagnosticaron con diabetes, Joaquín empezó a dormir mal. Él también conoció las noches dando vueltas
+              y las mañanas sin energía.
+            </p>
+            <p className="text-white/70 text-sm leading-relaxed mt-3">
+              En la consulta veía lo mismo: pacientes que llegaban por migrañas, ansiedad, fatiga o dolor crónico, y que tenían
+              en común un sueño que no reparaba. De esas dos experiencias nació el Método R.E.S.T.
             </p>
           </div>
         </div>
@@ -432,7 +424,7 @@ function Precio() {
         <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Acceso</span>
         <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl font-semibold mt-3 mb-4">Empieza esta noche</h2>
         <p className="text-rest-text-secondary text-sm mb-10 max-w-xl mx-auto">
-          Elige por dónde empezar. Un solo pago, acceso de por vida.
+          Un solo pago, acceso de por vida y 7 días de garantía. Cuesta menos que un mes de suplementos que no funcionan.
         </p>
 
         <ProductMockup className="w-full max-w-md mx-auto h-auto mb-12" />
@@ -474,15 +466,14 @@ function Precio() {
           </div>
 
           {/* Metodo completo */}
-          <div className="relative p-7 sm:p-8 rounded-2xl glass-card card-glow glow-accent-sm border border-rest-accent/20">
+          <div className="relative order-first md:order-none p-7 sm:p-8 rounded-2xl glass-card card-glow glow-accent-sm border border-rest-accent/20">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-rest-accent text-rest-bg text-[10px] font-bold uppercase tracking-wider rounded-full">Recomendado</div>
             <div className="mb-5">
               <h3 className="font-[family-name:var(--font-space)] font-semibold text-lg text-white">Método Completo</h3>
               <p className="text-rest-text-muted text-sm mt-1">Ebook + plataforma interactiva completa</p>
             </div>
             <div className="mb-6">
-              <span className="text-rest-text-muted text-sm line-through">$59.990</span>
-              <div className="flex items-baseline gap-1.5 mt-1">
+              <div className="flex items-baseline gap-1.5">
                 <span className="text-3xl font-bold font-[family-name:var(--font-space)] text-gradient-green">$39.990</span>
                 <span className="text-rest-text-muted text-sm">CLP</span>
               </div>
@@ -513,69 +504,6 @@ function Precio() {
           </div>
         </div>
         <p className="text-rest-text-muted text-xs mt-8">Pago seguro a través de Hotmart. Acceso inmediato.</p>
-      </div>
-    </section>
-  );
-}
-
-function Evidencia() {
-  return (
-    <section className="relative py-20 sm:py-28 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-14">
-          <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">La evidencia</span>
-          <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">
-            ¿Por qué importa <span className="text-gradient-green">dormir bien</span>?
-          </h2>
-          <p className="text-rest-text-secondary mt-4 max-w-2xl mx-auto text-base sm:text-lg">
-            No lo decimos nosotros: lo dicen los grandes estudios sobre sueño. Y
-            distinguimos siempre qué está firmemente demostrado y qué todavía se
-            debate.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-3 gap-5 mb-10">
-          <div className="p-6 rounded-2xl bg-white/[0.03] ring-1 ring-white/10">
-            <p className="font-[family-name:var(--font-space)] text-3xl font-bold text-rest-accent mb-2">7–8 h</p>
-            <p className="text-rest-text-secondary text-sm leading-relaxed">
-              Es el rango que la investigación asocia con menor riesgo
-              cardiovascular en adultos. Dormir de forma habitual mucho menos se
-              asocia a más riesgo.
-            </p>
-          </div>
-          <div className="p-6 rounded-2xl bg-white/[0.03] ring-1 ring-white/10">
-            <p className="font-[family-name:var(--font-space)] text-3xl font-bold text-rest-accent mb-2">+ riesgo</p>
-            <p className="text-rest-text-secondary text-sm leading-relaxed">
-              Metaanálisis con cientos de miles de personas asocian el sueño corto
-              sostenido con mayor riesgo de enfermedad coronaria y de diabetes
-              tipo 2.
-            </p>
-          </div>
-          <div className="p-6 rounded-2xl bg-white/[0.03] ring-1 ring-white/10">
-            <p className="font-[family-name:var(--font-space)] text-3xl font-bold text-rest-accent mb-2">Salud</p>
-            <p className="text-rest-text-secondary text-sm leading-relaxed">
-              Dormir bien no es solo la ausencia de insomnio: es una dimensión de
-              salud medible, con satisfacción, duración y regularidad.
-            </p>
-          </div>
-        </div>
-
-        <p className="text-center text-rest-text-muted text-sm max-w-2xl mx-auto leading-relaxed">
-          Estas asociaciones provienen de estudios epidemiológicos: muestran
-          correlación, no una relación causal simple. Puedes revisar{" "}
-          <Link href="/evidencia" className="link-inline">
-            cómo clasificamos la evidencia
-          </Link>
-          , la guía completa sobre{" "}
-          <Link href="/sueno-y-estres" className="link-inline">
-            insomnio por estrés
-          </Link>{" "}
-          y los artículos del{" "}
-          <Link href="/blog" className="link-inline">
-            blog
-          </Link>
-          .
-        </p>
       </div>
     </section>
   );
@@ -638,14 +566,14 @@ export default function LandingPage() {
       <NavBar />
       <Hero />
       <ElProblema />
-      <CostoDeNoResolver />
-      <Evidencia />
-      <Testimonios />
+      <PorQueNoFunciono />
+      <ComoFunciona />
+      <Test />
       <Autor />
-      <Pilares />
+      <Testimonios />
       <ParaQuien />
-      <FAQ />
       <Precio />
+      <FAQ />
       <Footer />
       <ChatbotWidget />
     </main>
