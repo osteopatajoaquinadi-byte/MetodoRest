@@ -45,11 +45,11 @@ export default function SobreMiPage() {
         <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-10">
           <div className="relative w-28 h-28 rounded-2xl overflow-hidden shrink-0 ring-1 ring-white/10">
             <Image
-              src="/autor-bg.png"
+              src="/autor-bg-sin-rostro.png"
               alt="Joaquín Adi, kinesiólogo y osteópata, director de Clínica Sakros"
               fill
               sizes="112px"
-              className="object-cover"
+              className="object-cover object-[18%_0%]"
             />
           </div>
           <div>
