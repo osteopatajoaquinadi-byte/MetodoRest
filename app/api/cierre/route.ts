@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { supabase, getUserById } from "../../lib/supabase";
 import { OPCIONES, type OpcionContinuar, type ResultadoCierre } from "../../lib/cierre";
+import { enviarCorreo, REMITENTE } from "../../lib/correo";
 
 // Cierre del día 21: guarda el resultado y las respuestas (una fila por usuario y ciclo)
 // y, cuando la persona pide continuar con un profesional, avisa por correo.
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
-const FROM = "Método R.E.S.T. <no-reply@metodorest.cl>";
 const AVISO_A = "metodorest@gmail.com";
 
 const RESULTADOS: ResultadoCierre[] = ["logrado", "parcial", "sin_cambio_adherente", "sin_cambio_no_adherente"];
@@ -133,8 +133,8 @@ export async function POST(req: NextRequest) {
       <p style="color:#555">Queda registrada en Supabase, tabla mr_cierres, con estado "pendiente".</p>
     </div>`;
     try {
-      await resend.emails.send({
-        from: FROM,
+      await enviarCorreo(resend, {
+        from: REMITENTE,
         to: AVISO_A,
         replyTo: email || undefined,
         subject: `Cierre día 21: ${nombre} quiere ${OPCIONES[opcion].titulo}`,
