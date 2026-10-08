@@ -19,6 +19,17 @@ La ficha REST es un protocolo de decisión clínica, no una herramienta diagnós
 
 El Método REST completo se recomienda en todos los casos sin banderas rojas. El fenotipo no cambia el producto: cambia dónde se pone el énfasis durante los 21 días.
 
+## Cuándo entra la consulta presencial
+
+Nunca al inicio. Al cierre del día 21, la app compara el RESET-Q con la medición basal:
+
+- **Regulación preservada (15 o menos):** sigue con la plataforma.
+- **Mejoró 5 puntos o más, pero sigue con alteraciones:** la app pregunta por signos físicos y digestivos. Si hay alguno, ofrece consulta presencial en la red, REST Acompañado u hora con su profesional asociado para continuar con tratamiento manual.
+- **No mejoró y cumplió el plan:** se deriva a un profesional de la red.
+- **No mejoró y no cumplió el plan:** se le invita a repetir los 21 días y volver a evaluarse.
+
+Por eso los hallazgos manuales de la ficha se registran desde la primera consulta: son la línea base para ese momento.
+
 ## Puntajes
 
 Cada pregunta de los ejes se puntúa 0 (no), 1 (a veces) o 2 (sí), con un máximo de 6 por eje. Un eje con 4 o más se considera activo. El eje con mayor puntaje es el dominante; si hay empate, se trabajan ambos.

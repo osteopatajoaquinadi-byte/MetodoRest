@@ -211,7 +211,6 @@ export interface Resultado {
   suplementos: Sugerencia[];
   digestivo: string[];
   ruta: string;
-  presencial: boolean;
   completitud: number; // 0–100
 }
 
@@ -423,8 +422,8 @@ export function calcular(f: FichaInput): Resultado {
     }
   }
 
-  /* Ruta */
-  const presencial = !hayRoja && (f.dolorCronico || hallazgos.length > 0);
+  /* Ruta: la consulta presencial no se indica al inicio. Se ofrece en la app,
+     al cierre del día 21, si persisten signos físicos o digestivos. */
   let ruta: string;
   if (hayRoja) {
     ruta = "Derivar primero. El Método REST queda, como máximo, como complemento autorizado por el médico tratante.";
@@ -433,7 +432,10 @@ export function calcular(f: FichaInput): Resultado {
     const enfasis =
       dominantes.length === 1 ? ` con énfasis en el eje ${nombres}` : dominantes.length > 1 ? ` con énfasis en los ejes ${nombres}` : "";
     ruta = `Método REST completo${enfasis}.`;
-    if (presencial) ruta += " Considerar consulta presencial con un profesional de la red para los hallazgos manuales.";
+    if (f.dolorCronico || hallazgos.length > 0) {
+      ruta +=
+        " Hallazgos manuales y dolor quedan registrados para el cierre del día 21: si persisten, la app ofrece continuar con tratamiento manual en la red.";
+    }
   }
 
   /* Completitud: PHQ-4 + 12 ítems de ejes + consentimiento */
@@ -455,7 +457,6 @@ export function calcular(f: FichaInput): Resultado {
     suplementos,
     digestivo,
     ruta,
-    presencial,
     completitud,
   };
 }

@@ -32,4 +32,4 @@ Una bandera amarilla no detiene el algoritmo. Cambia el plan para que sea realis
 
 **Se activa con:** dolor musculoesquelético por más de 3 meses.
 
-**Qué cambia:** examen manual completo y, si hay hallazgos, considerar una consulta presencial con un profesional de la red.
+**Qué cambia:** examen manual completo y registro de los hallazgos. La consulta presencial no se indica al inicio: si al cierre del día 21 persisten signos físicos, la app ofrece continuar con tratamiento manual en la red.
