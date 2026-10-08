@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import {
   getBasalEvaluation,
+  getCycleFinalEvaluation,
+  getProgramStart,
   getPeriodicEvaluations,
   addPeriodicEvaluation,
   isEvaluationDue,
@@ -13,10 +16,12 @@ import {
 } from "../../lib/storage";
 import ResetQScale, { type ResetQScores } from "../../components/questionnaires/ResetQScale";
 import SSSScale from "../../components/questionnaires/SSSScale";
+import CierreDia21 from "../../components/CierreDia21";
 
 type WizardStep = "resetq" | "sss" | "done";
 
 export default function MideTuSuenoPage() {
+  const router = useRouter();
   const [basal, setBasal] = useState(getBasalEvaluation());
   const [periodic, setPeriodic] = useState(getPeriodicEvaluations());
   const [evalDue, setEvalDue] = useState(false);
@@ -26,6 +31,9 @@ export default function MideTuSuenoPage() {
   const [wizardWeek, setWizardWeek] = useState<number | null>(null);
   const [wizardStep, setWizardStep] = useState<WizardStep>("resetq");
   const [currentDay, setCurrentDay] = useState(1);
+  const [finalCiclo, setFinalCiclo] = useState(getCycleFinalEvaluation());
+  const [inicioCiclo, setInicioCiclo] = useState<string | null>(null);
+  const [mostrarCierre, setMostrarCierre] = useState(false);
 
   const resetqRef = useRef<ResetQResult | null>(null);
   const sssRef = useRef<SSSResult | null>(null);
@@ -38,6 +46,8 @@ export default function MideTuSuenoPage() {
     setEvalDue(isEvaluationDue());
     setWeekDue(getEvaluationWeekDue());
     setCurrentDay(getCurrentDay());
+    setFinalCiclo(getCycleFinalEvaluation());
+    setInicioCiclo(getProgramStart());
   }, []);
 
   const startWizard = (label: string, weekNumber: number | null) => {
@@ -54,9 +64,11 @@ export default function MideTuSuenoPage() {
   const handleFinishEvaluation = async () => {
     const now = new Date().toISOString();
     const weekNum = wizardWeek ?? Math.ceil(currentDay / 7);
+    const tipo = wizardWeek === 3 ? "Semana 3" : `Libre (Día ${currentDay})`;
     addPeriodicEvaluation({
       id: crypto.randomUUID(),
       weekNumber: weekNum,
+      tipo,
       resetq: resetqRef.current!,
       sss: sssRef.current!,
       completedAt: now,
@@ -65,6 +77,9 @@ export default function MideTuSuenoPage() {
     setEvalDue(isEvaluationDue());
     setWeekDue(getEvaluationWeekDue());
     setWizardActive(false);
+    setFinalCiclo(getCycleFinalEvaluation());
+    // Al guardar la evaluación obligatoria del día 21 se abre el cierre.
+    if (wizardWeek === 3) setMostrarCierre(true);
 
     const userId = localStorage.getItem("rest-user-id");
     if (userId) {
@@ -73,7 +88,7 @@ export default function MideTuSuenoPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           userId,
-          tipo: wizardWeek === 3 ? "Semana 3" : `Libre (Día ${currentDay})`,
+          tipo,
           resetq: resetqRef.current,
           sss: sssRef.current,
         }),
@@ -84,7 +99,7 @@ export default function MideTuSuenoPage() {
   const allEvals = [
     ...(basal ? [{ label: "Medición basal", date: basal.completedAt, resetq: basal.resetq, sss: basal.sss, type: "basal" as const }] : []),
     ...periodic.map((e) => ({
-      label: e.weekNumber === 3 ? "Final semana 3 (obligatoria)" : `Evaluación libre — Semana ${e.weekNumber}`,
+      label: (e.tipo ? e.tipo === "Semana 3" : e.weekNumber === 3) ? "Final semana 3 (obligatoria)" : `Evaluación libre — Semana ${e.weekNumber}`,
       date: e.completedAt,
       resetq: e.resetq,
       sss: e.sss,
@@ -104,6 +119,19 @@ export default function MideTuSuenoPage() {
   };
 
   const bc = (g: number) => g <= 15 ? "text-rest-accent" : g <= 29 ? "text-amber-400" : g <= 45 ? "text-orange-400" : "text-rest-danger";
+
+  /* ── Cierre del día 21 ── */
+  if (mostrarCierre && finalCiclo) {
+    return (
+      <CierreDia21
+        basal={basal}
+        final={finalCiclo}
+        inicioCiclo={inicioCiclo || basal?.completedAt || finalCiclo.completedAt}
+        onCerrar={() => setMostrarCierre(false)}
+        onRepetir={() => router.push("/app")}
+      />
+    );
+  }
 
   /* ── Wizard active ── */
   if (wizardActive) {
@@ -174,6 +202,22 @@ export default function MideTuSuenoPage() {
             <div className="flex-1">
               <p className="font-semibold text-white">Evaluación obligatoria pendiente</p>
               <p className="text-rest-text-muted text-xs mt-0.5">Completaste la semana 3 — compara tu progreso vs la medición basal</p>
+            </div>
+            <svg className="w-5 h-5 text-rest-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          </div>
+        </button>
+      )}
+
+      {finalCiclo && (
+        <button onClick={() => setMostrarCierre(true)}
+          className="w-full p-5 rounded-2xl glass-card hover:bg-rest-card-hover transition-all text-left">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-rest-accent/15 flex items-center justify-center shrink-0">
+              <svg className="w-6 h-6 text-rest-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <div className="flex-1">
+              <p className="font-semibold text-white">Tu cierre del día 21</p>
+              <p className="text-rest-text-muted text-xs mt-0.5">Tu resultado y cómo seguir desde aquí</p>
             </div>
             <svg className="w-5 h-5 text-rest-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
           </div>
