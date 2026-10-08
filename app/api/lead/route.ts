@@ -4,10 +4,10 @@ import { Resend } from "resend";
 import { DOMINIOS_INTERP, interpretacionB } from "../../lib/resetq-interpretacion";
 import { nivelResultado } from "../../lib/oferta";
 import { correoConsejo, correoOferta, recomendacionHTML } from "../../lib/correos-seguimiento";
+import { enviarCorreo, REMITENTE } from "../../lib/correo";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://metodorest.cl";
-const FROM = "Método R.E.S.T. <no-reply@metodorest.cl>";
 const REPLY_TO = "metodorest@gmail.com";
 // Código del cupón de Hotmart (20%). Sin él no se programa el correo de oferta.
 const HOTMART_CUPON = process.env.HOTMART_CUPON;
@@ -96,8 +96,8 @@ export async function POST(req: NextRequest) {
 
   if (resend) {
     try {
-      await resend.emails.send({
-        from: FROM,
+      await enviarCorreo(resend, {
+        from: REMITENTE,
         replyTo: REPLY_TO,
         to: email,
         subject: `Tu perfil de sueño: ${info.title}`,
@@ -131,8 +131,8 @@ export async function POST(req: NextRequest) {
     }
     for (const c of seguimiento) {
       try {
-        const { error } = await resend.emails.send({
-          from: FROM,
+        const { error } = await enviarCorreo(resend, {
+          from: REMITENTE,
           replyTo: REPLY_TO,
           to: email,
           subject: c.subject,
