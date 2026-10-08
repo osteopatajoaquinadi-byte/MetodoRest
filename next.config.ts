@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // El material del acceso profesional se lee en tiempo de ejecución (rutas dinámicas).
+  outputFileTracingIncludes: {
+    "/profesional/**": ["./content/profesional/**/*"],
+  },
   async headers() {
     return [
       {
@@ -25,6 +29,14 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/admin/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/profesional/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/profesional",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
       {

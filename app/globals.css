@@ -304,3 +304,24 @@ input[type="range"]::-webkit-slider-runnable-track {
   transform: scale(1.06);
   text-shadow: 0 0 14px var(--color-rest-accent-glow);
 }
+
+/* ═══════════════════════════════════════
+   Acceso profesional — impresión de la ficha
+   La protección general oculta el body al imprimir; en la ficha se
+   permite imprimir solo el bloque de resultado (.pro-print).
+   ═══════════════════════════════════════ */
+@media print {
+  html:has(.pro-print) body { display: block !important; background: #fff !important; }
+  html:has(.pro-print)::after { content: none !important; display: none !important; }
+  html:has(.pro-print) body * { visibility: hidden; }
+  html:has(.pro-print) .pro-print,
+  html:has(.pro-print) .pro-print * {
+    visibility: visible;
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  html:has(.pro-print) .pro-print { position: absolute; left: 0; top: 0; width: 100%; }
+  html:has(.pro-print) .no-print { display: none !important; }
+}
