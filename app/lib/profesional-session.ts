@@ -1,7 +1,9 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 
 /* Sesión del acceso profesional.
-   Cookie firmada con HMAC-SHA256 usando PRO_SESSION_SECRET.
+   Cookie firmada con HMAC-SHA256. La clave es PRO_SESSION_SECRET si existe;
+   si no, se deriva de SUPABASE_SERVICE_ROLE_KEY (secreto de servidor que ya
+   está en Vercel), así el acceso funciona sin configurar nada más.
    Solo guarda id, nombre y vencimiento: nada clínico. */
 
 export const PRO_COOKIE = "rest-pro";
@@ -15,7 +17,13 @@ export interface ProSession {
 
 function secret(): string | null {
   const s = process.env.PRO_SESSION_SECRET;
-  return s && s.length >= 32 ? s : null;
+  if (s && s.length >= 32) return s;
+  // Clave derivada: nunca expone la service role key, y rotarla cierra todas las sesiones.
+  const service = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (service && service.length >= 32) {
+    return createHmac("sha256", service).update("metodorest:acceso-profesional:v1").digest("base64url");
+  }
+  return null;
 }
 
 export function proAccessConfigured(): boolean {
