@@ -115,7 +115,7 @@ export default function MideTuSuenoPage() {
             Volver
           </button>
           <h1 className="text-2xl sm:text-3xl font-bold text-white">{wizardLabel}</h1>
-          <p className="text-rest-text-muted mt-1">Completa RESET-Q y SSS para registrar tu estado</p>
+          <p className="text-rest-text-muted mt-1">Completa el test de sueño y la escala de somnolencia para registrar tu estado</p>
           <div className="flex gap-2 mt-4">
             {(["resetq", "sss"] as WizardStep[]).map((s, idx) => (
               <div key={s} className={`h-1.5 flex-1 rounded-full transition-all ${
@@ -161,7 +161,7 @@ export default function MideTuSuenoPage() {
     <div className="max-w-4xl mx-auto space-y-6">
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold text-white">Mide tu sueño</h1>
-        <p className="text-rest-text-muted mt-1">RESET-Q + SSS para evaluar tu sistema nervioso y somnolencia</p>
+        <p className="text-rest-text-muted mt-1">Test de sueño + escala de somnolencia para evaluar tu sistema nervioso</p>
       </div>
 
       {evalDue && (
@@ -184,7 +184,7 @@ export default function MideTuSuenoPage() {
       {latest && basalRQ && (
         <div className="grid grid-cols-2 gap-3">
           <div className="p-5 rounded-2xl glass-card text-center">
-            <p className="text-rest-text-muted text-[10px] uppercase tracking-wide mb-2">RESET-Q actual</p>
+            <p className="text-rest-text-muted text-[10px] uppercase tracking-wide mb-2">Perfil de sueño actual</p>
             <p className="text-3xl font-bold text-white">{latest.resetq.global}<span className="text-sm text-rest-text-muted">/64</span></p>
             <p className={`text-xs mt-1 ${bc(latest.resetq.global)}`}>{latest.resetq.phenotype}</p>
           </div>
@@ -222,7 +222,7 @@ export default function MideTuSuenoPage() {
             </div>
             <div className="grid grid-cols-3 gap-3">
               <div className="text-center">
-                <p className="text-rest-text-muted text-[10px] mb-1">RESET-Q</p>
+                <p className="text-rest-text-muted text-[10px] mb-1">Perfil de sueño</p>
                 <p className="text-lg font-bold text-white">{ev.resetq.global}<span className="text-[10px] text-rest-text-muted">/64</span></p>
                 <p className={`text-[10px] ${bc(ev.resetq.global)}`}>{ev.resetq.phenotype}</p>
               </div>

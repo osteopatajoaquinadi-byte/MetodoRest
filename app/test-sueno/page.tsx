@@ -5,7 +5,7 @@ import EvaluacionLanding from "../components/EvaluacionLanding";
 export const metadata: Metadata = {
   title: "¿Cómo estás durmiendo? — Evaluación gratuita",
   description:
-    "Responde 21 preguntas sobre tu sueño y estrés. Herramienta gratuita basada en el cuestionario RESET-Q.",
+    "Responde 21 preguntas sobre tu sueño y estrés. Herramienta gratuita y orientativa del Método R.E.S.T.",
   alternates: { canonical: "/test-sueno" },
 };
 

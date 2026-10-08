@@ -407,7 +407,7 @@ export default function EvaluacionLanding() {
           )}
 
           <p className="text-rest-text-muted text-[10px] text-center leading-relaxed mt-4 px-2">
-            RESET-Q está en fase de validación. Los resultados son orientativos y no constituyen un diagnóstico ni reemplazan una evaluación clínica profesional.
+            Este test es orientativo. Los resultados no constituyen un diagnóstico ni reemplazan una evaluación clínica profesional.
           </p>
         </div>
       </div>

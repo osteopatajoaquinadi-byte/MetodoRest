@@ -13,7 +13,7 @@ const boton = (href: string, texto: string) =>
 const enlaceSecundario = (href: string, texto: string) =>
   `<p style="margin:14px 0 0"><a href="${href}" style="color:#00E5A0;font-size:14px">${texto}</a></p>`;
 
-const pie = `<p style="color:#506070;font-size:11px;line-height:1.5;margin-top:28px">Recibes este correo porque hiciste el test RESET-Q en metodorest.cl. Si no quieres recibir más correos, responde con la palabra BAJA.</p>`;
+const pie = `<p style="color:#506070;font-size:11px;line-height:1.5;margin-top:28px">Recibes este correo porque hiciste el test de sueño en metodorest.cl. Si no quieres recibir más correos, responde con la palabra BAJA.</p>`;
 
 export function plantilla(contenido: string): string {
   return `<div style="font-family:sans-serif;max-width:520px;margin:0 auto;padding:32px;background:#060E0E;color:#E0E6EB;border-radius:16px">
