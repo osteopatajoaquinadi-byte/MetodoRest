@@ -8,7 +8,7 @@ const SECCION_INFO: Record<string, { titulo: string; desc: string }> = {
   "/app/relajacion": { titulo: "Relajación", desc: "Herramientas de relajación para preparar tu cuerpo y tu mente para el descanso." },
   "/app/nutricion": { titulo: "Plan nutricional nocturno", desc: "Qué cenar y qué evitar para no sabotear tu sueño, con recetas y guía completa." },
   "/app/plan-21-dias": { titulo: "Plan de 21 días", desc: "El plan completo dividido en pasos simples, con checklist diaria y seguimiento de tu progreso." },
-  "/app/mide-tu-sueno": { titulo: "Mide tu sueño", desc: "Evalúa tu sistema nervioso con RESET-Q y SSS, y mira cómo mejora tu descanso semana a semana." },
+  "/app/mide-tu-sueno": { titulo: "Mide tu sueño", desc: "Evalúa tu sistema nervioso con el test de sueño y la escala de somnolencia, y mira cómo mejora tu descanso semana a semana." },
   "/app/ritual": { titulo: "Ritual de cierre", desc: "Tu rutina nocturna guiada para cerrar el día y preparar un sueño reparador." },
   "/app/diario": { titulo: "Diario de sueño", desc: "Registra tu sueño cada día y descubre patrones que puedes mejorar." },
 };

@@ -214,7 +214,7 @@ export default function OnboardingPage() {
             </div>
             <h1 className="text-2xl font-bold text-white">Ya te conocemos</h1>
             <p className="text-rest-text-secondary text-sm leading-relaxed max-w-md mx-auto">
-              Vimos que ya hiciste tu evaluación RESET-Q{leadPrevio.date ? ` el ${new Date(leadPrevio.date).toLocaleDateString("es-CL", { day: "numeric", month: "long" })}` : ""}. No tienes que repetirla: podemos usarla como tu punto de partida y empezar tu plan de inmediato.
+              Vimos que ya hiciste tu test de sueño{leadPrevio.date ? ` el ${new Date(leadPrevio.date).toLocaleDateString("es-CL", { day: "numeric", month: "long" })}` : ""}. No tienes que repetirla: podemos usarla como tu punto de partida y empezar tu plan de inmediato.
             </p>
           </div>
 
@@ -255,7 +255,7 @@ export default function OnboardingPage() {
             <div className="flex items-center justify-center gap-6 text-xs text-rest-text-muted pt-2">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 rounded-full bg-rest-accent/15 flex items-center justify-center text-rest-accent font-bold text-[10px]">1</div>
-                <span>RESET-Q</span>
+                <span>Test de sueño</span>
               </div>
               <div className="w-4 h-px bg-rest-text-muted/30" />
               <div className="flex items-center gap-2">
@@ -296,7 +296,7 @@ export default function OnboardingPage() {
 
           <div className="grid grid-cols-2 gap-3">
             <div className="p-4 rounded-xl glass-card col-span-2">
-              <p className="text-rest-text-muted text-[10px] uppercase tracking-wide mb-2">RESET-Q Global</p>
+              <p className="text-rest-text-muted text-[10px] uppercase tracking-wide mb-2">Perfil de sueño global</p>
               <div className="flex items-baseline gap-2">
                 <p className="text-3xl font-bold text-white">{resetqRef.current.global}<span className="text-sm text-rest-text-muted">/64</span></p>
                 <span className={`text-xs font-medium ${bc(resetqRef.current.global)}`}>{resetqRef.current.band}</span>
@@ -341,7 +341,7 @@ export default function OnboardingPage() {
 
           <div className="p-5 rounded-2xl bg-gradient-to-r from-rest-accent/10 to-rest-accent/5">
             <p className="text-sm text-rest-text-secondary leading-relaxed">
-              <span className="font-medium text-white">Tu plan de 21 días comienza hoy.</span> Al finalizar la semana 3 repetiremos RESET-Q y SSS para medir tu progreso.
+              <span className="font-medium text-white">Tu plan de 21 días comienza hoy.</span> Al finalizar la semana 3 repetiremos el test de sueño y la escala de somnolencia para medir tu progreso.
             </p>
           </div>
 

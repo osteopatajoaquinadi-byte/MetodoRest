@@ -207,7 +207,7 @@ export default function ResetQScale({ onComplete, showResult = true }: Props) {
     return (
       <div className="space-y-4">
         <div className="text-center space-y-2">
-          <h2 className="font-semibold text-xl text-white">Tu perfil RESET-Q</h2>
+          <h2 className="font-semibold text-xl text-white">Tu perfil de sueño</h2>
           <p className={`text-sm font-medium ${ph.color}`}>{ph.title}</p>
           <p className="text-rest-text-muted text-xs leading-relaxed max-w-md mx-auto">{ph.desc}</p>
         </div>
@@ -245,7 +245,7 @@ export default function ResetQScale({ onComplete, showResult = true }: Props) {
             </div>
           </div>
         )}
-        <p className="text-rest-text-muted text-[10px] text-center leading-relaxed px-4">RESET-Q está en fase de validación. Los rangos son orientativos. No constituye un diagnóstico ni reemplaza una evaluación clínica profesional.</p>
+        <p className="text-rest-text-muted text-[10px] text-center leading-relaxed px-4">Este test es orientativo. Los rangos son referenciales. No constituye un diagnóstico ni reemplaza una evaluación clínica profesional.</p>
       </div>
     );
   }

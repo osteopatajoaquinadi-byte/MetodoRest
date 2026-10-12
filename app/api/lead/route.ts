@@ -114,7 +114,7 @@ export async function POST(req: NextRequest) {
             <p style="color:#9BAABD;font-size:14px;line-height:1.6;margin:0">Recuerda: esto es un punto de partida, no un diagnóstico. Lo importante es que ahora entiendes un poco mejor qué está pasando dentro de ti, y eso ya es el primer paso.</p>
           </div>
           ${recomendacionHTML(nivel)}
-          <p style="color:#506070;font-size:11px;line-height:1.5;margin-top:28px">RESET-Q está en fase de validación. Los resultados son orientativos y no constituyen un diagnóstico ni reemplazan una evaluación clínica profesional.</p>
+          <p style="color:#506070;font-size:11px;line-height:1.5;margin-top:28px">Este test es orientativo. Los resultados no constituyen un diagnóstico ni reemplazan una evaluación clínica profesional.</p>
         </div>`,
       });
     } catch (e) {

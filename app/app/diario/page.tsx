@@ -68,7 +68,7 @@ export default function EvaluacionesPage() {
   const bc = (g: number) => g <= 15 ? "text-rest-accent" : g <= 29 ? "text-amber-400" : g <= 45 ? "text-orange-400" : "text-rest-danger";
 
   const metrics = [
-    { label: "RESET-Q", unit: "/64", basal: basal?.resetq.global, sem2: sem2?.resetq.global, sem4: sem4?.resetq.global, inverse: true },
+    { label: "Perfil de sueño", unit: "/64", basal: basal?.resetq.global, sem2: sem2?.resetq.global, sem4: sem4?.resetq.global, inverse: true },
     { label: "Dominio H", unit: "/16", basal: basal?.resetq.scoreH, sem2: sem2?.resetq.scoreH, sem4: sem4?.resetq.scoreH, inverse: true },
     { label: "Dominio A", unit: "/16", basal: basal?.resetq.scoreA, sem2: sem2?.resetq.scoreA, sem4: sem4?.resetq.scoreA, inverse: true },
     { label: "Dominio R", unit: "/16", basal: basal?.resetq.scoreR, sem2: sem2?.resetq.scoreR, sem4: sem4?.resetq.scoreR, inverse: true },
@@ -227,7 +227,7 @@ export default function EvaluacionesPage() {
             <div>
               <p className="font-semibold text-sm mb-1 text-white">Tu línea base</p>
               <p className="text-rest-text-muted text-sm leading-relaxed">
-                RESET-Q: {basal.resetq.global}/64 ({basal.resetq.band}) · Fenotipo: {basal.resetq.phenotype} · SSS: {basal.sss.score}/7
+                Perfil de sueño: {basal.resetq.global}/64 ({basal.resetq.band}) · Fenotipo: {basal.resetq.phenotype} · SSS: {basal.sss.score}/7
               </p>
             </div>
           </div>
