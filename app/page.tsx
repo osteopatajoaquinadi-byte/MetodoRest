@@ -533,6 +533,11 @@ export default function LandingPage() {
             name: "Método R.E.S.T.",
             description:
               "Protocolo de 21 días para mejorar el sueño, basado en fisiología del sueño y regulación del estrés.",
+            image: [
+              "https://metodorest.cl/producto-metodo-rest-1x1.png",
+              "https://metodorest.cl/producto-metodo-rest-4x3.png",
+              "https://metodorest.cl/producto-metodo-rest-16x9.png",
+            ],
             brand: { "@type": "Brand", name: "Método R.E.S.T." },
             offers: {
               "@type": "Offer",
@@ -540,6 +545,26 @@ export default function LandingPage() {
               priceCurrency: "CLP",
               availability: "https://schema.org/InStock",
               url: "https://metodorest.cl",
+              // Producto digital: acceso inmediato, sin costo de envío.
+              shippingDetails: {
+                "@type": "OfferShippingDetails",
+                shippingRate: { "@type": "MonetaryAmount", value: 0, currency: "CLP" },
+                shippingDestination: { "@type": "DefinedRegion", addressCountry: "CL" },
+                deliveryTime: {
+                  "@type": "ShippingDeliveryTime",
+                  handlingTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 0, unitCode: "DAY" },
+                  transitTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 0, unitCode: "DAY" },
+                },
+              },
+              // Garantía de 7 días con devolución del dinero (ver sección de precio).
+              hasMerchantReturnPolicy: {
+                "@type": "MerchantReturnPolicy",
+                applicableCountry: "CL",
+                returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+                merchantReturnDays: 7,
+                returnFees: "https://schema.org/FreeReturn",
+                refundType: "https://schema.org/FullRefund",
+              },
             },
           }),
         }}
