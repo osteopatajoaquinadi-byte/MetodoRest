@@ -105,8 +105,53 @@ export function Markdown({ body }: { body: string }) {
       return;
     }
 
-    // Lista con viñetas (líneas que empiezan con "- ")
     const listLines = trimmed.split("\n");
+
+    // Tabla (todas las líneas empiezan con "|"); la segunda fila "| --- |" separa el encabezado
+    if (listLines.length >= 2 && listLines.every((l) => l.trim().startsWith("|"))) {
+      const rows = listLines.map((l) =>
+        l
+          .trim()
+          .replace(/^\|/, "")
+          .replace(/\|$/, "")
+          .split("|")
+          .map((c) => c.trim()),
+      );
+      const hasHeader = rows[1]?.every((c) => /^:?-{3,}:?$/.test(c));
+      const head = hasHeader ? rows[0] : null;
+      const bodyRows = hasHeader ? rows.slice(2) : rows;
+      out.push(
+        <div key={bi} className="my-6 overflow-x-auto rounded-xl ring-1 ring-white/10">
+          <table className="w-full text-sm text-left border-collapse">
+            {head && (
+              <thead className="bg-white/[0.04]">
+                <tr>
+                  {head.map((c, ci) => (
+                    <th key={ci} scope="col" className="px-4 py-3 font-semibold text-white align-bottom">
+                      {renderInline(c, `th-${bi}-${ci}`)}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+            )}
+            <tbody>
+              {bodyRows.map((r, ri) => (
+                <tr key={ri} className="border-t border-white/[0.06]">
+                  {r.map((c, ci) => (
+                    <td key={ci} className="px-4 py-3 align-top">
+                      {renderInline(c, `td-${bi}-${ri}-${ci}`)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>,
+      );
+      return;
+    }
+
+    // Lista con viñetas (líneas que empiezan con "- ")
     if (listLines.every((l) => l.trim().startsWith("- "))) {
       out.push(
         <ul key={bi} className="list-disc pl-5 space-y-2 my-4">

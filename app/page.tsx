@@ -506,6 +506,7 @@ function Footer() {
           <Link href="/blog" className="link-nav">Blog</Link>
           <Link href="/test-sueno" className="link-nav">Test de sueño</Link>
           <Link href="/evidencia" className="link-nav">Evidencia</Link>
+          <Link href="/profesional" className="link-nav">Acceso profesional</Link>
         </div>
         <div className="flex items-center justify-center gap-6 text-rest-text-muted text-sm mb-3">
           <Link href="/terminos" className="link-nav">Términos</Link>
