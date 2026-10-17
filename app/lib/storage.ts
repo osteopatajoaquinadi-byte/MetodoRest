@@ -95,6 +95,7 @@ export interface BasalEvaluation {
 export interface PeriodicEvaluation {
   id: string;
   weekNumber: number;
+  tipo?: string; // "Semana 3" (obligatoria del día 21) o "Libre (Día N)"
   resetq: ResetQResult;
   sss: SSSResult;
   completedAt: string;
@@ -195,18 +196,26 @@ export function getCurrentWeek(): number {
   return Math.min(3, Math.ceil(getCurrentDay() / 7));
 }
 
+// Evaluación final (semana 3) del ciclo actual. Si la persona repite los 21 días,
+// el ciclo nuevo parte en una fecha posterior y la evaluación anterior no cuenta.
+export function getCycleFinalEvaluation(): PeriodicEvaluation | null {
+  const start = getProgramStart();
+  const desde = start ? new Date(start).getTime() : 0;
+  const finales = getPeriodicEvaluations().filter((e) => {
+    // Con tipo, solo cuenta la obligatoria; sin tipo (registros antiguos), la de semana 3.
+    if (e.tipo ? e.tipo !== "Semana 3" : e.weekNumber !== 3) return false;
+    const t = new Date(e.completedAt).getTime();
+    return Number.isNaN(t) || t >= desde; // sin fecha válida: se asume del ciclo actual
+  });
+  return finales.length ? finales[finales.length - 1] : null;
+}
+
 export function isEvaluationDue(): boolean {
-  const day = getCurrentDay();
-  const evals = getPeriodicEvaluations();
-  if (day >= 21 && !evals.some((e) => e.weekNumber === 3)) return true;
-  return false;
+  return getCurrentDay() >= 21 && !getCycleFinalEvaluation();
 }
 
 export function getEvaluationWeekDue(): number | null {
-  const day = getCurrentDay();
-  const evals = getPeriodicEvaluations();
-  if (day >= 21 && !evals.some((e) => e.weekNumber === 3)) return 3;
-  return null;
+  return isEvaluationDue() ? 3 : null;
 }
 
 /* ── RESET-Q helpers ── */

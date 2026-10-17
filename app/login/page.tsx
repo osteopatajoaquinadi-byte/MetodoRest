@@ -87,6 +87,7 @@ export default function LoginPage() {
             addPeriodicEvaluation({
               id: (ev.id || crypto.randomUUID()) as string,
               weekNumber: weekMatch ? parseInt(weekMatch[0]) : 0,
+              tipo: (ev.tipo as string) || undefined,
               resetq: {
                 h: (eitems.h || []) as number[], a: (eitems.a || []) as number[],
                 r: (eitems.r || []) as number[], i: (eitems.i || []) as number[],
