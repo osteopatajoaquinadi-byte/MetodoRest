@@ -24,6 +24,9 @@ export const RELATED: Record<string, string[]> = {
   "me-cuesta-quedarme-dormido": ["insomnio-por-estres", "pantallas-antes-de-dormir", "respiracion-para-dormir"],
   "pantallas-antes-de-dormir": ["me-cuesta-quedarme-dormido", "sistema-nervioso-y-sueno", "como-dormir-sin-pastillas"],
   "terapia-cognitiva-insomnio": ["como-dormir-sin-pastillas", "insomnio-por-estres", "me-cuesta-quedarme-dormido"],
+  "ansiedad-nocturna": ["sistema-nervioso-y-sueno", "despertar-3am", "insomnio-por-estres"],
+  "cuanto-dura-insomnio-por-estres": ["insomnio-por-estres", "terapia-cognitiva-insomnio", "cansado-pero-no-puedo-dormir"],
+  "cafe-y-sueno": ["me-cuesta-quedarme-dormido", "despertar-cansado", "como-dormir-sin-pastillas"],
 };
 
 // Orden de aparición en el índice (P1 primero, luego P2), según el prompt
@@ -35,8 +38,11 @@ export const ORDER: string[] = [
   "como-dormir-sin-pastillas",
   "terapia-cognitiva-insomnio",
   "melatonina-no-me-funciona",
+  "ansiedad-nocturna",
+  "cuanto-dura-insomnio-por-estres",
   "sistema-nervioso-y-sueno",
   "pantallas-antes-de-dormir",
+  "cafe-y-sueno",
   "ejercicio-fuerza-y-sueno",
   "respiracion-para-dormir",
   "despertar-cansado",
