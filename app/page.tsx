@@ -52,15 +52,15 @@ function Hero() {
         </h1>
 
         <p className="animate-fade-in-up delay-200 font-[family-name:var(--font-space)] text-3xl sm:text-5xl md:text-6xl font-semibold leading-[1.1] mb-6">
-          ¿Despiertas a las 3 a.m.
+          ¿Te cuesta dormirte o despiertas a las 3 a.m.
           <br />
           <span className="text-gradient-green">y ya no vuelves a dormir?</span>
         </p>
 
         <p className="animate-fade-in-up delay-300 text-rest-text-secondary text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
           No es falta de voluntad: es tu sistema nervioso, que no sabe apagarse.
-          Un plan de <span className="text-white font-medium">10 a 15 minutos al día durante 21 días</span> para
-          enseñarle a hacerlo.
+          Un plan de 21 días con <span className="text-white font-medium">15 minutos de práctica guiada al día</span>,
+          más pequeños cambios en tu rutina, para enseñarle a hacerlo.
         </p>
 
         <div className="animate-fade-in-up delay-400 flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
@@ -194,7 +194,7 @@ function Test() {
 function ParaQuien() {
   const noEs = [
     "Buscas una pastilla mágica que te duerma sin cambiar nada.",
-    "No estás dispuesto a dedicar 10 a 15 minutos al día durante 3 semanas.",
+    "No estás dispuesto a dedicar 15 minutos al día y hacer algunos cambios en tu rutina durante 3 semanas.",
     "Tu problema viene de una condición que necesita atención médica primero, como apnea del sueño, síndrome de piernas inquietas, hipertiroidismo, o un trastorno de ansiedad o depresión en fase aguda. En esos casos, consulta con tu médico antes de empezar.",
   ];
   const siEs = [
@@ -272,6 +272,22 @@ function ComoFunciona() {
           </p>
         </div>
 
+        <div className="max-w-3xl mx-auto mb-12 p-6 sm:p-8 rounded-3xl glass-card border border-rest-accent/20">
+          <p className="text-rest-accent text-xs font-medium uppercase tracking-wider text-center mb-5">Así es cada día</p>
+          <div className="grid sm:grid-cols-3 gap-5 text-center">
+            {[
+              { t: "Tu checklist del día", d: "Pocos pasos concretos. Marcas lo que hiciste y ves tu avance." },
+              { t: "Una práctica guiada", d: "Respiración o relajación paso a paso, con audio." },
+              { t: "Tu registro de sueño", d: "Mides cómo dormiste y ves, semana a semana, qué está cambiando." },
+            ].map((x) => (
+              <div key={x.t}>
+                <h3 className="font-[family-name:var(--font-space)] text-base font-semibold">{x.t}</h3>
+                <p className="text-rest-text-secondary text-sm leading-relaxed mt-1">{x.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="grid sm:grid-cols-2 gap-5">
           {pilares.map((p) => (
             <div key={p.letter} className="p-6 rounded-3xl glass-card flex items-start gap-4">
@@ -299,9 +315,9 @@ function Testimonios() {
   }, []);
 
   const reviews = [
-    { name: "Alicia Aramburú Fernández", role: "Fibromialgia · Antes 3-4h, hoy +6,5h de sueño", text: "Hubo un tiempo en que el dolor, la fatiga y el mal dormir controlaban cada uno de mis días. Dormir 3-4 horas no es normal ni sano. Hoy duermo más de 6,5 horas, el dolor ya no define mi vida y volví a disfrutar de cosas que creía perdidas. Sanar no fue un milagro, fue un proceso.", stars: 5 },
-    { name: "María Fernanda Rojas", role: "Dolor y estrés crónico · De la alerta constante a dormir en calma", text: "Cuando comencé a acompañarme terapéuticamente con Joaquín tenía un estado de alerta permanente, muchas contracturas por estrés crónico, alteraciones del sueño y molestias digestivas. Con los protocolos indicados he mejorado en todos los aspectos y he aprendido a reconocer cuando mi cuerpo envía señales y a actuar para volver a calmar mi sistema nervioso.", stars: 5 },
-    { name: "Cristina Caballero", role: "Estrés crónico · Recuperó su descanso", text: "El conocimiento integral del funcionamiento del cuerpo, su estructura, funcionalidad y sobre todo de los procesos que pueden estar afectando su normal desempeño, me ha llevado a recomendarlos una y otra vez a todos los que amo y conozco. La combinación de dieta, respiraciones, vitaminas, ejercicios y movimientos hacen despertar el cuerpo, devolviéndolo a su estado original.", stars: 5 },
+    { name: "Alicia Aramburú Fernández", role: "Fibromialgia · Antes 3-4h, hoy +6,5h de sueño", text: "Hubo un tiempo en que el dolor, la fatiga y el mal dormir controlaban cada uno de mis días. Dormir 3-4 horas no es normal ni sano. Hoy duermo más de 6,5 horas, el dolor ya no define mi vida y volví a disfrutar de cosas que creía perdidas. Sanar no fue un milagro, fue un proceso." },
+    { name: "María Fernanda Rojas", role: "Dolor y estrés crónico · De la alerta constante a dormir en calma", text: "Cuando comencé a acompañarme terapéuticamente con Joaquín tenía un estado de alerta permanente, muchas contracturas por estrés crónico, alteraciones del sueño y molestias digestivas. Con los protocolos indicados he mejorado en todos los aspectos y he aprendido a reconocer cuando mi cuerpo envía señales y a actuar para volver a calmar mi sistema nervioso." },
+    { name: "Cristina Caballero", role: "Estrés crónico · Recuperó su descanso", text: "El conocimiento integral del funcionamiento del cuerpo, su estructura, funcionalidad y sobre todo de los procesos que pueden estar afectando su normal desempeño, me ha llevado a recomendarlos una y otra vez a todos los que amo y conozco. La combinación de dieta, respiraciones, vitaminas, ejercicios y movimientos hacen despertar el cuerpo, devolviéndolo a su estado original." },
   ];
 
   return (
@@ -322,16 +338,11 @@ function Testimonios() {
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
           <span className="text-rest-accent text-sm font-medium tracking-[0.15em] uppercase">Testimonios</span>
-          <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">Personas que trabajaron este enfoque con Joaquín</h2>
+          <h2 className="font-[family-name:var(--font-space)] text-3xl sm:text-4xl md:text-5xl font-semibold mt-3">Personas que trabajaron este enfoque conmigo</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {reviews.map((r, i) => (
             <div key={i} className="card-glow p-6 rounded-3xl glass-card">
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: r.stars }).map((_, j) => (
-                  <svg key={j} className="w-4 h-4 text-rest-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                ))}
-              </div>
               <p className="text-rest-text-secondary text-sm leading-relaxed mb-4 italic font-[family-name:var(--font-space)] text-base">&ldquo;{r.text}&rdquo;</p>
               <div>
                 <p className="font-medium text-sm">{r.name}</p>
@@ -388,7 +399,7 @@ function Autor() {
 function Precio() {
   const features = [
     "El ebook completo del Método R.E.S.T., para entender qué le pasa a tu cuerpo y por qué",
-    "Una plataforma que te guía día a día y lleva tu progreso, para que nunca te pierdas ni te sientas solo",
+    "Una plataforma que te guía día a día y lleva tu progreso, para que siempre sepas qué hacer",
     "Respiraciones guiadas paso a paso que calman tu sistema nervioso en minutos",
     "Un plan de 21 días dividido en pasos simples: solo sigues la checklist de cada día",
     "Qué cenar (y qué evitar) para no sabotear tu sueño sin darte cuenta",
@@ -458,7 +469,6 @@ function Precio() {
                 <span className="text-3xl font-bold font-[family-name:var(--font-space)] text-gradient-green">$39.990</span>
                 <span className="text-rest-text-muted text-sm">CLP</span>
               </div>
-              <span className="inline-block mt-2 px-3 py-1 text-xs font-medium bg-rest-accent/10 text-rest-accent rounded-lg">Precio de lanzamiento</span>
             </div>
             <ul className="space-y-3 mb-8">
               {features.map((item, j) => (
@@ -578,8 +588,8 @@ export default function LandingPage() {
       <Autor />
       <Testimonios />
       <ParaQuien />
-      <Precio />
       <FAQ />
+      <Precio />
       <Footer />
       <ChatbotWidget />
     </main>

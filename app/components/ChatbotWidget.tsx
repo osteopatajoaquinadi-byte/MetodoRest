@@ -20,11 +20,12 @@ export default function ChatbotWidget() {
   const [teaserDismissed, setTeaserDismissed] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Invitacion automatica: aparece a los 6s para que el usuario entienda que puede preguntar
+  // Invitacion automatica: aparece a los 40s (y solo en pantallas grandes, ver
+  // el className del globo) para no tapar el texto mientras la persona lee.
   useEffect(() => {
     if (teaserDismissed) return;
-    const show = setTimeout(() => setTeaser(true), 3000);
-    const hide = setTimeout(() => setTeaser(false), 30000);
+    const show = setTimeout(() => setTeaser(true), 40000);
+    const hide = setTimeout(() => setTeaser(false), 60000);
     return () => {
       clearTimeout(show);
       clearTimeout(hide);
@@ -184,7 +185,7 @@ export default function ChatbotWidget() {
       )}
 
       {teaser && !open && (
-        <div className="fixed bottom-24 right-4 sm:right-6 z-50 max-w-[290px] animate-[fadeInUp_0.4s_ease-out]">
+        <div className="hidden sm:block fixed bottom-24 right-4 sm:right-6 z-50 max-w-[290px] animate-[fadeInUp_0.4s_ease-out]">
           <div className="relative bg-[#0A1E1E] border border-rest-accent/20 rounded-2xl rounded-br-sm px-4 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
             <button
               onClick={() => {
