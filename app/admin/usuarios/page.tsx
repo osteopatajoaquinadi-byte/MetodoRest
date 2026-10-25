@@ -18,13 +18,88 @@ interface UserData {
   habitCompletedDays: number;
 }
 
+// Acceso manual al Método completo, para ventas cobradas fuera de Hotmart
+// (por ejemplo, Mercado Pago). Usa /api/admin/acceso.
+function DarAcceso({ onDone }: { onDone: () => void }) {
+  const [email, setEmail] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [sending, setSending] = useState(false);
+  const [result, setResult] = useState<{ ok: boolean; text: string; password?: string } | null>(null);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSending(true);
+    setResult(null);
+    try {
+      const r = await fetch("/api/admin/acceso", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, nombre }),
+      });
+      const d = await r.json();
+      if (!r.ok) {
+        setResult({ ok: false, text: d.error || "No se pudo dar el acceso." });
+      } else {
+        setResult({ ok: true, text: d.mensaje, password: d.password });
+        setEmail("");
+        setNombre("");
+        onDone();
+      }
+    } catch {
+      setResult({ ok: false, text: "No se pudo conectar. Intenta de nuevo." });
+    }
+    setSending(false);
+  };
+
+  return (
+    <form onSubmit={submit} className="p-5 rounded-2xl bg-rest-card border border-rest-accent/[0.08] space-y-3">
+      <div>
+        <h2 className="font-semibold">Dar acceso al Método completo</h2>
+        <p className="text-rest-text-muted text-xs mt-1">Para pagos fuera de Hotmart (por ejemplo, Mercado Pago). Se crea la cuenta y le llega un correo con su contraseña.</p>
+      </div>
+      <div className="flex flex-col sm:flex-row gap-3">
+        <input
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="email@ejemplo.com"
+          className="flex-1 px-4 py-2.5 bg-rest-bg border border-rest-accent/[0.08] rounded-xl text-sm text-rest-text placeholder:text-rest-text-muted focus:outline-none focus:border-rest-accent/50 transition"
+        />
+        <input
+          type="text"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          placeholder="Nombre (opcional)"
+          className="flex-1 px-4 py-2.5 bg-rest-bg border border-rest-accent/[0.08] rounded-xl text-sm text-rest-text placeholder:text-rest-text-muted focus:outline-none focus:border-rest-accent/50 transition"
+        />
+        <button
+          type="submit"
+          disabled={sending}
+          className="px-5 py-2.5 rounded-xl text-sm font-semibold bg-rest-accent text-rest-bg hover:bg-rest-accent-dark transition disabled:opacity-50"
+        >
+          {sending ? "Dando acceso..." : "Dar acceso"}
+        </button>
+      </div>
+      {result && (
+        <div className={`text-sm ${result.ok ? "text-rest-accent" : "text-rest-danger"}`}>
+          <p>{result.text}</p>
+          {result.password && (
+            <p className="mt-1 text-rest-text">Contraseña temporal: <span className="font-mono font-semibold">{result.password}</span></p>
+          )}
+        </div>
+      )}
+    </form>
+  );
+}
+
 export default function UsuariosPage() {
   const [users, setUsers] = useState<UserData[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<"all" | "Activo" | "Pendiente" | "Inactivo">("all");
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
+  const loadUsers = () => {
     fetch("/api/admin")
       .then((r) => {
         if (r.status === 401) {
@@ -35,7 +110,9 @@ export default function UsuariosPage() {
       })
       .then((d) => { if (d) setUsers(d.users); setLoading(false); })
       .catch(() => setLoading(false));
-  }, []);
+  };
+
+  useEffect(loadUsers, []);
 
   const filtered = users.filter((u) => {
     if (filter !== "all" && u.status !== filter) return false;
@@ -76,6 +153,8 @@ export default function UsuariosPage() {
         <h1 className="text-2xl sm:text-3xl font-bold">Usuarios</h1>
         <p className="text-rest-text-secondary mt-1">{users.length} usuarios registrados</p>
       </div>
+
+      <DarAcceso onDone={loadUsers} />
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
